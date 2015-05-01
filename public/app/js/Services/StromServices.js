@@ -1,0 +1,6 @@
+/**
+*  Module
+*
+* Description
+*/
+angular.module('', []).

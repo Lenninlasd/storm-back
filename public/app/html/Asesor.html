@@ -1,0 +1,40 @@
+<div class="col-md-8">
+<table class="table">
+		<thead>
+			<tr><th>Numero</th><th>Nombre</th><th>Motivo</th><th></th></tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="answer in answers | filter:{$:'Pendiente por Atencion'} |limitTo:1">
+				<td>{{answer.turno.toma_de_turno.numero_linea_tigo}}</td>
+				<td>{{answer.turno.toma_de_turno.nombre_pantalla}}</td>
+				<td>{{answer.turno.toma_de_turno.motivo_visita}}</td>
+				<td><button ng-click="tomarTurno(answer._id)">tomar turno</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a-cordeon></a-cordeon>
+	<br>
+	<button ng-click="guardarTurno(sessionItem)">Guardar Info session</button>
+</div>
+<div class="col-md-3">
+
+	<!--Solo para saber que turno selecciono -->
+	<p>-- {{atencion.turno.toma_de_turno.numero_linea_tigo}}</p>{{atencion.turno.atencion_a_turno.codigo_terminal}}--{{atencion.turno.atencion_a_turno.codigo_asesor}}
+
+	<form  novalidate>
+		<div class="form-group">
+			<label for="">Codigo Terminal</label>
+			<input type="text" class="form-control" ng-model="atencion.codigo_terminal">
+		</div>
+		<div class="form-group">
+			<label for="">Codigo Asesor</label>
+			<input type="text" class="form-control" ng-model="atencion.codigo_asesor">
+		</div>
+
+		<br><br><br><br>
+		<button type="submit" class="btn btn-success" ng-click="updateTurno(atencion)"> AtencionTurno</button>
+
+	</form>
+
+</div>

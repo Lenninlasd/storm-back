@@ -1,0 +1,26 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <!--  aqui comienza el repeater para cada turno en el scope Consolidado sin discriminar estado-->
+    <div class="panel panel-default" ng-repeat="ConTurno in Consolidado |filter:query |filter:{$:gate}"> 
+
+        <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-target="#{{ConTurno._id}}" aria-expanded="" aria-controls="{{ConTurno._id}}" data-parent="#accordion"style="cursor: pointer;" >
+            <h4 class="panel-title">
+                <span class="titulo fontSize1">
+                    {{ConTurno.turno.estado}} -- {{ConTurno.turno.toma_de_turno.motivo_visita}} -- {{ConTurno.turno.toma_de_turno.numero_linea_tigo}} <span class="pull-right">-- {{ConTurno.turno.codigo_turno}}--</span>
+                </span>
+            </h4>
+        </div>
+
+        <div id="{{ConTurno._id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+
+               <p>{{ConTurno.turno.toma_de_turno.nombre_pantalla}}</p> 
+               <p>{{ConTurno.turno.toma_de_turno.motivo_visita}}</p>  
+               <p>{{ConTurno.turno.atencion_a_turno.terminal.codigo_terminal}}</p> 
+               <p>{{ConTurno.turno.atencion_a_turno.terminal.codigo_asesor}}</p>
+               <p>{{ConTurno.turno.atencion_a_turno.infoTurno.categoria_cliente}}</p>                   
+            </div>
+        
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+hr{
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.site-logo {
+  z-index: 9;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: auto;
+  height: 60px;
+  padding: -5px 0px -5px 0px;
+  -webkit-transition: 400ms all ease;
+  -moz-transition: 400ms all ease;
+  -ms-transition: 400ms all ease;
+  -o-transition: 400ms all ease;
+  transition: 400ms all ease;
+}
+.site-logo:hover {
+  transform: rotate(20deg);
+}
+.btn{
+	background-color: #33343e;
+	color: #FFF;
+	border-color: #1c1e29;
+	margin: 3px;
+}
+.btn:focus{
+	border-color: none;
+}
+md-select{
+  margin: 0px;
+}
+md-input-container {
+  padding: 2px;
+}
+.fontSize1{
+  font-size: 0.8em;
+}

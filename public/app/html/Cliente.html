@@ -1,0 +1,55 @@
+<div class="col-md-5">
+	<table class="table">
+		<thead>
+			<tr><th>Numero</th><th>Nombre</th><th>Motivo</th><th></th></tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="answer in answers | filter:{$:'Pendiente por Atencion'}">
+				<td>{{answer.turno.toma_de_turno.numero_linea_tigo}}</td>
+				<td>{{answer.turno.toma_de_turno.nombre_pantalla}}</td>
+				<td>{{answer.turno.toma_de_turno.motivo_visita}}</td>
+				<td>{{answer.turno.codigo_turno}}</td>
+				
+			</tr>
+		</tbody>
+	</table>
+</div>				
+
+<div class="col-md-4">
+	<form  novalidate>
+		<div class="form-group">
+			<label for="">Numero de linea</label>
+			<input type="number" class="form-control" ng-model="newTurno.numero_linea_tigo">
+		</div>
+		<div class="form-group">
+			<label for="">Nombre a Mostrar</label>
+			<input type="text" class="form-control" ng-model="newTurno.nombre_pantalla">
+		</div>
+		<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>
+						<label flex="15" flex-sm="100">Servicio</label>
+						<md-select ng-model="newTurno.servObj">
+							<md-option ng-value="" ng-disabled="true" ng-selected="true">Escoja por favor un Servicio</md-option>
+							<md-option ng-value="item.servicio"ng-repeat="item in servicios">{{item.servicio.nombre}}
+							</md-option>
+						</md-select>
+						<span flex></span>
+					</div>
+		<br><br><br><br>
+		<button type="submit" class="btn btn-success" ng-click="addTurno(newTurno)"> Pedir Turno</button>
+	</form>
+</div>
+<div class="col-md-3">
+<!-- <span id="chronotime">0:00:00:00</span>
+<form name="chronoForm">
+    <input type="button" name="startstop" value="start!" onClick="chronoStart()" />
+    <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
+</form> -->
+<br> <br>
+{{prueba}}
+<button ng-click="tiempoEspera()">Tiempo de Espera</button>
+
+{{tiempo}}
+
+</div>
+
+
