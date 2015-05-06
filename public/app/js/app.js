@@ -5,10 +5,8 @@ angular.module('fStrom',[
 	])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  //
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/Cliente");
-  //
   // Now set up the states
   $stateProvider
   .state('Cliente', {
@@ -27,7 +25,8 @@ angular.module('fStrom',[
 
 .controller('DatosCtrl',['$scope','$http',function ($scope,$http){
 
-	$scope.prueba = moment().format('MMMM Do YYYY, h:mm:ss a');
+	$scope.prueba = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+
 	// experimento del cronometro;
 	var startTime = 0;
 	var start = 0;
@@ -39,7 +38,7 @@ angular.module('fStrom',[
 	// Parte destinada a la asignación de un codigo unico a cada turno
 	var numeroTurno = 1;
 	var codigoTienda = 'AB0';
-	var codigo_turno = codigoTienda +numeroTurno;	
+	var codigo_turno = codigoTienda + numeroTurno;	
 	$scope.newTurno = {codigo_turno:codigo_turno};
 	console.log($scope.newTurno.codigo_turno);
 	// Parte destinada a la asignación de un codigo unico a cada turno
@@ -91,6 +90,7 @@ angular.module('fStrom',[
 			$http.put('/takeTurnos/'+ currentTurno, $scope.atencion).success(function (res){
 				console.log('Se ha tomado el turno',res);
 				$scope.sessionItem = res.turno.atencion_a_turno;
+	
 				console.log($scope.sessionItem);
 				refresh();
 			});
@@ -128,17 +128,17 @@ angular.module('fStrom',[
 		if (sec < 10){
 			sec = "0" + sec;
 		};
-		
 		$scope.tiempo = hr + ":" + min + ":" + sec;
-		// timerID = setTimeout($scope.Cronometro, 1000);
-		setInterval($scope.Cronometro, 1000);
+		timerID = setTimeout($scope.Cronometro, 1000);
+
 
 	};
 
 	$scope.tiempoEspera = function(){
 		start = new Date();
 		$scope.Cronometro();
-	}
+	};
+
 
 	
 }]);

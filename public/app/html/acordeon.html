@@ -87,7 +87,7 @@
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>
 						<label flex="15" flex-sm="100">Tipo de Cliente</label>
 						<md-input-container>
-  						 <input type="text" ng-model="sessionItem.infoTurno.categoria_cliente">
+  						 <input type="text" ng-model="sessionItem.infoTurno.categoria_cliente" aria-label="catcleinte">
 						</md-input-container>
 						<span flex></span>
 					</div>
@@ -95,7 +95,8 @@
 					<!-- propuesta material -->
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>
 						<label flex="15" flex-sm="100">Servicio</label>
-						<md-select ng-model="sessionItem.infoTurno.servicio" placeholder="">
+						<md-select ng-model="sessionItem.infoTurno.servicio" placeholder="Escoja por favor un Servicio">
+
 							<md-option ng-value="item.servicio" ng-repeat="item in servicios">{{item.servicio.nombre}}
 							</md-option>
 						</md-select>
@@ -104,8 +105,8 @@
 
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>				
 						<label flex="15" flex-sm="100">Subservicio</label>
-						<md-select  ng-model="sessionItem.infoTurno.sub_servicio" placeholder="Escoja por favor un subServicio">
-							
+						<md-select  ng-model="sessionItem.infoTurno.sub_servicio" placeholder="Ecoja por favor un subservicio">
+						
 							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{serv_id:sessionItem.infoTurno.servicio.sid}">
 							{{subitem.nombre_subservicio}}
 							</md-option>								
@@ -114,10 +115,10 @@
 					</div>
 					<!-- propuesta material -->
 
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<label class="col-sm-2 control-label">Servicio</label>
 						<div class="col-sm-10">
-							<select class="form-control" ng-model="sessionItem.infoTurno.servicio" ng-options="item.servicio.nombre for item in servicios">
+							<select class="form-control" ng-model="sessionItem.infoTurno.servicio" ng-options="item.servicio as item.servicio.nombre for item in servicios">
 							</select>
 						</div>
 					</div>
@@ -125,7 +126,7 @@
 					<div class="form-group">				
 						<label for="" class="col-sm-2 control-label">Subservicio</label>
 						<div class="col-sm-10">
-							<select class="form-control" ng-model="listo" ng-options="subitem.nombre_subservicio for subitem in subservicios |filter:{{serv_id:sessionItem.infoTurno.servicio.sid}">
+							<select class="form-control" ng-model="sessionItem.infoTurno.sub_servicio" ng-options="subitem as subitem.nombre_subservicio for subitem in subservicios |filter:{serv_id:sessionItem.infoTurno.servicio.sid}">
 								
 							</select>
 						</div>	
@@ -136,9 +137,7 @@
 						<div class="col-sm-10">
 							<textarea class="form-control"name="" id=""  rows="2"></textarea>
 						</div>	
-					</div> -->					
-
-				<!-- {{sessionItem.infoTurno.sub_servicio}} -->			
+					</div>						
 			</div>
 		</div>
 	</div>
