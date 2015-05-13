@@ -25,8 +25,6 @@ angular.module('fStrom',[
 
 .controller('DatosCtrl',['$scope','$http',function ($scope,$http){
 
-	$scope.prueba = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-
 	// experimento del cronometro;
 	var startTime = 0;
 	var start = 0;

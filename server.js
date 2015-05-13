@@ -5,7 +5,7 @@ var express = require('express'),
 	db = mongoose.connection,
 	// bodyParser = require('body-parser'),
 	port = 5000,
-	Turno = require('./models/modelTurnos'),
+	Turno = require('./models/app_DB_Schemas_FluStrom'),
 	rutas = require('./rutas/rutas');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
