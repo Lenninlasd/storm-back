@@ -1,0 +1,30 @@
+<div class="col-md-7">
+	<div layout="column" layout-padding>
+	<div layout="row">
+		<md-input-container md-no-float flex="40">
+     		<input ng-model="query" type="text" placeholder="Burcar Coincidencias">
+		</md-input-container> 
+		<span flex></span>
+		<md-select ng-model="ciudadp" placeholder ="Ciudad">
+		<md-option ng-value="" ng-repeat="">
+			
+		</md-option>			
+	</md-select>	
+		<md-select ng-model="regionalp" placeholder ="Regional">
+		<md-option ng-value="regional.nombre_regional" ng-repeat="regional in regionales">
+			{{regional.nombre_regional}}
+		</md-option>			
+	</md-select>		
+	</div>
+	
+	
+	<br>
+		<div class="md-whiteframe-z1" ng-repeat="tienda in tiendas | filter:{regional:regionalp}"flex>
+			<div layout="row" layout-align="start center" layout-padding>
+					{{tienda.nombre_sucursal}} <span flex></span>{{tienda.codigo_pos}}
+			</div>
+
+		</div>
+
+	</div>
+</div>

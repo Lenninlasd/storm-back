@@ -20,6 +20,10 @@ angular.module('fStrom',[
   .state('Supervisor', {
   	url: "/Supervisor",
   	templateUrl: "html/Supervisor.html"      
+  })
+  .state('Administrador', {
+  	url: "/Administrador",
+  	templateUrl: "html/Administrador.html"      
   })  
 })
 
@@ -55,6 +59,9 @@ angular.module('fStrom',[
 	});
 	$http.get('js/Json/subservicios.json').success(function (data){
 		$scope.subservicios = data;		
+	});
+	$http.get('js/Json/Sucursales.json').success(function (data){
+		$scope.tiendas = data;		
 	});
 
 	refresh = function(){		
@@ -137,6 +144,13 @@ angular.module('fStrom',[
 		$scope.Cronometro();
 	};
 
-
-	
+	$scope.regionales = [
+						{nombre_regional:'CENTRO'},
+						{nombre_regional:'COSTA'},
+						{nombre_regional:'ORIENTE'},
+						{nombre_regional:'NOROCCIDENTE'},
+						{nombre_regional:'SUROCCIDENTE'}
+	];
+console.log($scope.regionales);
+		
 }]);

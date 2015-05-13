@@ -1,4 +1,4 @@
-[ [// Coleccion Sucursales 
+[// Coleccion Sucursales 
 	{nombre_sucursal:'TIGO ANDINO CALLE 85', codigo_pos:'1000510', ciudad:'BOGOTA',regional:'CENTRO'},
 	{nombre_sucursal:'TIGO CALLE 140', codigo_pos:'1000479', ciudad:'BOGOTA',regional:'CENTRO'},
 	{nombre_sucursal:'TIGO CENTRO BOGOTA', codigo_pos:'1002068', ciudad:'BOGOTA',regional:'CENTRO'},
@@ -93,6 +93,5 @@
 	{nombre_sucursal:'TIGO PASTO', codigo_pos:'3000034', ciudad:'PASTO',regional:'SUROCCIDENTE'},
 	{nombre_sucursal:'TIGO POPAYAN', codigo_pos:'3000031', ciudad:'POPAYAN',regional:'SUROCCIDENTE'},
 	{nombre_sucursal:'TIGO TULUA', codigo_pos:'3000438', ciudad:'TULUA',regional:'SUROCCIDENTE'}
-	]
 	
 ]
