@@ -94,9 +94,7 @@ module.exports = function rutas (app,Turno, Asesor, Tienda, mongoose){
 	});
 
 	app.post('/Tiendas',function (req,res){
-		Tienda.collection.insert(req.body,{'tienda.nombre_sucursal':req.body.nombre_sucursal,
-											'tienda.codigo_pos': req.body.codigo_pos
-	},function (err,array){
+		Tienda.collection.insert(req.body,function (err,array){
 			res.json(array);
 		});
 	});

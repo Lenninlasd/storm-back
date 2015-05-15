@@ -61,7 +61,7 @@ angular.module('fStrom',[
 	$http.get('js/Json/subservicios.json').success(function (data){
 		$scope.subservicios = data;		
 	});
-	$http.get('js/Json/Sucursales.json').success(function (data){
+	$http.get('/Tiendas').success(function (data){
 		$scope.tiendas = data;		
 	});
 
@@ -145,11 +145,6 @@ angular.module('fStrom',[
 		$scope.Cronometro();
 	};
 
-	$scope.crearTiendas = function(){
-		console.log('se llamo a la funcion')
-		$http.post('/Tiendas',$scope.tiendas).success(function(res){
-			console.log('se guardo todas las tiendas :',res);
-		});
-	};
+	
 		
 }]);

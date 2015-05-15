@@ -5,8 +5,8 @@ var express = require('express'),
 	db = mongoose.connection,
 	// bodyParser = require('body-parser'),
 	port = 5000,
-	Turno = require('./models/app_DB_Schemas_FluStrom'),
-	Asesor = require('./models/app_DB_Schemas_FluStrom'),
+	Turno = require('./models/app_DB_Schemas_Turnos'),
+	Asesor = require('./models/app_DB_Schemas_Asesores'),
 	Tienda = require('./models/app_DB_Schemas_Tiendas'),
 	rutas = require('./rutas/rutas');
 

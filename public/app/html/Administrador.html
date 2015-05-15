@@ -5,7 +5,7 @@
      		<input ng-model="query" type="text" placeholder="Burcar Coincidencias">
 		</md-input-container> 
 		<span flex></span>
-		<md-select ng-model="ciudadp" placeholder ="Ciudad">
+		<!-- <md-select ng-model="ciudadp" placeholder ="Ciudad">
 		<md-option ng-value="" ng-repeat="">
 			
 		</md-option>			
@@ -14,21 +14,17 @@
 		<md-option ng-value="regional.nombre_regional" ng-repeat="regional in regionales">
 			{{regional.nombre_regional}}
 		</md-option>			
-	</md-select>		
+	</md-select> -->		
 	</div>
 	
 	
 	<br>
-		<div class="md-whiteframe-z1" ng-repeat="x in tiendas" flex>
+		<div class="md-whiteframe-z1" ng-repeat="obj in tiendas track by $index | filter: query" flex>
 			<div layout="row" layout-align="start center" layout-padding>
-					{{x.nombre_sucursal}} <span flex></span>{{x.codigo_pos}}
+					{{obj.tienda.nombre_sucursal}} <span flex></span>{{obj.tienda.codigo_pos}}
 			</div>
 
 		</div>
-
 	</div>
 </div>
 
-<div class="col-md-3">
-	<button class="btn btn-success" ng-click="crearTiendas()"> Guardar tiendas</button>
-</div>
