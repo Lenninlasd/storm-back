@@ -56,14 +56,12 @@ var servicioSchema = mongoose.Schema({
 	servicio:{ 
 		nombre:String,
 		sid:String,
-		sub_servicios:[
-		{
+		sub_servicios:[{
 			nombre_subservicio:String,
 			descripcion:String,
 			numerador:String,
 			categoria:String
-		}						
-		]
+		}]
 	}
 		
 	});
@@ -72,7 +70,6 @@ var Servicio = mongoose.model('Servicio',servicioSchema,'TodosServicios');
 
 // Esquema que define totalmente toda la informacion que se relaciona con un Asesor
 var asesorSchema = mongoose.Schema({
-
 	asesor:{
     	nombre_aesesor:String, 
     	id_asesor:String,
@@ -89,7 +86,6 @@ var asesorSchema = mongoose.Schema({
     tiempo_atencion_promedio:String
 });
 
-var asesor = mongoose.model('Asesor',asesorSchema,'TodosAsesores');
+var Asesor = mongoose.model('Asesor',asesorSchema,'TodosAsesores');
 
-
-module.exports = Turno;
+module.exports = Turno , Servicio , Asesor ;

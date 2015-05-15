@@ -6,6 +6,8 @@ var express = require('express'),
 	// bodyParser = require('body-parser'),
 	port = 5000,
 	Turno = require('./models/app_DB_Schemas_FluStrom'),
+	Asesor = require('./models/app_DB_Schemas_FluStrom'),
+	Tienda = require('./models/app_DB_Schemas_Tiendas'),
 	rutas = require('./rutas/rutas');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
@@ -17,7 +19,7 @@ var express = require('express'),
 // Configuration
 app.use(express.static(__dirname + '/public'));
 
-rutas(app,Turno,mongoose);
+rutas(app,Turno,Asesor,Tienda,mongoose);
 
 app.listen(port,function(){
 	console.log('escuchando en el pueto ' + port);

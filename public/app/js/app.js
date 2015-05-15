@@ -53,6 +53,7 @@ angular.module('fStrom',[
 	
 	$scope.atencion = {}; // simular la terminal del asesor donde al tomar le turno debe aginarsele el codigo del asesor y terminal al objeto
 	$scope.answers = [];
+	$scope.tiendas =[];
 
 	$http.get('js/Json/ServiciosCola.json').success(function (data){
 		$scope.servicios = data;
@@ -144,13 +145,11 @@ angular.module('fStrom',[
 		$scope.Cronometro();
 	};
 
-	$scope.regionales = [
-						{nombre_regional:'CENTRO'},
-						{nombre_regional:'COSTA'},
-						{nombre_regional:'ORIENTE'},
-						{nombre_regional:'NOROCCIDENTE'},
-						{nombre_regional:'SUROCCIDENTE'}
-	];
-console.log($scope.regionales);
+	$scope.crearTiendas = function(){
+		console.log('se llamo a la funcion')
+		$http.post('/Tiendas',$scope.tiendas).success(function(res){
+			console.log('se guardo todas las tiendas :',res);
+		});
+	};
 		
 }]);
