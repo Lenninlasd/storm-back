@@ -58,7 +58,7 @@ angular.module('fStrom',[
 	$http.get('js/Json/ServiciosCola.json').success(function (data){
 		$scope.servicios = data;
 	});
-	$http.get('js/Json/subservicios.json').success(function (data){
+	$http.get('/Subservicios').success(function (data){
 		$scope.subservicios = data;		
 	});
 	$http.get('/Tiendas').success(function (data){
@@ -144,6 +144,8 @@ angular.module('fStrom',[
 		start = new Date();
 		$scope.Cronometro();
 	};
+
+	
 
 	
 		

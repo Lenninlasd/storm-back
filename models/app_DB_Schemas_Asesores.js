@@ -16,6 +16,7 @@ var asesorSchema = mongoose.Schema({
     tiempo_total_atencion:String,
     total_turnos_atendidos:String,
     tiempo_atencion_promedio:String
+    // 
 });
 
 var Asesor = mongoose.model('Asesor',asesorSchema,'TodosAsesores');

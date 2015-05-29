@@ -1,6 +1,8 @@
 
 var express = require('express'),
 	app = express(),
+	server = require('http').createServer(app),
+	io = require('socket.io')(server),
 	mongoose = require('mongoose'),
 	db = mongoose.connection,
 	// bodyParser = require('body-parser'),
@@ -8,6 +10,7 @@ var express = require('express'),
 	Turno = require('./models/app_DB_Schemas_Turnos'),
 	Asesor = require('./models/app_DB_Schemas_Asesores'),
 	Tienda = require('./models/app_DB_Schemas_Tiendas'),
+	Subservicio = require('./models/app_DB_Schemas_Subservicios'),
 	rutas = require('./rutas/rutas');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
@@ -19,9 +22,9 @@ var express = require('express'),
 // Configuration
 app.use(express.static(__dirname + '/public'));
 
-rutas(app,Turno,Asesor,Tienda,mongoose);
+rutas(app,Turno,Asesor,Tienda,Subservicio,mongoose);
 
-app.listen(port,function(){
+server.listen(port,function(){
 	console.log('escuchando en el pueto ' + port);
 });
 

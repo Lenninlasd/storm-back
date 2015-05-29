@@ -40,7 +40,7 @@ var turnoSchema = mongoose.Schema({
 				area:String,
 				categoria_cliente:String,
 				servicio:{nombre:String,sid:String},
-				sub_servicio:{nombre_subservicio:String,descripcion:String,numerador:String,categoria:String},
+				sub_servicio:{nombre_subservicio:String,descripcion:String,numerador:String,categoria:String}, // cambiar por una collecion
 				observacion:String,
 				tiempo_atencion:Date
 			}

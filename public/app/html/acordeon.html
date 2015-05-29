@@ -107,8 +107,8 @@
 						<label flex="15" flex-sm="100">Subservicio</label>
 						<md-select  ng-model="sessionItem.infoTurno.sub_servicio" placeholder="Ecoja por favor un subservicio">
 						
-							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{serv_id:sessionItem.infoTurno.servicio.sid}">
-							{{subitem.nombre_subservicio}}
+							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{$:sessionItem.infoTurno.servicio.sid}">
+							{{subitem.subservicio.nombre_subservicio}}
 							</md-option>								
 						</md-select>
 						<span flex></span>

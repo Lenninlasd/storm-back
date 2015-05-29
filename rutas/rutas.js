@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-module.exports = function rutas (app,Turno, Asesor, Tienda, mongoose){
+module.exports = function rutas (app,Turno, Asesor, Tienda, Subservicio, mongoose){
 
 	app.use(bodyParser.json());
 
@@ -93,11 +93,15 @@ module.exports = function rutas (app,Turno, Asesor, Tienda, mongoose){
 		});
 	});
 
-	app.post('/Tiendas',function (req,res){
-		Tienda.collection.insert(req.body,function (err,array){
+	app.get('/Subservicios',function (req,res){
+		Subservicio.find(function (err,array){
 			res.json(array);
 		});
 	});
+
+	
+
+	
 
 }
 
