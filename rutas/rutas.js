@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-module.exports = function rutas (app,Turno, Asesor, Tienda, Subservicio, mongoose){
+module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose){
 
 	app.use(bodyParser.json());
 
@@ -11,7 +11,7 @@ module.exports = function rutas (app,Turno, Asesor, Tienda, Subservicio, mongoos
 	});
 
 	app.post('/Turnos', function (req,res) {// Post para crear un nuevo turno
-
+ 		var info = {};
 	 	Turno.create({
 	 		'turno.estado':'Pendiente por Atencion',
 	 		'turno.toma_de_turno.numero_linea_tigo':req.body.numero_linea_tigo,
@@ -22,7 +22,10 @@ module.exports = function rutas (app,Turno, Asesor, Tienda, Subservicio, mongoos
 	 		'turno.atencion_a_turno.terminal.estado':'libre'
 	 	},function (err, obj){
 	 		res.json(obj);
+	 		io.emit('NewTurno');	 		
 	 	});
+
+	 	
 	});
 
 	app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno

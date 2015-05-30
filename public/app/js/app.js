@@ -1,6 +1,7 @@
 angular.module('fStrom',[
 	'ui.router',
 	'StromDirectives',
+	'StromServices',
 	'ngMaterial'
 	])
 
@@ -27,7 +28,9 @@ angular.module('fStrom',[
   })  
 })
 
-.controller('DatosCtrl',['$scope','$http',function ($scope,$http){
+.controller('DatosCtrl',['$scope','$http','socketio',function ($scope,$http,socketio){
+
+
 
 	// experimento del cronometro;
 	var startTime = 0;
@@ -81,7 +84,7 @@ angular.module('fStrom',[
 			$scope.newTurno={};
 			// parte para incrementar el numero del codigo del turno
 			numeroTurno = numeroTurno + 1;
-			codigo_turno = codigoTienda +numeroTurno;			
+			codigo_turno = codigoTienda + numeroTurno;			
 			$scope.newTurno.codigo_turno = codigo_turno;
 
 			refresh();
@@ -145,7 +148,12 @@ angular.module('fStrom',[
 		$scope.Cronometro();
 	};
 
-	
+	// experimento socket io 
+
+	socketio.on('NewTurno',function (){
+		refresh();
+
+	});
 
 	
 		

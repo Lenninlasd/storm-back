@@ -22,7 +22,7 @@ var express = require('express'),
 // Configuration
 app.use(express.static(__dirname + '/public'));
 
-rutas(app,Turno,Asesor,Tienda,Subservicio,mongoose);
+rutas(app,Turno,Asesor,Tienda,Subservicio,io,mongoose);
 
 server.listen(port,function(){
 	console.log('escuchando en el pueto ' + port);
