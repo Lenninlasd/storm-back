@@ -42,8 +42,8 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 		var id = req.params.id;
 		
 		Turno.findByIdAndUpdate(id,{
-			'turno.atencion_a_turno.terminal.codigo_terminal':req.body.codigo_terminal,
-			'turno.atencion_a_turno.terminal.codigo_asesor':req.body.codigo_asesor
+			'turno.atencion_a_turno.asesor.sucursal.terminal':req.body.codigo_terminal,
+			'turno.atencion_a_turno.asesor.id_asesor':req.body.codigo_asesor
 		},{new:true},function (err,results){
 			res.json(results);
 			console.log(results);
@@ -100,6 +100,22 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 		Subservicio.find(function (err,array){
 			res.json(array);
 		});
+	});
+
+	app.get('/prueba',function (req,res){
+		// Subservicio.find({'subservicio.serv_id':'S04','subservicio.categoria':'Otros'},function (err,array){
+		// 	res.json(array);
+		// });
+		Turno.aggregate([
+			{$match:{'turno.estado':'Atendido'}},
+			{$group:{_id:'$_id',area:{$sum:'$turno.atencion_a_turno.infoTurno.area'}}}]
+			,function (err,b){
+				if (err){
+					console.log(err);
+				}
+			res.json(b);
+		});
+
 	});
 
 	

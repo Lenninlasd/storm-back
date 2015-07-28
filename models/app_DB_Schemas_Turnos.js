@@ -35,8 +35,8 @@ var turnoSchema = mongoose.Schema({
 			},
 			// Datos de la atencion al turno
 			infoTurno:{
-				tiempo_espera:Date,
-				tiempo_llamado:Date,
+				tiempo_espera:String, // Date
+				tiempo_llamado:String, // Date
 				area:String,
 				categoria_cliente:String,
 				servicio:{nombre:String,sid:String},
