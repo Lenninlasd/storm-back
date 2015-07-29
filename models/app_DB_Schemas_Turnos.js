@@ -4,52 +4,55 @@ var mongoose = require('mongoose');
 // Esquema que define totalmente toda la información que se realciona con un turno.
 var turnoSchema = mongoose.Schema({
 	turno:{
-		codigo_turno:String,
+		idTurno: {numerador: String, consecutivo: Number},
 		estado:String,
-		fecha_creacion_turno:Date,
 		// Proceso de toma de turno por parte del cliente.
-		toma_de_turno:{ 
-			numero_linea_tigo:Number,
-			nombre_pantalla:String,
-			motivo_visita:String,
-		},
-		// Proceso de Atencion del turno Por parte del Asesor
-		atencion_a_turno:{
-			// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
-			asesor:{
-				nombre_aesesor:String, 
-				id_asesor:String,
+		motivoVisita:String,
+
+		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
+		asesor:{
+				nombreAsesor:String,
+				idAsesor:String,
 				sucursal:{
-					nombre_sucursal:String,
-					codigo_pos:Number,
-					ciudad:String,
-					regional:String,
-					terminal:String
-					}
-			},
+						nombreSucursal:String,
+						codigoPos:Number,
+						ciudad:String,
+						regional:String,
+						terminal:String
+				}
+		},
 			// Datos del Cliente Atendido.
-			cliente:{
+		cliente:{
+				numeroLinea:Number,
+				nombrePantalla:String,
 				nombre:String,
-				numero_documento:Number,
-				tipo_documento:String
-			},
-			// Datos de la atencion al turno
-			infoTurno:{
-				tiempo_espera:String, // Date
-				tiempo_llamado:String, // Date
+				numeroDocumento:Number,
+				tipoDocumento:String
+		},
+		// Datos de la atencion al turno
+		infoTurno:{
+				logCreacionTurno:Date,
+				logLlamado:Date, // Date
+				logAtencion:Date,
+				logFin:Date, // Date
 				area:String,
-				categoria_cliente:String,
-				servicio:{nombre:String,sid:String},
-				sub_servicio:{nombre_subservicio:String,descripcion:String,numerador:String,categoria:String}, // cambiar por una collecion
-				observacion:String,
-				tiempo_atencion:Date
-			}
+				categoriaCliente:String,
+				servicios: [{
+					nombre:String,
+					sid:String,
+					subServicios:[{
+						subSerId:String,
+						nombreSubservicio:String,
+						descripcion:String,
+						numerador:String,
+						categoria:String
+					}]
+				}],
+				observacion:String
 		}
 	}
 });
 
-var Turno = mongoose.model('Turno',turnoSchema,'Todosturnos');
-
-
+var Turno = mongoose.model('Turno',turnoSchema,'turnos');
 
 module.exports = Turno;

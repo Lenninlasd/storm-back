@@ -1,24 +1,19 @@
-var mongoose = require('mongoose'); 
+var mongoose = require('mongoose');
 
 // Esquema que define totalmente toda la informacion que se relaciona con un Asesor
 var asesorSchema = mongoose.Schema({
 	asesor:{
-    	nombre_aesesor:String, 
-    	id_asesor:String,
+    	nombreAsesor:String,
+    	idAsesor:String,
     	sucursal:{
-    		nombre_sucursal:String, 
-    		codigo_pos:Number,
+    		nombreSucursal:String,
+    		codigoPos:Number,
     		regional:String,
     		terminal:String
-    	}    	
-    },
-    total_tiempo_laboral:String,
-    tiempo_total_atencion:String,
-    total_turnos_atendidos:String,
-    tiempo_atencion_promedio:String
-    // 
+    	}
+    }
 });
 
-var Asesor = mongoose.model('Asesor',asesorSchema,'TodosAsesores');
+var Asesor = mongoose.model('Asesor',asesorSchema,'asesores');
 
 module.exports = Asesor;

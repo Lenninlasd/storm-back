@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 
 var subservSchema = mongoose.Schema({
 	subservicio:{
-		nombre_subservicio:String,
+		subSerId:String,  // codigo del servicio al que pertenece
+		nombreSubservicio:String,
 		descripcion:String,
 		numerador:String,
-		categoria:String,
-		serv_id:String  // codigo del servicio al que pertenece
+		categoria:String
 	}
 });
 
-var SubServicio = mongoose.model('SubServicio',subservSchema,'TodosSubservicios');
+var SubServicio = mongoose.model('SubServicio',subservSchema,'subservicios');
 
 module.exports = SubServicio;
 
