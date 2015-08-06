@@ -14,7 +14,7 @@ var Tienda = mongoose.model('Tienda',tiendaSchema,'tiendas');
 
 module.exports = Tienda ;
 
-//codigo en app.js para guardar toda la collecion de una sola vez
+//codigo en app.js para guardar toda la collecion de una sola vez 
 
 // $scope.crearTiendas = function(){
 // 		console.log('se llamo a la funcion')
