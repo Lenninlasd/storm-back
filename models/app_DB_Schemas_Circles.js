@@ -1,15 +1,15 @@
-circle: {
-	blue: [{}] // lista de circulos que generan turno
-	green: [{ // lista de agrupación de kpi (visualización)
-		idBlueCircle: String,
+greenCircle: [{// lista de agrupación de kpi (visualización)
+		idGreenCircle: String,
 		nameCircle: String,
 		branchOffices:[{
-			nombre_sucursal:String,
-			codigo_pos:String,
+			nombreSucursal:String,
+			codigoPos:String,
 			ciudad:String,
-			regional:String
+			regional:String,
+			blueCircles: [{ // lista de circulos que generan turno
+				idClircle: String,
+				nameCircle: String,
+				type: String
+			}]
 		}]
-	}], 
-	: [{}], 
-	orange: [{}] // SubCirculos de grupo de asesores.
-}
+}]

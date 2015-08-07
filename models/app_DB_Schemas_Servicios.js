@@ -4,14 +4,14 @@ var mongoose = require('mongoose');
 
 var servicioSchema = mongoose.Schema({
 	servicio:{
-		nombre:String,
 		sid:String,
+		nombre:String,
+		numerador:String,
+		categoria:String,
 		subServicios:[{
 			subSerId:String,
 			nombreSubservicio:String,
-			descripcion:String,
-			numerador:String,
-			categoria:String
+			descripcion:String
 		}]
 	}
 
