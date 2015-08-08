@@ -3,18 +3,26 @@ var mongoose = require('mongoose');
 // Esquema que define totalmente toda la informacion que se relaciona con una Tienda
 var tiendaSchema = mongoose.Schema({
 	tienda:{
-		nombre_sucursal:String,
-		codigo_pos:String,
+		nombreSucursal:String,
+		codigoPos:String,
 		ciudad:String,
-		regional:String
+		regional:String,
+		blueCircles: [{ // lista de circulos que generan turno
+			idClircle: String,
+			nameCircle: String,
+			type: String
+		}],
+		data: {
+			type: String,
+		}
 	}
 });
 
-var Tienda = mongoose.model('Tienda',tiendaSchema,'TodosTiendas');
+var Tienda = mongoose.model('Tienda',tiendaSchema,'tiendas');
 
 module.exports = Tienda ;
 
-//codigo en app.js para guardar toda la collecion de una sola vez 
+//codigo en app.js para guardar toda la collecion de una sola vez
 
 // $scope.crearTiendas = function(){
 // 		console.log('se llamo a la funcion')
