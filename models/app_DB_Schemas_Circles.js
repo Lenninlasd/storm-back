@@ -1,4 +1,7 @@
-greenCircle: [{// lista de agrupación de kpi (visualización)
+var mongoose = require('mongoose');
+
+var circleSchema = mongoose.Schema({
+	greenCircle: [{// lista de agrupación de kpi (visualización)
 		idGreenCircle: String,
 		nameCircle: String,
 		branchOffices:[{
@@ -13,3 +16,8 @@ greenCircle: [{// lista de agrupación de kpi (visualización)
 			}]
 		}]
 }]
+});
+
+var Circle = mongoose.Model('circle', circleSchema,'circlecollection');
+
+module.exports = Circle;
