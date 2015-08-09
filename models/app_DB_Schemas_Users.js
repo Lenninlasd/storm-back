@@ -31,6 +31,6 @@ var userSchema = mongoose.Schema({
 
 });
 // coleccion de passwords usados
-var User = mongoose.model('Users',asesorSchema,'users');
+var User = mongoose.model('Users',userSchema,'users');
 
 module.exports = User;
