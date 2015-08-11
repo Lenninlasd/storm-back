@@ -5,19 +5,18 @@ var circleSchema = mongoose.Schema({
 		idGreenCircle: String,
 		nameCircle: String,
 		branchOffices:[{
-			sucursalName:String,
-			codigoPos:String,
+			branchOfficesName:String,
+			posCode:String,
 			city:String,
-			regional:String,
+			region:String,
 			blueCircles: [{ // lista de circulos que generan turno
 				idClircle: String,
 				nameCircle: String,
 				type: String
 			}]
 		}]
-}]
+	}]
 });
 
-var Circle = mongoose.Model('circle', circleSchema,'circlecollection');
-
+var Circle = mongoose.model('Circle', circleSchema, 'Circles');
 module.exports = Circle;

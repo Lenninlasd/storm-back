@@ -4,13 +4,7 @@ var activitySchema = mongoose.Schema({
 
 	asesor:{
 		asesorName:String, 
-		idAsesor:String,
-		sucursal:{
-			sucursalName:String, 
-			posCode:Number,
-			regional:String,
-
-		}    	
+		idAsesor:String,   	
 	},
 	actividad:[{
 		idActivity:String,
@@ -20,7 +14,22 @@ var activitySchema = mongoose.Schema({
 			eventName:String,
 			transferTerminal:String,
 		},
-		terminal:String,
+		branchOffice:{
+				branchOfficesName:String,
+				posCode:Number,
+				city:String,
+				region:String,
+				blueCircle: {
+					idClircle: String,
+					nameCircle: String,
+					type: String,
+					termimal: {
+						terminalId: String,
+						terminalName: String,
+						location: String
+					}
+				}
+		},
 		activityStartTime:Date,
 		activityEndTime:Date,
 		activityTime:Number
