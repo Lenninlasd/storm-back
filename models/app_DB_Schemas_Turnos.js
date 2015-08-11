@@ -14,16 +14,20 @@ var turnoSchema = mongoose.Schema({
 				nombreAsesor:String,
 				idAsesor:String,
 		},
-		sucursal:{
-				nombreSucursal:String,
-				codigoPos:Number,
-				ciudad:String,
-				regional:String,
-				terminal:String,
+		branchOffice:{
+				branchOfficesName:String,
+				posCode:Number,
+				city:String,
+				region:String,
 				blueCircle: {
 					idClircle: String,
 					nameCircle: String,
-					type: String
+					type: String,
+					termimal: {
+						terminalId: String,
+						terminalName: String,
+						location: String
+					}
 				}
 		},
 		// Datos del Cliente Atendido.

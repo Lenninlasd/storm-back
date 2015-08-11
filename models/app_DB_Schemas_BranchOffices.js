@@ -1,16 +1,21 @@
 var mongoose = require('mongoose');
 
 // Esquema que define totalmente toda la informacion que se relaciona con una Tienda
-var tiendaSchema = mongoose.Schema({
-	tienda:{
-		nombreSucursal:String,
-		codigoPos:String,
-		ciudad:String,
-		regional:String,
+var branchOfficeSchema = mongoose.Schema({
+	branchOffice:{
+		branchOfficesName:String,
+		posCode:String,
+		city:String,
+		region:String,
 		blueCircles: [{ // lista de circulos que generan turno
 			idClircle: String,
 			nameCircle: String,
-			type: String
+			type: String,
+			termimals: [{
+				terminalId: String,
+				terminalName: String,
+				location: String
+			}]
 		}],
 		data: {
 			type: String,
@@ -18,9 +23,9 @@ var tiendaSchema = mongoose.Schema({
 	}
 });
 
-var Tienda = mongoose.model('Tienda',tiendaSchema,'tiendas');
+var BranchOffice = mongoose.model('BranchOffice',branchOfficeSchema,'BranchOffices');
 
-module.exports = Tienda ;
+module.exports = BranchOffice;
 
 //codigo en app.js para guardar toda la collecion de una sola vez
 
