@@ -5,9 +5,9 @@ var circleSchema = mongoose.Schema({
 		idGreenCircle: String,
 		nameCircle: String,
 		branchOffices:[{
-			nombreSucursal:String,
+			sucursalName:String,
 			codigoPos:String,
-			ciudad:String,
+			city:String,
 			regional:String,
 			blueCircles: [{ // lista de circulos que generan turno
 				idClircle: String,

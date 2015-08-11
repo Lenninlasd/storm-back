@@ -11,13 +11,13 @@ var turnoSchema = mongoose.Schema({
 
 		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
 		asesor:{
-				nombreAsesor:String,
-				idAsesor:String,
+				asesorName:String,
+				asesorId:String,
 		},
 		sucursal:{
-				nombreSucursal:String,
-				codigoPos:Number,
-				ciudad:String,
+				sucursalName:String,
+				posCode:Number,
+				city:String,
 				regional:String,
 				terminal:String,
 				blueCircle: {
@@ -28,11 +28,11 @@ var turnoSchema = mongoose.Schema({
 		},
 		// Datos del Cliente Atendido.
 		cliente:{
-				numeroLinea:Number,
-				nombrePantalla:String,
-				nombre:String,
-				numeroDocumento:Number,
-				tipoDocumento:String
+				LineNumber:Number,
+				ScreenName:String,
+				clientName:String,
+				idNumber:Number,
+				idType:String
 		},
 		// Datos de la atencion al turno
 		infoTurno:{
@@ -42,18 +42,18 @@ var turnoSchema = mongoose.Schema({
 				logFin:Date, // Date
 				area:String,
 				categoriaCliente:String,
-				servicios: [{
-					nombre:String,
-					sid:String,
-					subServicios:[{
-						subSerId:String,
-						nombreSubservicio:String,
-						descripcion:String,
+				services: [{
+					serviceName:String,
+					serviceId:String,
+					subServices:[{
+						subServiceId:String,
+						subServiceName:String,
+						description:String,
 						numerador:String,
-						categoria:String
+						categorie:String
 					}]
 				}],
-				observacion:String
+				observation:String
 		}
 	}
 });

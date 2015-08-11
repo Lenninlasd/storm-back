@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 // Esquema que define totalmente toda la informacion que se relaciona con una Tienda
 var tiendaSchema = mongoose.Schema({
 	tienda:{
-		nombreSucursal:String,
-		codigoPos:String,
-		ciudad:String,
+		sucursalName:String,
+		posCode:String,
+		city:String,
 		regional:String,
 		blueCircles: [{ // lista de circulos que generan turno
 			idClircle: String,
