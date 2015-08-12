@@ -5,11 +5,10 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="answer in answers | filter:{$:'Pendiente por Atencion'}">
-				<td>{{answer.turno.toma_de_turno.numero_linea_tigo}}</td>
-				<td>{{answer.turno.toma_de_turno.nombre_pantalla}}</td>
-				<td>{{answer.turno.toma_de_turno.motivo_visita}}</td>
-				<td>{{answer.turno.codigo_turno}}</td>
-				
+				<td>{{answer.turno.client.lineNumber}}</td>
+				<td>{{answer.turno.client.screenName}}</td>
+				<td>{{answer.turno.motivoVisita}}</td>
+				<td>{{answer.turno.idTurno.numerador}}-{{answer.turno.idTurno.consecutivo}}</td>				
 			</tr>
 		</tbody>
 	</table>	
@@ -39,15 +38,6 @@
 	</form>
 </div>
 <div class="col-md-3">
-<!-- <span id="chronotime">0:00:00:00</span>
-<form name="chronoForm">
-    <input type="button" name="startstop" value="start!" onClick="chronoStart()" />
-    <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
-</form> -->
-
-<button ng-click="tiempoEspera()">Tiempo de Espera</button>
-<br> <br>
-{{tiempo}}
 
 </div>
 

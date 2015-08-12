@@ -11,21 +11,22 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 	});
 
 	app.post('/Turnos', function (req,res) {// Post para crear un nuevo turno
- 		var info = {};
-	 	Turno.create({
-	 		'turno.estado':'Pendiente por Atencion',
-	 		'turno.toma_de_turno.numero_linea_tigo':req.body.numero_linea_tigo,
-	 		'turno.toma_de_turno.nombre_pantalla':req.body.nombre_pantalla,
-	 		'turno.toma_de_turno.motivo_visita':req.body.servObj.nombre,
-	 		'turno.atencion_a_turno.infoTurno.servicio':req.body.servObj,
-	 		'turno.codigo_turno':req.body.codigo_turno,
-	 		'turno.atencion_a_turno.terminal.estado':'libre'
-	 	},function (err, obj){
-	 		res.json(obj);
-	 		io.emit('NewTurno');	 		
-	 	});
+		var info = {};
+		Turno.create({
+			'turno.idTurno.numerador':'AB',
+			'turno.idTurno.consecutivo':req.body.consecutivo,
+			'turno.estado':'Pendiente por Atencion',
+			'turno.client.lineNumber':req.body.numero_linea_tigo,
+			'turno.client.screenName':req.body.nombre_pantalla,
+			'turno.motivoVisita':req.body.servObj.nombre,
+			'turno.infoTurno.logCreacionTurno':new Date()
 
-	 	
+		},function (err, obj){
+			res.json(obj);
+			io.emit('NewTurno');	 		
+		});
+
+
 	});
 
 	app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno

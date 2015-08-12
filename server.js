@@ -9,8 +9,8 @@ var express = require('express'),
 	port = 5000,
 	Turno = require('./models/app_DB_Schemas_Turnos'),
 	Asesor = require('./models/app_DB_Schemas_Users'),
-	Tienda = require('./models/app_DB_Schemas_Tiendas'),
-	Subservicio = require('./models/app_DB_Schemas_Subservicios'),
+	Tienda = require('./models/app_DB_Schemas_BranchOffices'),
+	Subservicio = require('./models/app_DB_Schemas_Services'),
 	rutas = require('./rutas/rutas');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');

@@ -32,20 +32,10 @@ angular.module('fStrom',[
 
 
 
-	// experimento del cronometro;
-	var startTime = 0;
-	var start = 0;
-	var end = 0;
-	var diff = 0;
-	var timerID = 0;
-	// experimento del cronometro;
-
+	
 	// Parte destinada a la asignación de un codigo unico a cada turno
 	var numeroTurno = 1;
-	var codigoTienda = 'AB0';
-	var codigo_turno = codigoTienda + numeroTurno;	
-	$scope.newTurno = {codigo_turno:codigo_turno};
-	console.log($scope.newTurno.codigo_turno);
+	$scope.newTurno ={};
 	// Parte destinada a la asignación de un codigo unico a cada turno
 
 	var currentTurno='';
@@ -81,11 +71,10 @@ angular.module('fStrom',[
 		console.log(newTurno);
 		$http.post('/Turnos',newTurno).success(function (res){
 			console.log('Turno creado:',res);
-			$scope.newTurno={};
+			$scope.newTurno = {};
 			// parte para incrementar el numero del codigo del turno
-			numeroTurno = numeroTurno + 1;
-			codigo_turno = codigoTienda + numeroTurno;			
-			$scope.newTurno.codigo_turno = codigo_turno;
+			numeroTurno = numeroTurno + 1;		
+			$scope.newTurno.consecutivo = numeroTurno;
 
 			refresh();
 		});
@@ -123,30 +112,7 @@ angular.module('fStrom',[
 			refresh();
 		});
 	};
-
-	$scope.Cronometro = function(){
-		end = new Date();
-		diff = end - start;
-		diff = new Date(diff);
-		var sec = diff.getSeconds();
-		var min = diff.getMinutes();
-		var hr = diff.getHours()-1;
-		if (min < 10){
-			min = "0" + min;
-		};
-		if (sec < 10){
-			sec = "0" + sec;
-		};
-		$scope.tiempo = hr + ":" + min + ":" + sec;
-		timerID = setTimeout($scope.Cronometro, 1000);
-
-
-	};
-
-	$scope.tiempoEspera = function(){
-		start = new Date();
-		$scope.Cronometro();
-	};
+	
 
 	// experimento socket io 
 
