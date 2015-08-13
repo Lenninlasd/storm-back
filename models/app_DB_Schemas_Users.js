@@ -12,10 +12,6 @@ var userSchema = mongoose.Schema({
         role:String,
         creationDate:Date,
         circleList:{
-            blueCircles:[{
-                idClircle: String,
-                nameCircle: String
-            }],
             greenCircles:[{
                 idGreenCircle: String,
                 nameCircle: String
@@ -24,7 +20,11 @@ var userSchema = mongoose.Schema({
                 nombreSucursal:String,
                 codigoPos:String,
                 ciudad:String,
-                regional:String
+                regional:String,
+                blueCircles:[{
+                    idClircle: String,
+                    nameCircle: String
+                }],
             }]
         }
     }

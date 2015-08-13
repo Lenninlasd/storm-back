@@ -5,7 +5,10 @@ var mongoose = require('mongoose');
 var turnoSchema = mongoose.Schema({
 	turno:{
 		idTurno: {numerador: String,consecutivo: Number},
-		estado:String,
+		state: { 
+			stateCode: Number,
+			description: String
+		},
 		// Proceso de toma de turno por parte del cliente.
 		motivoVisita:String,
 		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
