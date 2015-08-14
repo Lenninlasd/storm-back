@@ -14,6 +14,7 @@ var turnoSchema = mongoose.Schema({
 		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
 		asesor:{
 				asesorName:String,
+				asesorLastName:String,
 				asesorId:String,
 		},
 		branchOffice:{

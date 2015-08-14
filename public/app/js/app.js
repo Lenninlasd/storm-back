@@ -30,9 +30,6 @@ angular.module('fStrom',[
 
 .controller('DatosCtrl',['$scope','$http','socketio',function ($scope,$http,socketio){
 
-
-
-	
 	// Parte destinada a la asignación de un codigo unico a cada turno
 	var numeroTurno = 1;
 	$scope.newTurno ={};
@@ -47,15 +44,20 @@ angular.module('fStrom',[
 	$scope.atencion = {}; // simular la terminal del asesor donde al tomar le turno debe aginarsele el codigo del asesor y terminal al objeto
 	$scope.answers = [];
 	$scope.tiendas =[];
+	$scope.asesor={};
 
 	$http.get('js/Json/ServiciosCola.json').success(function (data){
 		$scope.servicios = data;
 	});
-	$http.get('/Subservicios').success(function (data){
+	$http.get('js/Json/Subservicios.json').success(function (data){
 		$scope.subservicios = data;		
 	});
-	$http.get('/Tiendas').success(function (data){
-		$scope.tiendas = data;		
+	//$http.get('js/Json/Tiendas.json').success(function (data){
+		//$scope.tiendas = data;		
+	//});
+
+	$http.get('js/Json/Usuarios-asesores.json').success(function (data){
+		$scope.asesores = data;		
 	});
 
 	refresh = function(){		
@@ -79,32 +81,16 @@ angular.module('fStrom',[
 			refresh();
 		});
 	};
-
+	// prueba de toma de turno con objeto asesor pleno
 	$scope.tomarTurno = function(id){
 		currentTurno = id;
-		$http.get('/takeTurnos/'+ currentTurno).success(function (res){
-			console.log(res);
-			$scope.atencion = res;
-			$http.put('/takeTurnos/'+ currentTurno, $scope.atencion).success(function (res){
+		console.log(currentTurno);
+			$http.put('/takeTurnos/'+ currentTurno,$scope.asesor.toma).success(function (res){
 				console.log('Se ha tomado el turno',res);
-				$scope.sessionItem = res.turno.atencion_a_turno;
-	
-				console.log($scope.sessionItem);
 				refresh();
 			});
-
-		});
-	};
-
-	$scope.updateTurno = function(entra){
-		console.log(entra);
-		$http.put('/Turnos/'+ currentTurno,entra).success(function (res){
-			console.log('entran datos del asesor al turno:',res);
-			$scope.atencion = {};
-			refresh();
-		});
-	};
-
+	};	
+	
 	$scope.guardarTurno = function(obj){
 		console.log(obj);
 		$http.put('/cerrarTurno/'+ currentTurno,obj).success(function (res){
@@ -113,14 +99,9 @@ angular.module('fStrom',[
 		});
 	};
 	
-
 	// experimento socket io 
-
 	socketio.on('NewTurno',function (){
 		refresh();
-
 	});
 
-	
-		
 }]);

@@ -1,0 +1,55 @@
+[{
+        "user":"ppleon",
+        "password":"elcapo37",
+        "name":"Pedro Pablo",
+        "lastName":"Leon Jaramillo",
+        "idUser":"1143121813",
+        "idType":"CC",
+        "role":"Asesor",
+        "creationDate":"",
+        "circleList":{
+            "greenCircles":[{
+                "idGreenCircle": "",
+                "nameCircle": ""
+            }],
+            "branchOffices":[{
+                "nombreSucursal":"Portal del prado",
+                "codigoPos":37,
+                "ciudad":"Barranquilla",
+                "regional":"Atlantico",
+                "blueCircles":[{
+                    "idClircle": "",
+                    "nameCircle": ""
+                }]
+            }]
+        }
+    },
+    {
+        "user":"lasd25",
+        "password":"jslasd25",
+        "name":"Lennin Alonso",
+        "lastName":"Suescun Devia",
+        "idUser":"114121458",
+        "idType":"CC",
+        "role":"Asesor",
+        "creationDate":"",
+        "circleList":{
+            "greenCircles":[{
+                "idGreenCircle": "",
+                "nameCircle": ""
+            }],
+            "branchOffices":[{
+                "nombreSucursal":"Buena Vista",
+                "codigoPos":"93",
+                "ciudad":"Barranquilla",
+                "regional":"Atlantico",
+                "blueCircles":[{
+                    "idClircle": "",
+                    "nameCircle": ""
+                }]
+            }]
+        }
+    }
+    ]
+
+                           

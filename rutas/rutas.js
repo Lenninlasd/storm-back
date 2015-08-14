@@ -15,7 +15,7 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 		Turno.create({
 			'turno.idTurno.numerador':'AB',
 			'turno.idTurno.consecutivo':req.body.consecutivo,
-			'turno.estado':'Pendiente por Atencion',
+			'turno.state.description':'Pendiente por Atencion',
 			'turno.client.lineNumber':req.body.numero_linea_tigo,
 			'turno.client.screenName':req.body.nombre_pantalla,
 			'turno.motivoVisita':req.body.servObj.nombre,
@@ -29,43 +29,28 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 
 	});
 
-	app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno
-		var id = req.params.id;
-		Turno.findById(id,function (err, results){
-			if (err)
-				res.send(err);
-			res.json(results);
-		});
-	});
-
+	// app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno
+	// 	var id = req.params.id;
+	// 	Turno.findById(id,function (err, results){
+	// 		if (err)
+	// 			res.send(err);
+	// 		res.json(results);
+	// 	});
+	// });
 	
-	app.put('/Turnos/:id',function (req,res){// put para meter masinfo en el turno
+	app.put('/takeTurnos/:id',function (req,res){// put para Tomar el turno y meter info de asesor
 		var id = req.params.id;
-		
+		console.log(req.body.circleList.branchOffices[0].nombreSucursal);
 		Turno.findByIdAndUpdate(id,{
-			'turno.atencion_a_turno.asesor.sucursal.terminal':req.body.codigo_terminal,
-			'turno.atencion_a_turno.asesor.id_asesor':req.body.codigo_asesor
-		},{new:true},function (err,results){
-			res.json(results);
-			console.log(results);
-		});
-	});
+			'turno.state':'En Atencion',
+			'turno.asesor.asesorName':req.body.name,
+			'turno.asesor.lastName':req.body.lastname,
+			'turno.asesor.asesorId':req.body.idUser,
+			'turno.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
+			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
+			'turno.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
+			'turno.branchOffice.region':req.body.circleList.branchOffices[0].regional
 
-	
-	app.get('/takeTurnos/:id',function (req,res){// get para Tomar el turno
-		var id = req.params.id;
-		Turno.findById(id,function (err, results){
-			if (err)
-				res.send(err);
-			res.json(results);
-			// console.log(results);
-		});
-	});
-
-	app.put('/takeTurnos/:id',function (req,res){// put para Tomar el turno
-		var id = req.params.id;
-		Turno.findByIdAndUpdate(id,{
-			'turno.estado':'En Atencion'		
 		},
 		{new:true},
 		function (err,results){
@@ -118,6 +103,8 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 		});
 
 	});
+
+	
 
 	
 
