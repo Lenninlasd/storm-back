@@ -5,13 +5,13 @@ var mongoose = require('mongoose');
 var serviceSchema = mongoose.Schema({
 	servicie:{
 		serviceId:String,
-		serviceName:String,
-		numerador:String,
-		categorie:String,
+		serviceName:String,		
 		subServices:[{
 			subServiceId:String,
 			subServiceName:String,
-			description:String
+			description:String,
+			numerador:String,
+			categorie:String
 		}]
 	}
 

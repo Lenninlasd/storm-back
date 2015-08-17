@@ -1,20 +1,21 @@
-<div class="col-md-7">
+<div class="col-md-8">
 	<table class="table">
 		<thead>
-			<tr><th>Numero</th><th>Nombre</th><th>Motivo</th><th></th></tr>
+			<tr><th>Numero</th><th>Nombre</th><th>Motivo</th><th>id</th><th>hora Creacion</th></tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="answer in answers | filter:{$:'Pendiente por Atencion'}">
 				<td>{{answer.turno.client.lineNumber}}</td>
 				<td>{{answer.turno.client.screenName}}</td>
 				<td>{{answer.turno.motivoVisita}}</td>
-				<td>{{answer.turno.idTurno.numerador}}-{{answer.turno.idTurno.consecutivo}}</td>				
+				<td>{{answer.turno.idTurno.numerador}}-{{answer.turno.idTurno.consecutivo}}</td>
+				<td>{{answer.turno.infoTurno.logCreacionTurno}}</td>				
 			</tr>
 		</tbody>
 	</table>	
 </div>				
 
-<div class="col-md-4">
+<div class="col-md-3">
 	<form  novalidate>
 		<div class="form-group">
 			<label for="">Numero de linea</label>

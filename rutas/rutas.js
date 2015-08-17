@@ -40,35 +40,36 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 	
 	app.put('/takeTurnos/:id',function (req,res){// put para Tomar el turno y meter info de asesor
 		var id = req.params.id;
-		console.log(req.body.circleList.branchOffices[0].nombreSucursal);
+		//console.log(req.body.circleList.branchOffices[0].nombreSucursal);
 		Turno.findByIdAndUpdate(id,{
 			'turno.state':'En Atencion',
 			'turno.asesor.asesorName':req.body.name,
-			'turno.asesor.lastName':req.body.lastname,
+			'turno.asesor.lastName':req.body.lastName,
 			'turno.asesor.asesorId':req.body.idUser,
 			'turno.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
 			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
 			'turno.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
-			'turno.branchOffice.region':req.body.circleList.branchOffices[0].regional
+			'turno.branchOffice.region':req.body.circleList.branchOffices[0].regional,
+			'turno.infoTurno.logAtencion':new Date()
 
 		},
 		{new:true},
 		function (err,results){
 			res.json(results);
-			console.log(results);
+			//console.log(results);
 		});
 	});
 
 	
 	app.put('/cerrarTurno/:id',function (req,res){// put para cerrar el turno
 		var id = req.params.id;
+		console.log('este es el que interesa:',req.body.turno.infoTurno);
 		Turno.findByIdAndUpdate(id,{
-			'turno.atencion_a_turno.infoTurno.tiempo_espera':req.body.infoTurno.tiempo_espera,
-			'turno.atencion_a_turno.infoTurno.area':req.body.infoTurno.area,
-			'turno.atencion_a_turno.infoTurno.categoria_cliente':req.body.infoTurno.categoria_cliente,
-			'turno.atencion_a_turno.infoTurno.servicio':req.body.infoTurno.servicio,
-			'turno.atencion_a_turno.infoTurno.sub_servicio':req.body.infoTurno.sub_servicio,
-			'turno.estado':'Atendido'
+			'turno.infoTurno.area':req.body.turno.infoTurno.area,
+			'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
+			'turno.infoTurno.services':req.body.turno.infoTurno.services,
+			//'turno.infoTurno.services.[0]serviceId':req.body.turno.infoTurno.services.sid,
+			'turno.state':'Atendido'
 		},
 		{new:true},
 		function (err,results){

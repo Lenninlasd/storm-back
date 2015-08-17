@@ -34,7 +34,6 @@ angular.module('fStrom',[
 	var numeroTurno = 1;
 	$scope.newTurno ={};
 	// Parte destinada a la asignación de un codigo unico a cada turno
-
 	var currentTurno='';
 
 	$scope.Consolidado =[]; // Absolutamente todos los turnos generados sin discriminar estados
@@ -86,7 +85,8 @@ angular.module('fStrom',[
 		currentTurno = id;
 		console.log(currentTurno);
 			$http.put('/takeTurnos/'+ currentTurno,$scope.asesor.toma).success(function (res){
-				console.log('Se ha tomado el turno',res);
+				$scope.sessionItem = res;
+				console.log('Se ha tomado el turno',$scope.sessionItem);
 				refresh();
 			});
 	};	
