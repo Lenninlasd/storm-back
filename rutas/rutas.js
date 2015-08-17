@@ -29,14 +29,14 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 
 	});
 
-	// app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno
-	// 	var id = req.params.id;
-	// 	Turno.findById(id,function (err, results){
-	// 		if (err)
-	// 			res.send(err);
-	// 		res.json(results);
-	// 	});
-	// });
+	app.get('/Turnos/:id',function (req,res){// get para meter mas info en el turno
+		var id = req.params.id;
+		Turno.findById(id,function (err, results){
+			if (err)
+				res.send(err);
+			res.json(results);
+		});
+	});
 	
 	app.put('/takeTurnos/:id',function (req,res){// put para Tomar el turno y meter info de asesor
 		var id = req.params.id;
@@ -63,18 +63,27 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 	
 	app.put('/cerrarTurno/:id',function (req,res){// put para cerrar el turno
 		var id = req.params.id;
+		console.log(req.body);
 		console.log('este es el que interesa:',req.body.turno.infoTurno);
+
 		Turno.findByIdAndUpdate(id,{
 			'turno.infoTurno.area':req.body.turno.infoTurno.area,
 			'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
-			'turno.infoTurno.services':req.body.turno.infoTurno.services,
-			//'turno.infoTurno.services.[0]serviceId':req.body.turno.infoTurno.services.sid,
-			'turno.state':'Atendido'
-		},
-		{new:true},
-		function (err,results){
-			res.json(results);
-		});
+			'turno.state':'Atendido',
+			'turno.infoTurno.services':{
+				'serviceName':req.body.turno.infoTurno.services.nombre,
+				'serviceId':req.body.turno.infoTurno.services.sid,
+				'subServices':{
+					'subServiceName':req.body.turno.infoTurno.sub_servicio.subservicio.nombre_subservicio
+			     }
+		}
+
+	},
+	{new:true},
+	function (err,results){
+		res.json(results);
+	});
+
 	});
 
 	app.get('/Tiendas', function (req,res){

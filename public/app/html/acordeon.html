@@ -104,7 +104,7 @@
 
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>				
 						<label flex="15" flex-sm="100">Subservicio</label>
-						<md-select  ng-model="sessionItem.infoTurno.sub_servicio" placeholder="Ecoja por favor un subservicio">
+						<md-select  ng-model="sessionItem.turno.infoTurno.sub_servicio" placeholder="Ecoja por favor un subservicio">
 						
 							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{$:sessionItem.infoTurno.servicio.sid}">
 							{{subitem.subservicio.nombre_subservicio}}
