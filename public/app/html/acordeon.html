@@ -94,7 +94,7 @@
 					<!-- propuesta material -->
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>
 						<label flex="15" flex-sm="100">Servicio</label>
-						<md-select ng-model="sessionItem.turno.infoTurno.service" placeholder="Escoja por favor un Servicio">
+						<md-select ng-model="sessionItem.turno.infoTurno.services" placeholder="Escoja por favor un Servicio">
 
 							<md-option ng-value="item.service" ng-repeat="item in servicios">{{item.service.serviceName}}
 							</md-option>
@@ -104,7 +104,7 @@
 
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>				
 						<label flex="15" flex-sm="100">Subservicio</label>
-						<md-select  ng-model="sessionItem.turno.infoTurno.service.subServices[0]" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.turno.infoTurno.service.subServices[0])">
+						<md-select  ng-model="sessionItem.ramaInfo.service.subServices.a" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.ramaInfo.service.subServices.a)">
 						
 							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{$:sessionItem.turno.infoTurno.service.serviceId}">
 							{{subitem.subServiceName}}
@@ -115,7 +115,7 @@
 
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>				
 						<label flex="15" flex-sm="100">Subservicio</label>
-						<md-select  ng-model="sessionItem.turno.infoTurno.service.subServices[1]" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.turno.infoTurno.service.subServices[1])">
+						<md-select  ng-model="sessionItem.ramaInfo.service.subServices.b" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.ramaInfo.service.subServices.b)">
 						
 							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{$:sessionItem.turno.infoTurno.service.serviceId}">
 							{{subitem.subServiceName}}

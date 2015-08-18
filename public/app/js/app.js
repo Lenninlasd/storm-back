@@ -40,8 +40,7 @@ angular.module('fStrom',[
 
 	$scope.sessionItem = {}; // relacionado a atencion que se la da por parte de un asesor durantu su session
 	$scope.presub=[];
-	// $scope.sessionItem.turno={infoTurno:{service:{subServices:[{}]}}};
-	$scope.atencion = {}; // simular la terminal del asesor donde al tomar le turno debe aginarsele el codigo del asesor y terminal al objeto
+	
 	$scope.answers = [];
 	$scope.tiendas =[];
 	$scope.asesor={};
@@ -107,10 +106,13 @@ angular.module('fStrom',[
 
 
 
-	$scope.addSub= function(obj){
+	$scope.addSub = function(obj){
 		$scope.presub.push(obj);
 		console.log($scope.presub);
-		$scope.sessionItem.turno.infoTurno.service.subServices =$scope.presub;
+		
+	};
+	$scope.listo = function(){
+		$scope.sessionItem.turno.infoTurno.services.subServices = $scope.presub;
 	};
 
 }]);
