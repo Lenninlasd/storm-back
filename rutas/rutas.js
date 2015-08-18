@@ -18,7 +18,7 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 			'turno.state.description':'Pendiente por Atencion',
 			'turno.client.lineNumber':req.body.numero_linea_tigo,
 			'turno.client.screenName':req.body.nombre_pantalla,
-			'turno.motivoVisita':req.body.servObj.nombre,
+			'turno.motivoVisita':req.body.servObj.serviceName,
 			'turno.infoTurno.logCreacionTurno':new Date()
 
 		},function (err, obj){
@@ -44,7 +44,7 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 		Turno.findByIdAndUpdate(id,{
 			'turno.state':'En Atencion',
 			'turno.asesor.asesorName':req.body.name,
-			'turno.asesor.lastName':req.body.lastName,
+			'turno.asesor.asesorLastName':req.body.lastName,
 			'turno.asesor.asesorId':req.body.idUser,
 			'turno.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
 			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
@@ -70,19 +70,14 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 			'turno.infoTurno.area':req.body.turno.infoTurno.area,
 			'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
 			'turno.state':'Atendido',
-			'turno.infoTurno.services':{
-				'serviceName':req.body.turno.infoTurno.services.nombre,
-				'serviceId':req.body.turno.infoTurno.services.sid,
-				'subServices':{
-					'subServiceName':req.body.turno.infoTurno.sub_servicio.subservicio.nombre_subservicio
-			     }
-		}
+			'turno.infoTurno.services':req.body.turno.infoTurno.services,
+			'turno.infoTurno.logAtencion':new Date()
 
-	},
-	{new:true},
-	function (err,results){
-		res.json(results);
-	});
+		},
+		{new:true},
+		function (err,results){
+			res.json(results);
+		});
 
 	});
 

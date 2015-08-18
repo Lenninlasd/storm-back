@@ -29,13 +29,15 @@
 						<label flex="15" flex-sm="100">Servicio</label>
 						<md-select ng-model="newTurno.servObj">
 							<md-option ng-value="" ng-disabled="true" ng-selected="true">Escoja por favor un Servicio</md-option>
-							<md-option ng-value="item.servicio"ng-repeat="item in servicios">{{item.servicio.nombre}}
+							<md-option ng-value="item.service"ng-repeat="item in servicios">
+							{{item.service.serviceName}}
 							</md-option>
 						</md-select>
 						<span flex></span>
 					</div>
 		<br><br><br><br>
 		<button type="submit" class="btn btn-success" ng-click="addTurno(newTurno)"> Pedir Turno</button>
+		{{subservicios[1].categorie}}
 	</form>
 </div>
 
