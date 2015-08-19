@@ -77,7 +77,7 @@
 					</div>
 					
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>
-						<label flex="15" flex-sm="100">Area </label>
+						<label flex="15" flex-sm="100">Area</label>
 						<md-input-container>
   						 <input type="text" ng-model="sessionItem.infoTurno.area" aria-label="area">
 						</md-input-container>
@@ -115,8 +115,7 @@
 
 					<div layout="row" layout-sm="column" layout-align="start center" layout-align-sm="center start" layout-margin>				
 						<label flex="15" flex-sm="100">Subservicio</label>
-						<md-select  ng-model="sessionItem.ramaInfo.service.subServices.b" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.ramaInfo.service.subServices.b)">
-						
+						<md-select  ng-model="sessionItem.ramaInfo.service.subServices.b" placeholder="Ecoja por favor un subservicio" ng-change="addSub(sessionItem.ramaInfo.service.subServices.b)">						
 							<md-option ng-value="subitem" ng-repeat="subitem in subservicios |filter:{$:sessionItem.turno.infoTurno.service.serviceId}">
 							{{subitem.subServiceName}}
 							</md-option>								
