@@ -9,7 +9,7 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 			res.json(array);
 		});
 	};
-	var trunoPorId = function (req,res){// get para meter mas info en el turno
+	var turnoPorId = function (req,res){// get para meter mas info en el turno
 		var id = req.params.id;
 		Turno.findById(id,function (err, results){
 			if (err)
