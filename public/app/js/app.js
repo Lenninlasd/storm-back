@@ -48,7 +48,7 @@ angular.module('fStrom',[
 	$http.get('js/Json/ServiciosCola.json').success(function (data){
 		$scope.servicios = data;
 	});
-	$http.get('js/Json/Subservicios.json').success(function (data){
+	$http.get('js/Json/subservicios.json').success(function (data){
 		$scope.subservicios = data;		
 	});
 	//$http.get('js/Json/Tiendas.json').success(function (data){
@@ -84,6 +84,7 @@ angular.module('fStrom',[
 	$scope.tomarTurno = function(id){
 		currentTurno = id;
 		console.log(currentTurno);
+		console.log($scope.asesor);
 			$http.put('/takeTurnos/'+ currentTurno,$scope.asesor.toma).success(function (res){
 				$scope.sessionItem = res;
 				console.log('Se ha tomado el turno',$scope.sessionItem);

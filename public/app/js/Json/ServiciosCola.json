@@ -1,4 +1,3 @@
-db.services.insert(
 [
     {
         "service": {
@@ -701,4 +700,3 @@ db.services.insert(
         ]
     }
 ]
-)

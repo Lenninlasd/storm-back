@@ -1,4 +1,4 @@
-db.BranchOffices.insert(
+db.branchOffices.insert(
 [
     {
         "branchOfficesName": "TIGO ANDINO CALLE 85",
