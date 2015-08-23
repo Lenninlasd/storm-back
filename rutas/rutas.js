@@ -74,17 +74,17 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 		});
 	};
 
-	app.get('/Turnos',turnosAll);
+	app.get('/turnos',turnosAll);
 
-	app.post('/Turnos',newTurno);
+	app.post('/turnos',newTurno);
 
-	app.get('/Turnos/:id',turnoById);
+	app.get('/turnos/:id',turnoById);
 	
 	app.put('/takeTurnos/:id',takeTurno);
 	
 	app.put('/cerrarTurno/:id',cerrarTurno);
 
-	app.get('/Services',servicesAll);
+	app.get('/services',servicesAll);
 
 }
 
