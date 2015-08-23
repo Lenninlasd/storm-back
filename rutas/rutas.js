@@ -33,7 +33,8 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 		});
 	};
 	var takeTurno = function (req,res){// put para Tomar el turno y meter info de asesor
-		var id = req.params.id;		
+		var id = req.params.id;
+		console.log(req.body);
 		Turno.findByIdAndUpdate(id,{
 			'turno.state':'En Atencion',
 			'turno.asesor.asesorName':req.body.name,
