@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose){
+module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 
 	app.use(bodyParser.json());
 
@@ -9,7 +9,7 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 			res.json(array);
 		});
 	};
-	var turnoPorId = function (req,res){// get para meter mas info en el turno
+	var turnoById = function (req,res){// get para meter mas info en el turno
 		var id = req.params.id;
 		Turno.findById(id,function (err, results){
 			if (err)
@@ -66,23 +66,24 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Subservicio,io,mongoose
 			res.json(results);
 		});
 
-	};	
+	};
+	var servicesAll = function(req,res){
+		Service.find(function (err,array){
+			res.json(array);
+		});
+	};
 
 	app.get('/Turnos',turnosAll);
 
 	app.post('/Turnos',newTurno);
 
-	app.get('/Turnos/:id',turnoPorId);
+	app.get('/Turnos/:id',turnoById);
 	
 	app.put('/takeTurnos/:id',takeTurno);
 	
 	app.put('/cerrarTurno/:id',cerrarTurno);
 
-	app.get('/Tiendas', function (req,res){
-		Tienda.find(function (err,array){
-			res.json(array);
-		});
-	});
+	app.get('/Services',servicesAll);
 
 }
 

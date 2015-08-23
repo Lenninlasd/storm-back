@@ -17,6 +17,6 @@ var serviceSchema = mongoose.Schema({
 
 	});
 
-var Servicie = mongoose.model('Servicie',serviceSchema,'services');
+var Service = mongoose.model('Servicie',serviceSchema,'services');
 
-module.exports = Servicie;
+module.exports = Service;

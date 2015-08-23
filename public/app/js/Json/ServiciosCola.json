@@ -1,4 +1,4 @@
-db.services.insert(
+
 [
     {
         "service": {
@@ -193,7 +193,7 @@ db.services.insert(
             {
                 "subServiceName": "Informacion de tiempo y valor de clausula",
                 "description": "Momento en el que el asesor le indica al cliente el tiempo restante o el valor actual de la clausula de permanencia.",
-                "numerador": "G",
+                "numerador": "A",
                 "categorie": "Facturación",
                 "serv_id": "S03"
             },
@@ -701,4 +701,3 @@ db.services.insert(
         ]
     }
 ]
-)
