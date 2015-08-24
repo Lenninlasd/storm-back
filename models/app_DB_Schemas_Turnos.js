@@ -12,10 +12,15 @@ var turnoSchema = mongoose.Schema({
 		// Proceso de toma de turno por parte del cliente.
 		motivoVisita:String,
 		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
-		asesor:{
-				asesorName:String,
-				asesorLastName:String,
-				asesorId:String,
+		emitterAdviser:{
+				adviserName:String,
+				adviserLastName:String,
+				adviserId:String,
+		},
+		receiverAdviser:{
+				adviserName:String,
+				adviserLastName:String,
+				adviserId:String,
 		},
 		branchOffice:{
 				branchOfficesName:String,
