@@ -22,9 +22,12 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 			'turno.idTurno.numerador':'AB',
 			'turno.idTurno.consecutivo':req.body.consecutivo,
 			'turno.state.description':'Pendiente por Atencion',
-			'turno.client.lineNumber':req.body.numero_linea_tigo,
-			'turno.client.screenName':req.body.nombre_pantalla,
-			'turno.motivoVisita':req.body.servObj.serviceName,
+			'turno.client.lineNumber':req.body.lineNumber,
+			'turno.client.screenName':req.body.screenName,
+			'turno.motivoVisita':req.body.motivoVisita,
+			'turno.emitterAdviser.adviserName':req.body.adviserName,
+			'turno.emitterAdviser.adviserLastName':req.body.adviserLastName,
+			'turno.emitterAdviser.adviserId':req.body.adviserId,
 			'turno.infoTurno.logCreacionTurno':new Date()
 		},
 		function (err, obj){
@@ -37,9 +40,9 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 		console.log(req.body);
 		Turno.findByIdAndUpdate(id,{
 			'turno.state':'En Atencion',
-			'turno.asesor.asesorName':req.body.name,
-			'turno.asesor.asesorLastName':req.body.lastName,
-			'turno.asesor.asesorId':req.body.idUser,
+			'turno.receiverAdviser.adviserName':req.body.adviserName,
+			'turno.receiverAdviser.adviserLastName':req.body.adviserLastName,
+			'turno.receiverAdviser.adviserId':req.body.adviserId,
 			'turno.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
 			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
 			'turno.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
