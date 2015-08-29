@@ -77,6 +77,14 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 		});
 	};
 
+	var pruebas = function(req,res){
+		var num = req.query.num;
+		Turno.find({'turno.idTurno.numerador':num},function (err,array){
+			res.json(array[array.length -1]);
+		});
+
+	};
+
 	app.get('/turnos',turnosAll);
 
 	app.post('/turnos',newTurno);
@@ -88,6 +96,8 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 	app.put('/cerrarTurno/:id',cerrarTurno);
 
 	app.get('/services',servicesAll);
+
+	app.get('/pruebas',pruebas);
 
 }
 
