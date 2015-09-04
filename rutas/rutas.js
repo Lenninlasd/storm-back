@@ -77,27 +77,33 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 		});
 	};
 
-	var pruebas = function(req,res){
-		var num = req.query.num;
-		Turno.find({'turno.idTurno.numerador':num},function (err,array){
-			res.json(array[array.length -1]);
+	var consecutivo = function(req,res){
+		var filtro = req.query;
+		Turno.find({
+			'turno.idTurno.numerador':filtro.num,
+			'turno.branchOffice.posCode':filtro.posCode,
+			'turno.infoTurno.logCreacionTurno':new Date(filtro.day)
+		},
+		function (err,array){
+			res.json(array);
 		});
-
 	};
 
 	app.get('/turnos',turnosAll);
 
-	app.post('/turnos',newTurno);
-
 	app.get('/turnos/:id',turnoById);
 	
+	app.get('/consecutivo',consecutivo);
+
+	app.post('/turnos',newTurno);
+		
 	app.put('/takeTurnos/:id',takeTurno);
 	
 	app.put('/cerrarTurno/:id',cerrarTurno);
 
 	app.get('/services',servicesAll);
 
-	app.get('/pruebas',pruebas);
+	
 
 }
 
