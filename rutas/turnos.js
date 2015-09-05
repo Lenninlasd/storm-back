@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
+module.exports = function turnos (app,Turno,io,mongoose){
 
 	app.use(bodyParser.json());
 
@@ -65,16 +65,10 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 			'turno.infoTurno.services':req.body.turno.infoTurno.services,
 			'turno.infoTurno.logFin':new Date()
 		},
-		{new:true},
-		function (err,results){
+		{new:true},function (err,results){
 			res.json(results);
 		});
 
-	};
-	var servicesAll = function(req,res){
-		Service.find(function (err,array){
-			res.json(array);
-		});
 	};
 
 	var consecutivo = function(req,res){
@@ -90,18 +84,13 @@ module.exports = function rutas (app,Turno,Asesor,Tienda,Service,io,mongoose){
 	};
 
 	app.get('/turnos',turnosAll);
-
-	app.get('/turnos/:id',turnoById);
-	
+	app.get('/turnos/:id',turnoById);	
 	app.get('/consecutivo',consecutivo);
-
-	app.post('/turnos',newTurno);
-		
-	app.put('/takeTurnos/:id',takeTurno);
-	
+	app.post('/turnos',newTurno);		
+	app.put('/takeTurnos/:id',takeTurno);	
 	app.put('/cerrarTurno/:id',cerrarTurno);
 
-	app.get('/services',servicesAll);
+
 
 	
 

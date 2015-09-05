@@ -7,11 +7,20 @@ var express = require('express'),
 	db = mongoose.connection,
 	// bodyParser = require('body-parser'),
 	port = 5000,
+	// Cargo los Schemnas de las DB
 	Turno = require('./models/app_DB_Schemas_Turnos'),
-	Asesor = require('./models/app_DB_Schemas_Users'),
+	User = require('./models/app_DB_Schemas_Users'),
 	Tienda = require('./models/app_DB_Schemas_BranchOffices'),
-	Subservicio = require('./models/app_DB_Schemas_Services'),
-	rutas = require('./rutas/rutas');
+	Service = require('./models/app_DB_Schemas_Services'),
+	Activity = require('./models/app_DB_Schemas_Activities'),
+	Circle = require('./models/app_DB_Schemas_Circles'),
+	// Cargo las rutas de la API
+	turnos = require('./rutas/turnos'),
+	services = require('./rutas/services'),
+	tiendas = require('./rutas/tiendas'),
+	users = require('./rutas/users')
+	activities = require('./rutas/activities'),
+	circles = require('./rutas/circles');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
 		db.on('error', console.error.bind(console, 'connection error:'));
@@ -22,7 +31,13 @@ var express = require('express'),
 // Configuration
 app.use(express.static(__dirname + '/public'));
 
-rutas(app,Turno,Asesor,Tienda,Subservicio,io,mongoose);
+turnos(app,Turno,io,mongoose);
+services(app,Service,io,mongoose);
+tiendas(app,Tienda,io,mongoose);
+users(app,User,io,mongoose);
+activities(app,Activity,io,mongoose);
+circles(app,Circle,io,mongoose);
+
 
 server.listen(port,function(){
 	console.log('escuchando en el pueto ' + port);
