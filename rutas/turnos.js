@@ -19,7 +19,7 @@ module.exports = function turnos (app,Turno,io,mongoose){
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
 		Turno.create({	
-			'turno.idTurno.numerador':'AB',
+			'turno.idTurno.numerador':req.body.numerador,
 			'turno.idTurno.consecutivo':req.body.consecutivo,
 			'turno.state.description':'Pendiente por Atencion',
 			'turno.client.lineNumber':req.body.lineNumber,

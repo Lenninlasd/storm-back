@@ -3,7 +3,8 @@ Documentación API FLugel Strom
 
 
 La siguiente lista muestra todas la rutas que implementa la API para la gestión de la información.
-  **Rutas** 
+
+**Rutas** 
 
  1. /turnos (Get , Post)
  2. /takeTurnos (Put)
@@ -81,27 +82,48 @@ Rutas, Metodos y Estructura de Información
 ```
 
 #### **<i class="icon-file"></i> /turnos [Post]**
-> Corresponde a la creación de un turno y respeta la siguiente estructura
+> Corresponde a la creación de un turno y el request body debe tener la siguiente estructura:
 
 ```
-{	
-'turno.idTurno.numerador':'AB',			'turno.idTurno.consecutivo':req.body.consecutivo,
-'turno.state.description':'Pendiente por Atencion',
-'turno.client.lineNumber':req.body.lineNumber,
-'turno.client.screenName':req.body.screenName,
-'turno.motivoVisita':req.body.motivoVisita,			'turno.emitterAdviser.adviserName':req.body.adviserName,		'turno.emitterAdviser.adviserLastName':req.body.adviserLastName,			'turno.emitterAdviser.adviserId':req.body.adviserId,
-'turno.infoTurno.logCreacionTurno':new Date()
-	}
+{
+numerador: String,
+consecutivo: Number,
+lineNumber:Number,
+screenName:String,
+motivoVisita:String,
+adviserName:String,
+adviserLastName:String,
+adviserId:String
+}
+
 ```
 
 
 #### **<i class="icon-file"></i> /taketurnos [Put]**
-> Método que se utiliza cuando el asesor toma el turno 
+> Método que se utiliza cuando el asesor toma el turno, el req.body debe tener la siguiente estrucctura:
 ```
 {
-'turno.state':'En Atencion',			'turno.receiverAdviser.adviserName':req.body.adviserName,		'turno.receiverAdviser.adviserLastName':req.body.adviserLastName,			'turno.receiverAdviser.adviserId':req.body.adviserId,		'turno.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,			'turno.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,			'turno.branchOffice.region':req.body.circleList.branchOffices[0].regional,
-'turno.infoTurno.logAtencion':new Date()
+adviserName:String,
+adviserLastName:String,
+adviserId:String,
+branchOffice:{
+	branchOfficesName:String,
+	posCode:Number,
+	city:String,
+	region:String,
+	blueCircle: {
+		idClircle: String,
+		nameCircle: String,
+		type: String,
+		termimal: {
+			terminalId: String,
+			terminalName: String,
+			location: String
+					}
+				}
+			}
 }
+
 ```
 
 #### **<i class="icon-file"></i> /cerrarTurno[Put]**
