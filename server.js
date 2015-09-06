@@ -5,6 +5,7 @@ var express = require('express'),
 	io = require('socket.io')(server),
 	mongoose = require('mongoose'),
 	db = mongoose.connection,
+	cors = require('cors'),
 	// bodyParser = require('body-parser'),
 	port = 5000,
 	// Cargo los Schemnas de las DB
@@ -18,17 +19,18 @@ var express = require('express'),
 	turnos = require('./rutas/turnos'),
 	services = require('./rutas/services'),
 	tiendas = require('./rutas/tiendas'),
-	users = require('./rutas/users')
+	users = require('./rutas/users'),
 	activities = require('./rutas/activities'),
 	circles = require('./rutas/circles');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
 		db.on('error', console.error.bind(console, 'connection error:'));
 		db.once('open', function (callback) {
-			console.log('Conectado a la base de datos MOngoDB')
+			console.log('Conectado a la base de datos MOngoDB');
 		});
 
 // Configuration
+app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
 turnos(app,Turno,io,mongoose);
@@ -42,4 +44,3 @@ circles(app,Circle,io,mongoose);
 server.listen(port,function(){
 	console.log('escuchando en el pueto ' + port);
 });
-
