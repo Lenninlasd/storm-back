@@ -1,702 +1,710 @@
 [
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO UNA NUEVA LINEA TIGO / SOY CLARO, MOVISTAR Y QUIERO SER TIGO",
-            "serviceId": "S01"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Informacion de planes y equipos para venta",
-                "description": "Momento en el que se brinda información de los planes disponibles en la compañía para venta.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Proceso de validacion del cliente para venta",
-                "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la venta.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Proceso de registro de documentos para venta",
-                "description": "Momento en el que se entregan los documentos de venta al cliente para que sean firmados.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Proceso de pago para venta",
-                "description": "Momento en el que el cliente realiza el proceso de pago para venta.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Transacción en CRM para Venta",
-                "description": "Momento en el que se realiza el proceso de venta y activación en el portal CRM.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Configuración de equipo para venta",
-                "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para venta.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Informacion sobre portabilidad",
-                "description": "Momento en el que se brinda información relacionada con los requisitos para realizar el proceso de protabilidad.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            },
-            {
-                "subServiceName": "Proceso de portabilidad",
-                "description": "Momento en el cual se realiza el proceso de portabilidad.",
-                "numerador": "C",
-                "categorie": "VENTA",
-                "serv_id": "S01"
-            }
-        ]
+            "serviceId": "S01",
+            "subServices": [
+                {
+                    "subServiceName": "Informacion de planes y equipos para venta",
+                    "description": "Momento en el que se brinda información de los planes disponibles en la compañía para venta.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Proceso de validacion del cliente para venta",
+                    "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la venta.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Proceso de registro de documentos para venta",
+                    "description": "Momento en el que se entregan los documentos de venta al cliente para que sean firmados.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Proceso de pago para venta",
+                    "description": "Momento en el que el cliente realiza el proceso de pago para venta.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Transacción en CRM para Venta",
+                    "description": "Momento en el que se realiza el proceso de venta y activación en el portal CRM.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Configuración de equipo para venta",
+                    "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para venta.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Informacion sobre portabilidad",
+                    "description": "Momento en el que se brinda información relacionada con los requisitos para realizar el proceso de protabilidad.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Proceso de portabilidad",
+                    "description": "Momento en el cual se realiza el proceso de portabilidad.",
+                    "numerador": "C",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO CAMBIAR MI EQUIPO",
-            "serviceId": "S02"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Informacion de planes y equipos para reno/repo",
-                "description": "Momento en el que se brinda información de los planes disponibles en la compañía para renovación o reposición.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            },
-            {
-                "subServiceName": "Proceso de validacion del cliente para reno/repo",
-                "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la renovación o reposición.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            },
-            {
-                "subServiceName": "Proceso de registro de documentos para reno/repo",
-                "description": "Momento en el que se entregan los documentos de renovación o reposición al cliente para que sean firmados.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            },
-            {
-                "subServiceName": "Proceso de pago para reno/repo",
-                "description": "Momento en el que el cliente realiza el proceso de pago para renovación o reposición.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            },
-            {
-                "subServiceName": "Transacción en CRM para reno/repo",
-                "description": "Momento en el que se realiza el proceso de renovación o reposición en el portal CRM.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            },
-            {
-                "subServiceName": "Configuración de equipo para reno/repo",
-                "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para renovación o reposición.",
-                "numerador": "G",
-                "categorie": "Renovación / Reposición",
-                "serv_id": "S02"
-            }
-        ]
+            "serviceId": "S02",
+            "subServices": [
+                {
+                    "subServiceName": "Informacion de planes y equipos para reno/repo",
+                    "description": "Momento en el que se brinda información de los planes disponibles en la compañía para renovación o reposición.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Proceso de validacion del cliente para reno/repo",
+                    "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la renovación o reposición.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Proceso de registro de documentos para reno/repo",
+                    "description": "Momento en el que se entregan los documentos de renovación o reposición al cliente para que sean firmados.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Proceso de pago para reno/repo",
+                    "description": "Momento en el que el cliente realiza el proceso de pago para renovación o reposición.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Transacción en CRM para reno/repo",
+                    "description": "Momento en el que se realiza el proceso de renovación o reposición en el portal CRM.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Configuración de equipo para reno/repo",
+                    "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para renovación o reposición.",
+                    "numerador": "G",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO REPONER MI CHIP / MI FACTURA / ACTUALIZACION DE DATOS",
-            "serviceId": "S03"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Cambio de chip por perdida",
-                "description": "Momento en el cual se realiza cambio de chip por perdida en el portal CRM.",
-                "numerador": "A",
-                "categorie": "Cambio de Chip",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio de chip por dano",
-                "description": "Momento en el cual se realiza cambio de chip por daño en el portal CRM.",
-                "numerador": "A",
-                "categorie": "Cambio de Chip",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio de chip por robo",
-                "description": "Momento en el cual se realiza cambio de chip por robo en el portal CRM.",
-                "numerador": "A",
-                "categorie": "Cambio de Chip",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio de chip por tecnologia",
-                "description": "Momento en el cual se realiza cambio de chip por tecnologia en el portal CRM.",
-                "numerador": "A",
-                "categorie": "Cambio de Chip",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio de chip por desconciliacion de plataformas",
-                "description": "Momento en el cual se realiza cambio de chip por desconciliacion de plataformas en el portal CRM.",
-                "numerador": "A",
-                "categorie": "Cambio de Chip",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Actualizacion de datos personales",
-                "description": "Momento en el cual el asesor actualiza los datos personales del cliente (direccion, telefono, correo, etc.).",
-                "numerador": "A",
-                "categorie": "Actualización de Datos",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cesion de contrato",
-                "description": "Momento en el que el asesor realiza el proceso de cesión de contrato.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Informacion sobre valor a pagar",
-                "description": "Momento en el cual el asesor le informa al cliente cual es el valor a pagar de su linea.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Interpretacion de factura",
-                "description": "Momento en el cual se le explica al cliente los cobros asociados en su factura.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Desacuerdo con valor a pagar",
-                "description": "Momento en el que el cliente manifiesta no estar de acuerdo con el valor que debe pagar.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Informacion de tiempo y valor de clausula",
-                "description": "Momento en el que el asesor le indica al cliente el tiempo restante o el valor actual de la clausula de permanencia.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Solicitud de estado de cuenta",
-                "description": "Momento en el cual el asesor realiza la entrega del estado de cuenta por peticion del cliente.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Solicitud de paz y salvo",
-                "description": "Momento en el cual un cliente se acerca para solicitar la entrega de un paz y salvo.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Problemas de recepcion de factura",
-                "description": "Momento en el que el cliente manifiesta no haber recibido su factura (física o electrónica).",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio a factura detallada",
-                "description": "Momento en el cual un cliente solicita que su factura llegue de manera detallada.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio a factura resumida",
-                "description": "Momento en el cual un cliente solicita que su factura llegue en manera resumida.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio a factura electronica",
-                "description": "Momento en el cual un cliente solicita que su factura llegue de manera electrónica.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Cambio a factura fisica",
-                "description": "Momento en el cual un cliente solicita que su factura llegue de manera física.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Posible fraude",
-                "description": "Momento en el cual un cliente manifiesta que le estan realizando cobros de una linea que nunca activó.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            },
-            {
-                "subServiceName": "Otras consultas sobre la factura",
-                "description": "Momento en el cual un cliente manifiesta cualquier inquietud sobre su factura que no se encuentra consignada en las demás tipologías disponibles.",
-                "numerador": "A",
-                "categorie": "Facturación",
-                "serv_id": "S03"
-            }
-        ]
+            "serviceId": "S03",
+            "subServices": [
+                {
+                    "subServiceName": "Cambio de chip por perdida",
+                    "description": "Momento en el cual se realiza cambio de chip por perdida en el portal CRM.",
+                    "numerador": "A",
+                    "categorie": "Cambio de Chip",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio de chip por dano",
+                    "description": "Momento en el cual se realiza cambio de chip por daño en el portal CRM.",
+                    "numerador": "A",
+                    "categorie": "Cambio de Chip",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio de chip por robo",
+                    "description": "Momento en el cual se realiza cambio de chip por robo en el portal CRM.",
+                    "numerador": "A",
+                    "categorie": "Cambio de Chip",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio de chip por tecnologia",
+                    "description": "Momento en el cual se realiza cambio de chip por tecnologia en el portal CRM.",
+                    "numerador": "A",
+                    "categorie": "Cambio de Chip",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio de chip por desconciliacion de plataformas",
+                    "description": "Momento en el cual se realiza cambio de chip por desconciliacion de plataformas en el portal CRM.",
+                    "numerador": "A",
+                    "categorie": "Cambio de Chip",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Actualizacion de datos personales",
+                    "description": "Momento en el cual el asesor actualiza los datos personales del cliente (direccion, telefono, correo, etc.).",
+                    "numerador": "A",
+                    "categorie": "Actualización de Datos",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cesion de contrato",
+                    "description": "Momento en el que el asesor realiza el proceso de cesión de contrato.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Informacion sobre valor a pagar",
+                    "description": "Momento en el cual el asesor le informa al cliente cual es el valor a pagar de su linea.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Interpretacion de factura",
+                    "description": "Momento en el cual se le explica al cliente los cobros asociados en su factura.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Desacuerdo con valor a pagar",
+                    "description": "Momento en el que el cliente manifiesta no estar de acuerdo con el valor que debe pagar.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Informacion de tiempo y valor de clausula",
+                    "description": "Momento en el que el asesor le indica al cliente el tiempo restante o el valor actual de la clausula de permanencia.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Solicitud de estado de cuenta",
+                    "description": "Momento en el cual el asesor realiza la entrega del estado de cuenta por peticion del cliente.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Solicitud de paz y salvo",
+                    "description": "Momento en el cual un cliente se acerca para solicitar la entrega de un paz y salvo.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Problemas de recepcion de factura",
+                    "description": "Momento en el que el cliente manifiesta no haber recibido su factura (física o electrónica).",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio a factura detallada",
+                    "description": "Momento en el cual un cliente solicita que su factura llegue de manera detallada.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio a factura resumida",
+                    "description": "Momento en el cual un cliente solicita que su factura llegue en manera resumida.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio a factura electronica",
+                    "description": "Momento en el cual un cliente solicita que su factura llegue de manera electrónica.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Cambio a factura fisica",
+                    "description": "Momento en el cual un cliente solicita que su factura llegue de manera física.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Posible fraude",
+                    "description": "Momento en el cual un cliente manifiesta que le estan realizando cobros de una linea que nunca activó.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Otras consultas sobre la factura",
+                    "description": "Momento en el cual un cliente manifiesta cualquier inquietud sobre su factura que no se encuentra consignada en las demás tipologías disponibles.",
+                    "numerador": "A",
+                    "categorie": "Facturación",
+                    "serv_id": "S03"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO CAMBIAR MI PLAN / PAQUETES Y PROMOCIONES TIGO / OTRAS CONSULTAS",
-            "serviceId": "S04"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Informacion de planes pospago para cambio",
-                "description": "Momento en el cual un asesor entrega informacion sobre los planes vigentes a un cliente que manifiesta querer cambiar el tipo de plan que posee.",
-                "numerador": "G",
-                "categorie": "Cambio de Plan",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cambio de prepago a pospago",
-                "description": "Momento en el cual un cliente desea migrar una linea prepago a un plan pospago.",
-                "numerador": "G",
-                "categorie": "Cambio de Plan",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cambio entre planes pospago",
-                "description": "Momento en el cual un cliente manifiesta que quiere cambiar el tipo de plan que posee.",
-                "numerador": "G",
-                "categorie": "Cambio de Plan",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Informacion sobre paquetes ATP",
-                "description": "Momento en el cual un asesor informa sobre todos los paquetes disponibles en la oferta ATP que no tienen fecha de vencimiento.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de paquetes ATP",
-                "description": "Momento en el cual un asesor activa los paquetes ATP que el cliente desea.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cambio de paquetes ATP",
-                "description": "Momento en el cual un cliente manifiesta que desea cambiar la forma en que tiene configurados sus paquetes ATP.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de otros paquetes para planes pospago",
-                "description": "Momento en el cual un asesor realiza la activación de numeros bacanos, parceros o favoritos.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelacion de otros paquetes para planes pospago",
-                "description": "Momento en el cual un asesor realiza la cancelación de numeros bacanos, parceros o favoritos.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de paquetes prepago",
-                "description": "Momento en el cual un asesor realiza la activación de paquetes disponibles en la oferta prepago. Ejemplo: combos, mes-semana-dia de navegacion, etc.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelacion de paquetes prepago",
-                "description": "Momento en el cual un asesor realiza la cancelación de paquetes disponibles en la oferta prepago. Ejemplo: combos, mes-semana-dia de navegacion, etc.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de Tigo Music",
-                "description": "Momento en el cual un asesor realiza la activacion de Tigo Music que incluye descargar la aplicación deezer, configurarla y explicarle al cliente como funciona.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Informacion de otras promociones",
-                "description": "Momento en el cual un asesor le entrega informacion a un cliente sobre las distintas promociones que se encuentran vigentes en la compañía.",
-                "numerador": "G",
-                "categorie": "Paquetes y Promociones",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Información de suscripciones activas",
-                "description": "Momento en el que se brinda información sobre las suscripciones que el cliente tiene activas en su línea.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de suscripciones Tigo",
-                "description": "Momento en el que se realiza la activación de alguna suscripción de Tigo por solicitud del cliente.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelación de suscripciones Tigo",
-                "description": "Momento en el que se realiza la cancelación de alguna suscripción de Tigo por solicitud del cliente.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de suscripciones de otros proveedores",
-                "description": "Momento en el que se realiza la activación de alguna suscripción de otros proveedores por solicitud del cliente.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelación de suscripciones de otros proveedores",
-                "description": "Momento en el que se realiza la cancelación de alguna suscripción de otros proveedores por solicitud del cliente.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activacion de SMS promocionales",
-                "description": "Momento en el que se realiza la activación del servicio de SMS promocionales.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelacion de SMS promocionales",
-                "description": "Momento en el que se realiza la cancelación del servicio de SMS promocionales.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cambio de numero",
-                "description": "Momento en  el que se realiza un cambio de número por solicitud del cliente.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activar roaming",
-                "description": "Momento en el que se realiza la activación del servicio de roaming internacional.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelar roaming",
-                "description": "Momento en el que se realiza la cancelación del servicio de roaming internacional.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Activar Numero privado",
-                "description": "Momento en el que se realiza la activación del servicio de número privado.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Cancelar Numero privado",
-                "description": "Momento en el que se realiza la cancelación del servicio de número privado.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Inclusion en lista negra",
-                "description": "Momento en el que se realiza el bloqueo de IMEI.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Exclusion en lista negra",
-                "description": "Momento en el que se realiza el desbloqueo de IMEI.",
-                "numerador": "G",
-                "categorie": "Otros"
-            },
-            {
-                "subServiceName": "Consulta de saldo",
-                "description": "Momento el que se informa al cliente el saldo disponible en su línea.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Consulta de eventos",
-                "description": "Moemnto en el que se entrega al cliente información acerca de los últimos eventos asociados a la línea.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Consulta de fecha de corte",
-                "description": "Momento en el que se le informa al cliente la fecha de corte de su línea.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            },
-            {
-                "subServiceName": "Informacion sobre reporte en centrales de riesgo",
-                "description": "Momento en el que se le brinda información al cliente sobre un reporte a centrales de riesgo.",
-                "numerador": "G",
-                "categorie": "Otros",
-                "serv_id": "S04"
-            }
-        ]
+            "serviceId": "S04",
+            "subServices": [
+                {
+                    "subServiceName": "Informacion de planes pospago para cambio",
+                    "description": "Momento en el cual un asesor entrega informacion sobre los planes vigentes a un cliente que manifiesta querer cambiar el tipo de plan que posee.",
+                    "numerador": "G",
+                    "categorie": "Cambio de Plan",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cambio de prepago a pospago",
+                    "description": "Momento en el cual un cliente desea migrar una linea prepago a un plan pospago.",
+                    "numerador": "G",
+                    "categorie": "Cambio de Plan",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cambio entre planes pospago",
+                    "description": "Momento en el cual un cliente manifiesta que quiere cambiar el tipo de plan que posee.",
+                    "numerador": "G",
+                    "categorie": "Cambio de Plan",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Informacion sobre paquetes ATP",
+                    "description": "Momento en el cual un asesor informa sobre todos los paquetes disponibles en la oferta ATP que no tienen fecha de vencimiento.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de paquetes ATP",
+                    "description": "Momento en el cual un asesor activa los paquetes ATP que el cliente desea.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cambio de paquetes ATP",
+                    "description": "Momento en el cual un cliente manifiesta que desea cambiar la forma en que tiene configurados sus paquetes ATP.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de otros paquetes para planes pospago",
+                    "description": "Momento en el cual un asesor realiza la activación de numeros bacanos, parceros o favoritos.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelacion de otros paquetes para planes pospago",
+                    "description": "Momento en el cual un asesor realiza la cancelación de numeros bacanos, parceros o favoritos.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de paquetes prepago",
+                    "description": "Momento en el cual un asesor realiza la activación de paquetes disponibles en la oferta prepago. Ejemplo: combos, mes-semana-dia de navegacion, etc.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelacion de paquetes prepago",
+                    "description": "Momento en el cual un asesor realiza la cancelación de paquetes disponibles en la oferta prepago. Ejemplo: combos, mes-semana-dia de navegacion, etc.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de Tigo Music",
+                    "description": "Momento en el cual un asesor realiza la activacion de Tigo Music que incluye descargar la aplicación deezer, configurarla y explicarle al cliente como funciona.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Informacion de otras promociones",
+                    "description": "Momento en el cual un asesor le entrega informacion a un cliente sobre las distintas promociones que se encuentran vigentes en la compañía.",
+                    "numerador": "G",
+                    "categorie": "Paquetes y Promociones",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Información de suscripciones activas",
+                    "description": "Momento en el que se brinda información sobre las suscripciones que el cliente tiene activas en su línea.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de suscripciones Tigo",
+                    "description": "Momento en el que se realiza la activación de alguna suscripción de Tigo por solicitud del cliente.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelación de suscripciones Tigo",
+                    "description": "Momento en el que se realiza la cancelación de alguna suscripción de Tigo por solicitud del cliente.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de suscripciones de otros proveedores",
+                    "description": "Momento en el que se realiza la activación de alguna suscripción de otros proveedores por solicitud del cliente.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelación de suscripciones de otros proveedores",
+                    "description": "Momento en el que se realiza la cancelación de alguna suscripción de otros proveedores por solicitud del cliente.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activacion de SMS promocionales",
+                    "description": "Momento en el que se realiza la activación del servicio de SMS promocionales.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelacion de SMS promocionales",
+                    "description": "Momento en el que se realiza la cancelación del servicio de SMS promocionales.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cambio de numero",
+                    "description": "Momento en  el que se realiza un cambio de número por solicitud del cliente.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activar roaming",
+                    "description": "Momento en el que se realiza la activación del servicio de roaming internacional.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelar roaming",
+                    "description": "Momento en el que se realiza la cancelación del servicio de roaming internacional.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Activar Numero privado",
+                    "description": "Momento en el que se realiza la activación del servicio de número privado.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Cancelar Numero privado",
+                    "description": "Momento en el que se realiza la cancelación del servicio de número privado.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Inclusion en lista negra",
+                    "description": "Momento en el que se realiza el bloqueo de IMEI.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Exclusion en lista negra",
+                    "description": "Momento en el que se realiza el desbloqueo de IMEI.",
+                    "numerador": "G",
+                    "categorie": "Otros"
+                },
+                {
+                    "subServiceName": "Consulta de saldo",
+                    "description": "Momento el que se informa al cliente el saldo disponible en su línea.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Consulta de eventos",
+                    "description": "Moemnto en el que se entrega al cliente información acerca de los últimos eventos asociados a la línea.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Consulta de fecha de corte",
+                    "description": "Momento en el que se le informa al cliente la fecha de corte de su línea.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Informacion sobre reporte en centrales de riesgo",
+                    "description": "Momento en el que se le brinda información al cliente sobre un reporte a centrales de riesgo.",
+                    "numerador": "G",
+                    "categorie": "Otros",
+                    "serv_id": "S04"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO REGISTRAR MI EQUIPO / QUIERO CONFIGURAR MI EQUIPO",
-            "serviceId": "S05"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Registro de equipo",
-                "description": "Momento en el cual un cliente se acerca para solicitar el registro de un equipo que no fue adquirido en Tigo.",
-                "numerador": "A",
-                "categorie": "Registro de Equipo",
-                "serv_id": "S05"
-            },
-            {
-                "subServiceName": "Configuracion de movil",
-                "description": "Momento en el cual el cliente solicita la configuración de un móvil.",
-                "numerador": "A",
-                "categorie": "Configuración de Equipos",
-                "serv_id": "S05"
-            },
-            {
-                "subServiceName": "Configuracion de modem",
-                "description": "Momento en el cual el cliente solicita la configuración de un modem.",
-                "numerador": "A",
-                "categorie": "Configuración de Equipos",
-                "serv_id": "S05"
-            },
-            {
-                "subServiceName": "Configuracion de otros dispositivos",
-                "description": "Momento en el cual el cliente solicita la configuración de algún dispositivo que no se encuentre contemplado en las otras tipologías de configuración.",
-                "numerador": "A",
-                "categorie": "Configuración de Equipos",
-                "serv_id": "S05"
-            }
-        ]
+            "serviceId": "S05",
+            "subServices": [
+                {
+                    "subServiceName": "Registro de equipo",
+                    "description": "Momento en el cual un cliente se acerca para solicitar el registro de un equipo que no fue adquirido en Tigo.",
+                    "numerador": "A",
+                    "categorie": "Registro de Equipo",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Configuracion de movil",
+                    "description": "Momento en el cual el cliente solicita la configuración de un móvil.",
+                    "numerador": "A",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Configuracion de modem",
+                    "description": "Momento en el cual el cliente solicita la configuración de un modem.",
+                    "numerador": "A",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Configuracion de otros dispositivos",
+                    "description": "Momento en el cual el cliente solicita la configuración de algún dispositivo que no se encuentre contemplado en las otras tipologías de configuración.",
+                    "numerador": "A",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S05"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "REPARACIÓN Y GARANTIA DE EQUIPO",
-            "serviceId": "S06"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Reparacion en nivel 0 (solucion del RAC)",
-                "description": "Momento en el que el cliente manifiesta tener problemas con su equipo y el asesor logra solucionar el inconveniente.",
-                "numerador": "G",
-                "categorie": "Servicio Técnico",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Ingreso a servicio tecnico (traslado a taller central)",
-                "description": "Momento en el cual se realiza el ingreso del equipo a servicio tecnico.",
-                "numerador": "G",
-                "categorie": "Servicio Técnico",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Entrega de equipo reparado en CDE",
-                "description": "Momento en elque el asesor realiza la entrega del equipo reparado.",
-                "numerador": "G",
-                "categorie": "Servicio Técnico",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Devolucion de loaner",
-                "description": "Momento en el que el cliente realiza la devolución de un equipo que le fue entregado en calidad de préstamo.",
-                "numerador": "G",
-                "categorie": "Servicio Técnico",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Cambio de equipo por DOA",
-                "description": "Momento en el cual se realiza el cambio de un equipo por DOA.",
-                "numerador": "G",
-                "categorie": "Servicio Técnico",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Reclamación seguro",
-                "description": "Momento en el que el cliente solicita utilizar el seguro asociado a su equipo.",
-                "numerador": "G",
-                "categorie": "Seguro",
-                "serv_id": "S06"
-            },
-            {
-                "subServiceName": "Entrega de equipo por reclamacion seguro",
-                "description": "Momento en elque el asesor realiza la entrega del equipo cambiado por el seguro.",
-                "numerador": "G",
-                "categorie": "Seguro",
-                "serv_id": "S06"
-            }
-        ]
+            "serviceId": "S06",
+            "subServices": [
+                {
+                    "subServiceName": "Reparacion en nivel 0 (solucion del RAC)",
+                    "description": "Momento en el que el cliente manifiesta tener problemas con su equipo y el asesor logra solucionar el inconveniente.",
+                    "numerador": "G",
+                    "categorie": "Servicio Técnico",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Ingreso a servicio tecnico (traslado a taller central)",
+                    "description": "Momento en el cual se realiza el ingreso del equipo a servicio tecnico.",
+                    "numerador": "G",
+                    "categorie": "Servicio Técnico",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Entrega de equipo reparado en CDE",
+                    "description": "Momento en elque el asesor realiza la entrega del equipo reparado.",
+                    "numerador": "G",
+                    "categorie": "Servicio Técnico",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Devolucion de loaner",
+                    "description": "Momento en el que el cliente realiza la devolución de un equipo que le fue entregado en calidad de préstamo.",
+                    "numerador": "G",
+                    "categorie": "Servicio Técnico",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Cambio de equipo por DOA",
+                    "description": "Momento en el cual se realiza el cambio de un equipo por DOA.",
+                    "numerador": "G",
+                    "categorie": "Servicio Técnico",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Reclamación seguro",
+                    "description": "Momento en el que el cliente solicita utilizar el seguro asociado a su equipo.",
+                    "numerador": "G",
+                    "categorie": "Seguro",
+                    "serv_id": "S06"
+                },
+                {
+                    "subServiceName": "Entrega de equipo por reclamacion seguro",
+                    "description": "Momento en elque el asesor realiza la entrega del equipo cambiado por el seguro.",
+                    "numerador": "G",
+                    "categorie": "Seguro",
+                    "serv_id": "S06"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "MIS QUEJAS Y RECLAMOS",
-            "serviceId": "S07"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Registro de formato de PQR",
-                "description": "Momento en que el cliente decide establecer una queja formal que requiera firma de formato de PQR.",
-                "numerador": "G",
-                "categorie": "PQR",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Consulta de estado de PQR",
-                "description": "Momento en el que el cliente solicita información acerca de una queja formal que realizó con anterioridad.",
-                "numerador": "G",
-                "categorie": "PQR",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas de navegacion",
-                "description": "Momento en el cliente manifiesta problemas para navegar y el asesor identifica que se deben a no tener configurado el APN del equipo.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con suscripciones Tigo no reconocidas",
-                "description": "Momento en el cliente manifiesta tener suscripciones Tigo sin haberlas activado.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con suscripciones de otros proveedores no reconocidas",
-                "description": "Momento en el cliente manifiesta tener suscripciones de otros proveedores sin haberlas activado.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con cancelacion o renovacion de suscripciones Tigo",
-                "description": "Momento en el que el cliente manifiesta tener problemas para cancelar o renovar una suscripcion de Tigo.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con cancelacion o renovacion de suscripciones de otros proveedores",
-                "description": "Momento en el que el cliente manifiesta tener problemas para cancelar o renovar una suscripcion de otros proveedores.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con el saldo",
-                "description": "Momento en el que el cliente manifiesta tener inconvenientes con el saldo.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con llamadas y SMS",
-                "description": "Momento en el que el cliente manifiesta tener inconvenientes con la realización de llamadas de voz o SMS.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con servicio LDI",
-                "description": "Momento en el que el cliente manifiesta tener inconvenientes con la realización de llamadas de larga distancia internacional.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            },
-            {
-                "subServiceName": "Problemas con servicio de roaming",
-                "description": "Momento en el que el cliente manifiesta tener inconvenientes con el servicio de roaming internacional.",
-                "numerador": "G",
-                "categorie": "Problemas / Incidencias",
-                "serv_id": "S07"
-            }
-        ]
+            "serviceId": "S07",
+            "subServices": [
+                {
+                    "subServiceName": "Registro de formato de PQR",
+                    "description": "Momento en que el cliente decide establecer una queja formal que requiera firma de formato de PQR.",
+                    "numerador": "G",
+                    "categorie": "PQR",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Consulta de estado de PQR",
+                    "description": "Momento en el que el cliente solicita información acerca de una queja formal que realizó con anterioridad.",
+                    "numerador": "G",
+                    "categorie": "PQR",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas de navegacion",
+                    "description": "Momento en el cliente manifiesta problemas para navegar y el asesor identifica que se deben a no tener configurado el APN del equipo.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con suscripciones Tigo no reconocidas",
+                    "description": "Momento en el cliente manifiesta tener suscripciones Tigo sin haberlas activado.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con suscripciones de otros proveedores no reconocidas",
+                    "description": "Momento en el cliente manifiesta tener suscripciones de otros proveedores sin haberlas activado.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con cancelacion o renovacion de suscripciones Tigo",
+                    "description": "Momento en el que el cliente manifiesta tener problemas para cancelar o renovar una suscripcion de Tigo.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con cancelacion o renovacion de suscripciones de otros proveedores",
+                    "description": "Momento en el que el cliente manifiesta tener problemas para cancelar o renovar una suscripcion de otros proveedores.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con el saldo",
+                    "description": "Momento en el que el cliente manifiesta tener inconvenientes con el saldo.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con llamadas y SMS",
+                    "description": "Momento en el que el cliente manifiesta tener inconvenientes con la realización de llamadas de voz o SMS.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con servicio LDI",
+                    "description": "Momento en el que el cliente manifiesta tener inconvenientes con la realización de llamadas de larga distancia internacional.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                },
+                {
+                    "subServiceName": "Problemas con servicio de roaming",
+                    "description": "Momento en el que el cliente manifiesta tener inconvenientes con el servicio de roaming internacional.",
+                    "numerador": "G",
+                    "categorie": "Problemas / Incidencias",
+                    "serv_id": "S07"
+                }
+            ]
+        }
     },
     {
+        "companyId": "100",
         "service": {
             "serviceName": "QUIERO PASARME A PREPAGO / QUIERO CANCELAR MI LINEA",
-            "serviceId": "S08"
-        },
-        "subServices": [
-            {
-                "subServiceName": "Informacion sobre cancelacion de linea",
-                "description": "Momento en el que se brinda información sobre los procedimientos necesarios para cancelar una línea.",
-                "numerador": "R",
-                "categorie": "Cancelación",
-                "serv_id": "S08"
-            },
-            {
-                "subServiceName": "Proceso de retencion",
-                "description": "Momento en el cual el cliente manifiesta que desea cancelar la línea y se realiza proceso de retencion.",
-                "numerador": "R",
-                "categorie": "Cancelación",
-                "serv_id": "S08"
-            },
-            {
-                "subServiceName": "Cancelacion de linea pospago",
-                "description": "Momento en el cual el proceso de retencion no fue exitoso y se procede a llenar los documentos necesarios para programar o calendarizar la cancelacion de la linea pospago.",
-                "numerador": "R",
-                "categorie": "Cancelación",
-                "serv_id": "S08"
-            },
-            {
-                "subServiceName": "Cancelacion de linea prepago",
-                "description": "Momento en el cual el proceso de retencion no fue exitoso y se procede a llenar los documentos necesarios para programar o calendarizar la cancelacion de la linea prepago.",
-                "numerador": "R",
-                "categorie": "Cancelación",
-                "serv_id": "S08"
-            },
-            {
-                "subServiceName": "Cambio a prepago",
-                "description": "Momento en el que se realiza un cambio de plan pospago a prepago.",
-                "numerador": "R",
-                "categorie": "Cancelación",
-                "serv_id": "S08"
-            }
-        ]
+            "serviceId": "S08",
+            "subServices": [
+                {
+                    "subServiceName": "Informacion sobre cancelacion de linea",
+                    "description": "Momento en el que se brinda información sobre los procedimientos necesarios para cancelar una línea.",
+                    "numerador": "R",
+                    "categorie": "Cancelación",
+                    "serv_id": "S08"
+                },
+                {
+                    "subServiceName": "Proceso de retencion",
+                    "description": "Momento en el cual el cliente manifiesta que desea cancelar la línea y se realiza proceso de retencion.",
+                    "numerador": "R",
+                    "categorie": "Cancelación",
+                    "serv_id": "S08"
+                },
+                {
+                    "subServiceName": "Cancelacion de linea pospago",
+                    "description": "Momento en el cual el proceso de retencion no fue exitoso y se procede a llenar los documentos necesarios para programar o calendarizar la cancelacion de la linea pospago.",
+                    "numerador": "R",
+                    "categorie": "Cancelación",
+                    "serv_id": "S08"
+                },
+                {
+                    "subServiceName": "Cancelacion de linea prepago",
+                    "description": "Momento en el cual el proceso de retencion no fue exitoso y se procede a llenar los documentos necesarios para programar o calendarizar la cancelacion de la linea prepago.",
+                    "numerador": "R",
+                    "categorie": "Cancelación",
+                    "serv_id": "S08"
+                },
+                {
+                    "subServiceName": "Cambio a prepago",
+                    "description": "Momento en el que se realiza un cambio de plan pospago a prepago.",
+                    "numerador": "R",
+                    "categorie": "Cancelación",
+                    "serv_id": "S08"
+                }
+            ]
+        }
     }
 ]
