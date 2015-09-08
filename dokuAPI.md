@@ -16,7 +16,7 @@ Rutas, Metodos y Estructura de Información
 
 #### **<i class="icon-file"></i> /turnos [get]**
 > Devuelve una colecccion de objetos con la siguiente estrucctura
-```
+```javascript
  turno:{
 		idTurno: {numerador: String,
 		consecutivo: Number},
@@ -84,16 +84,16 @@ Rutas, Metodos y Estructura de Información
 #### **<i class="icon-file"></i> /turnos [Post]**
 > Corresponde a la creación de un turno y el request body debe tener la siguiente estructura:
 
-```
+```javascript
 {
-numerador: String,
-consecutivo: Number,
-lineNumber:Number,
-screenName:String,
-motivoVisita:String,
-adviserName:String,
-adviserLastName:String,
-adviserId:String
+	numerador: String,
+	consecutivo: Number,
+	lineNumber:Number,
+	screenName:String,
+	motivoVisita:String,
+	adviserName:String,
+	adviserLastName:String,
+	adviserId:String
 }
 
 ```
@@ -101,7 +101,7 @@ adviserId:String
 
 #### **<i class="icon-file"></i> /taketurnos [Put]**
 > Método que se utiliza cuando el asesor toma el turno, el req.body debe tener la siguiente estrucctura:
-```
+```javascript
 {
 adviserName:String,
 adviserLastName:String,
@@ -126,11 +126,15 @@ branchOffice:{
 
 ```
 
-#### **<i class="icon-file"></i> /cerrarTurno[Put]**
->  Se utliza para terminar con la atención al turno
-```
+**<i class="icon-file"></i> /cerrarTurno[Put]**>  
+Se utliza para terminar con la atención al turno
+
+```javascript
 {
-			'turno.infoTurno.area':req.body.turno.infoTurno.area,			'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
-'turno.state':'Atendido',			'turno.infoTurno.services':req.body.turno.infoTurno.services,
-'turno.infoTurno.logFin':new Date()
+	'turno.infoTurno.area':req.body.turno.infoTurno.area,
+	'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
+	'turno.state':'Atendido',           
+	'turno.infoTurno.services':req.body.turno.infoTurno.services,
+	'turno.infoTurno.logFin':new Date()
+}
 ```
