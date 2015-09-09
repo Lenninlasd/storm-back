@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 // Esquema que define totalmente toda la información que se realciona con un turno.
 var turnoSchema = mongoose.Schema({
 	turno:{
-		idTurno: {numerador: String,consecutivo: Number},
+		idTurno: {numerator: String,consecutive: Number},
 		state: { 
 			stateCode: Number,
 			description: String
@@ -48,12 +48,12 @@ var turnoSchema = mongoose.Schema({
 		},
 		// Datos de la atencion al turno
 		infoTurno:{
-				logCreacionTurno:Date,
-				logLlamado:Date, // Date
-				logAtencion:Date,
-				logFin:Date, // Date
+				logCreationTurno:Date,
+				logCalledTurno:Date, // Date
+				logAtentionTurno:Date,
+				logEndTurno:Date, // Date
 				area:String,
-				categoriaCliente:String,
+				clientCategoria:String,
 				services: [{
 					serviceName:String,
 					serviceId:String,
@@ -61,7 +61,7 @@ var turnoSchema = mongoose.Schema({
 						subServiceId:String,
 						subServiceName:String,
 						description:String,
-						numerador:String,
+						numerator:String,
 						categorie:String
 					}]
 				}],

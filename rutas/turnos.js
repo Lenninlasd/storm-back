@@ -4,14 +4,9 @@ module.exports = function turnos (app,Turno,io,mongoose){
 
 	app.use(bodyParser.json());
 
-	var turnosAll = function (req,res){
-		Turno.find(function (err,array){
-			res.json(array);
-		});
-	};
-	var turnoById = function (req,res){// get para meter mas info en el turno
-		var id = req.params.id;
-		Turno.findById(id,function (err, results){
+	var turnoByIdAndCollection = function (req,res){// get para meter mas info en el turno
+
+		Turno.find({'_id':req.query.id},function (err, results){
 			if (err)
 				res.send(err);
 			res.json(results);
@@ -19,8 +14,8 @@ module.exports = function turnos (app,Turno,io,mongoose){
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
 		Turno.create({	
-			'turno.idTurno.numerador':req.body.numerador,
-			'turno.idTurno.consecutivo':req.body.consecutivo,
+			'turno.idTurno.numerator':req.body.numerator,
+			'turno.idTurno.consecutive':req.body.consecutive,
 			'turno.state.description':'Pendiente por Atencion',
 			'turno.client.lineNumber':req.body.lineNumber,
 			'turno.client.screenName':req.body.screenName,
@@ -28,7 +23,7 @@ module.exports = function turnos (app,Turno,io,mongoose){
 			'turno.emitterAdviser.adviserName':req.body.adviserName,
 			'turno.emitterAdviser.adviserLastName':req.body.adviserLastName,
 			'turno.emitterAdviser.adviserId':req.body.adviserId,
-			'turno.infoTurno.logCreacionTurno':new Date()
+			'turno.infoTurno.logCreationTurno':new Date()
 		},
 		function (err, obj){
 			res.json(obj);
@@ -47,7 +42,7 @@ module.exports = function turnos (app,Turno,io,mongoose){
 			'turno.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
 			'turno.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
 			'turno.branchOffice.region':req.body.circleList.branchOffices[0].regional,
-			'turno.infoTurno.logAtencion':new Date()
+			'turno.infoTurno.logAtentionTurno':new Date()
 
 		},
 		{new:true},function (err,results){
@@ -63,7 +58,7 @@ module.exports = function turnos (app,Turno,io,mongoose){
 			'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
 			'turno.state':'Atendido',
 			'turno.infoTurno.services':req.body.turno.infoTurno.services,
-			'turno.infoTurno.logFin':new Date()
+			'turno.infoTurno.logEndTurno':new Date()
 		},
 		{new:true},function (err,results){
 			res.json(results);
@@ -83,8 +78,7 @@ module.exports = function turnos (app,Turno,io,mongoose){
 		});
 	};
 
-	app.get('/turnos',turnosAll);
-	app.get('/turnos/:id',turnoById);	
+	app.get('/turnos',turnoByIdAndCollection);	
 	app.get('/consecutivo',consecutivo);
 	app.post('/turnos',newTurno);		
 	app.put('/takeTurnos/:id',takeTurno);	
