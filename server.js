@@ -9,14 +9,14 @@ var express = require('express'),
 	// bodyParser = require('body-parser'),
 	port = 5000,
 	// Cargo los Schemnas de las DB
-	Turno = require('./models/app_DB_Schemas_Turnos'),
+	Token = require('./models/app_DB_Schemas_Tokens'),
 	User = require('./models/app_DB_Schemas_Users'),
 	Tienda = require('./models/app_DB_Schemas_BranchOffices'),
 	Service = require('./models/app_DB_Schemas_Services'),
 	Activity = require('./models/app_DB_Schemas_Activities'),
 	Circle = require('./models/app_DB_Schemas_Circles'),
 	// Cargo las rutas de la API
-	turnos = require('./rutas/turnos'),
+	tokens = require('./rutas/tokens'),
 	services = require('./rutas/services'),
 	tiendas = require('./rutas/tiendas'),
 	users = require('./rutas/users'),
@@ -33,7 +33,7 @@ var express = require('express'),
 app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
-turnos(app,Turno,io,mongoose);
+tokens(app,Token,io,mongoose);
 services(app,Service,io,mongoose);
 tiendas(app,Tienda,io,mongoose);
 users(app,User,io,mongoose);

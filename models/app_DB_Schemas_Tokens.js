@@ -2,9 +2,9 @@
 var mongoose = require('mongoose');
 
 // Esquema que define totalmente toda la información que se realciona con un turno.
-var turnoSchema = mongoose.Schema({
-	turno:{
-		idTurno: {numerator: String,consecutive: Number},
+var tokenSchema = mongoose.Schema({
+	token:{
+		idToken: {numerator: String,consecutive: Number},
 		state: { 
 			stateCode: Number,
 			description: String
@@ -48,12 +48,12 @@ var turnoSchema = mongoose.Schema({
 		},
 		// Datos de la atencion al turno
 		infoTurno:{
-				logCreationTurno:Date,
-				logCalledTurno:Date, // Date
-				logAtentionTurno:Date,
-				logEndTurno:Date, // Date
+				logCreationToken:Date,
+				logCalledToken:Date, // Date
+				logAtentionToken:Date,
+				logEndToken:Date, // Date
 				area:String,
-				clientCategoria:String,
+				clientCategorie:String,
 				services: [{
 					serviceName:String,
 					serviceId:String,
@@ -70,6 +70,6 @@ var turnoSchema = mongoose.Schema({
 	}
 });
 
-var Turno = mongoose.model('Turno',turnoSchema,'turnos');
+var Token = mongoose.model('Token',tokenSchema,'tokens');
 
-module.exports = Turno;
+module.exports = Token;

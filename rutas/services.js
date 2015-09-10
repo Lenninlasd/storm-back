@@ -22,9 +22,9 @@ module.exports = function services (app,Service,io,mongoose){
 	var newService = function(req,res){
 		console.log(req.body);
 		Service.create({
-			'servicie.serviceId':req.body.serviceId,
-			'servicie.serviceName':req.body.serviceName,
-			'servicie.subServices':req.body.subServices
+			'service.serviceId':req.body.serviceId,
+			'service.serviceName':req.body.serviceName,
+			'service.subServices':req.body.subServices
 		},function (err,obj){
 			res.json(obj);
 		});
@@ -33,9 +33,9 @@ module.exports = function services (app,Service,io,mongoose){
 	var editService= function(req,res){
 		var id = req.params.id;
 		Service.findByIdAndUpdate(id,{
-			'servicie.serviceId':req.body.serviceId,
-			'servicie.serviceName':req.body.serviceName,
-			'servicie.subServices':req.body.subServices			 
+			'service.serviceId':req.body.serviceId,
+			'service.serviceName':req.body.serviceName,
+			'service.subServices':req.body.subServices			 
 		},
 		{new:true},function (err,obj){
 			res.json(obj);
