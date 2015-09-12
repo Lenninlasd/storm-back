@@ -54,11 +54,11 @@ module.exports = function turnos (app,Token,io,mongoose){
 		// console.log(req.body);
 		// console.log('este es el que interesa:',req.body.turno.infoTurno);
 		Token.findByIdAndUpdate(id,{
-			'token.infoTurno.area':req.body.turno.infoTurno.area,
-			'token.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
+			'token.infoToken.area':req.body.turno.infoTurno.area,
+			'token.infoToken.clientCategorie':req.body.turno.infoTurno.categoria_cliente,
 			'token.state':'Atendido',
-			'token.infoTurno.services':req.body.turno.infoTurno.services,
-			'token.infoTurno.logEndTurno':new Date()
+			'token.infoToken.services':req.body.turno.infoTurno.services,
+			'token.infoToken.logEndToken':new Date()
 		},
 		{new:true},function (err,results){
 			res.json(results);

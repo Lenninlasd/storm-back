@@ -10,6 +10,10 @@ La siguiente lista muestra todas la rutas que implementa la API para la gestión
  2. /takeTurnos (Put)
  3. /cerrarTurnos (Put)
  4. /services ( Get , Post, Put, Delete)
+ 5. /tiendas (Get, Post, Put, Delete)
+ 6. /users (Get, Post, Put, Delete)
+ 7. /circles
+ 8. /activities
 
 Rutas, Metodos y Estructura de Información 
 -
@@ -86,8 +90,8 @@ Rutas, Metodos y Estructura de Información
 
 ```javascript
 {
-	numerador: String,
-	consecutivo: Number,
+	numerator: String,
+	consecutive: Number,
 	lineNumber:Number,
 	screenName:String,
 	motivoVisita:String,
@@ -127,14 +131,91 @@ branchOffice:{
 ```
 
 **<i class="icon-file"></i> /cerrarTurno[Put]**>  
-Se utliza para terminar con la atención al turno
+>Se utliza para terminar con la atención al turno,el req.body debe tener la siguiente estrucctura:
 
 ```javascript
 {
-	'turno.infoTurno.area':req.body.turno.infoTurno.area,
-	'turno.infoTurno.categoriaCliente':req.body.turno.infoTurno.categoria_cliente,
-	'turno.state':'Atendido',           
-	'turno.infoTurno.services':req.body.turno.infoTurno.services,
-	'turno.infoTurno.logFin':new Date()
-}
+	area:String,
+	clientCategorie:String,
+	services: [{
+				serviceName:String,
+				serviceId:String,
+				subServices:[{
+					subServiceId:String,
+					subServiceName:String,
+					description:String,
+					numerator:String,
+					categorie:String
+					}]
+              }]
+ }
+
+```
+
+
+**<i class="icon-file"></i> /services[Get]**>  
+>Se utliza para llamar atodos los servicios , devuelve una colecccion de objetos con la siguiente estrucctura:
+
+
+```javascript
+{
+	service:{
+		serviceId:String,
+		serviceName:String,
+		subServices:[{
+			subServiceId:String,
+			subServiceName:String,
+			description:String,
+			numerador:String,
+			categorie:String
+		}]
+	}
+ }
+
+```
+
+**<i class="icon-file"></i> /services[Post]**>  
+>Se utliza para crear un nuevo servicio , el req.body debe tener la siguiente estrucctura:
+
+
+```javascript
+{
+		serviceId:String,
+		serviceName:String,
+		subServices:[{
+			subServiceId:String,
+			subServiceName:String,
+			description:String,
+			numerator:String,
+			categorie:String
+		}]
+	}
+ }
+
+```
+
+**<i class="icon-file"></i> /services[Put]**>  
+>Se utliza para editar un servicio , el query debe contener el parametro 'id' para encontrar el servicio y  el req.body debe tener la siguiente estrucctura:
+
+
+```javascript
+{
+		serviceId:String,
+		serviceName:String,
+		subServices:[{
+			subServiceId:String,
+			subServiceName:String,
+			description:String,
+			numerator:String,
+			categorie:String
+		}]
+	}
+ }
+
+```
+
+**<i class="icon-file"></i> /services[Delete]**>  
+>Se utliza para eliminar un servicio , el query debe contener el parametro 'id' para encontrar el servicio:
+```javascript 
+> ejemplo /servicio/967362718238716372
 ```

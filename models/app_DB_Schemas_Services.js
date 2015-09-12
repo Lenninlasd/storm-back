@@ -11,7 +11,7 @@ var serviceSchema = mongoose.Schema({
 			subServiceId:String,
 			subServiceName:String,
 			description:String,
-			numerador:String,
+			numerator:String,
 			categorie:String
 		}]
 	}
