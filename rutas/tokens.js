@@ -13,9 +13,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 		});
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
-		Token.create({	
-			'token.idTurno.numerator':req.body.numerator,
-			'token.idTurno.consecutive':req.body.consecutive,
+		Token.create({
+			'token.idToken.numerator':req.body.numerator,
+			'token.idToken.consecutive':req.body.consecutive,
 			'token.state.description':'Pendiente por Atencion',
 			'token.client.lineNumber':req.body.lineNumber,
 			'token.client.screenName':req.body.screenName,
@@ -26,8 +26,12 @@ module.exports = function turnos (app,Token,io,mongoose){
 			'token.infoTurno.logCreationTurno':new Date()
 		},
 		function (err, obj){
-			res.json(obj);
-			io.emit('NewTurno');	 		
+			if (err) {
+				console.log(err);
+			}else {
+				res.json(obj);
+				io.emit('NewTurno');
+			}
 		});
 	};
 	var takeTurno = function (req,res){// put para Tomar el turno y meter info de asesor
@@ -69,7 +73,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 	var consecutivo = function(req,res){
 		var filtro = req.query;
 		Token.find({
-			'token.idTurno.numerador':filtro.num,
+			'token.idToken.numerador':filtro.num,
 			'token.branchOffice.posCode':filtro.posCode,
 			'token.infoTurno.logCreacionTurno':new Date(filtro.day)
 		},
@@ -78,26 +82,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 		});
 	};
 
-	app.get('/tokens',turnoByIdAndCollection);	
+	app.get('/tokens',turnoByIdAndCollection);
 	app.get('/consecutivo',consecutivo);
-	app.post('/tokens',newTurno);		
-	app.put('/takeTurnos/:id',takeTurno);	
+	app.post('/tokens',newTurno);
+	app.put('/takeTurnos/:id',takeTurno);
 	app.put('/cerrarTurno/:id',cerrarTurno);
-
-
-
-	
-
 }
-
-
-
-
-	
-
-
-
-
- 
-
-
