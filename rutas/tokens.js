@@ -6,11 +6,21 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	var turnoByIdAndCollection = function (req,res){// get para meter mas info en el turno
 
-		Token.find({'_id':req.query.id},function (err, results){
-			if (err)
-				res.send(err);
-			res.json(results);
-		});
+		if (req.query.id) {
+			Token.find({'_id':req.query.id},function (err, results){
+				if (err)
+					res.send(err);
+				res.json(results);
+			});
+		}else{
+			Token.find(function (err, results){
+				if (err)
+					res.send(err);
+				res.json(results);
+			});
+		}
+
+
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
 		Token.create({
@@ -23,7 +33,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 			'token.emitterAdviser.adviserName':req.body.adviserName,
 			'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
 			'token.emitterAdviser.adviserId':req.body.adviserId,
-			'token.infoTurno.logCreationTurno':new Date()
+			'token.infoTurno.logCreationToken':new Date()
 		},
 		function (err, obj){
 			if (err) {
