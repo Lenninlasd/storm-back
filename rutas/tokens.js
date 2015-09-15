@@ -5,28 +5,24 @@ module.exports = function turnos (app,Token,io,mongoose){
 	app.use(bodyParser.json());
 
 	var turnoByIdAndCollection = function (req,res){// get para meter mas info en el turno
+		var query = {};
 
-		if (req.query.id) {
-			Token.find({'_id':req.query.id},function (err, results){
-				if (err)
-					res.send(err);
-				res.json(results);
-			});
-		}else{
-			Token.find(function (err, results){
-				if (err)
-					res.send(err);
-				res.json(results);
-			});
-		}
+		if (req.query.id) {query._id = req.query.id;}
+		if (req.query.state) {query['token.state.stateCode'] = req.query.state;}
 
+		Token.find(query, function (err, results){
+			if (err)
+				res.send(err);
+			res.json(results);
+		});
 
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
 		Token.create({
 			'token.idToken.numerator':req.body.numerator,
 			'token.idToken.consecutive':req.body.consecutive,
-			'token.state.description':'Pendiente por Atencion',
+			'token.state.description':'pending',
+			'token.state.stateCode': 0,
 			'token.client.lineNumber':req.body.lineNumber,
 			'token.client.screenName':req.body.screenName,
 			'token.motivoVisita':req.body.motivoVisita,
@@ -40,7 +36,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 				console.log(err);
 			}else {
 				res.json(obj);
-				io.emit('NewTurno');
+				io.emit('newToken');
 			}
 		});
 	};

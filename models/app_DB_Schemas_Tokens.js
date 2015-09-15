@@ -5,8 +5,8 @@ var mongoose = require('mongoose');
 var tokenSchema = mongoose.Schema({
 	token:{
 		idToken: {numerator: String,consecutive: Number},
-		state: { 
-			stateCode: Number,
+		state: {
+			stateCode: Number, // 0 = pending, 1 = calling, 2 = in attention, 3 = closed
 			description: String
 		},
 		// Proceso de toma de turno por parte del cliente.
