@@ -18,9 +18,38 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	};
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
+
+		var filtro = req.query;
+		console.log(filtro);
+		var fecha = new Date();
+		var ano = fecha.getFullYear();
+		var	mes = fecha.getMonth()+1;
+		var dia = fecha.getDate();
+		var lapso = dia+1;
+		var start = ano+'-'+mes+'-'+dia;
+		var end = ano+'-'+mes+'-'+lapso;
+
+		
+
+		Token.find({
+			'token.idToken.numerator':filtro.num,
+			// 'token.branchOffice.posCode':filtro.posCode,
+			'token.infoToken.logCreationToken':{'$gte':start,'$lte':end}
+		},
+		function (err,array){
+			if (array){
+				 console.log(parseInt(array[array.length -1].token.idToken.consecutive)+1);
+	
+			}
+			else {
+				console.log('por ahora funciona')
+			}
+		});
+
+
 		Token.create({
 			'token.idToken.numerator':req.body.numerator,
-			'token.idToken.consecutive':req.body.consecutive,
+			'token.idToken.consecutive':23,
 			'token.state.description':'pending',
 			'token.state.stateCode': 0,
 			'token.client.lineNumber':req.body.lineNumber,
@@ -29,7 +58,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 			'token.emitterAdviser.adviserName':req.body.adviserName,
 			'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
 			'token.emitterAdviser.adviserId':req.body.adviserId,
-			'token.infoTurno.logCreationToken':new Date()
+			'token.infoToken.logCreationToken':new Date()
 		},
 		function (err, obj){
 			if (err) {
@@ -78,10 +107,18 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	var consecutivo = function(req,res){
 		var filtro = req.query;
+		var fecha = new Date();
+		var ano = fecha.getFullYear();
+		var	mes = fecha.getMonth();
+		var dia = fecha.getDate()+1;
+		var lapso = dia+1;
+		var start = new Date(ano,mes,dia);
+		var end = new Date(ano,mes,lapso);
+
 		Token.find({
-			'token.idToken.numerador':filtro.num,
+			'token.idToken.numerator':filtro.num,
 			'token.branchOffice.posCode':filtro.posCode,
-			'token.infoTurno.logCreacionTurno':new Date(filtro.day)
+			'token.infoToken.logCreationToken':{$gte :start, $lte :end}
 		},
 		function (err,array){
 			res.json(array);
@@ -94,3 +131,5 @@ module.exports = function turnos (app,Token,io,mongoose){
 	app.put('/takeTurnos/:id',takeTurno);
 	app.put('/cerrarTurno/:id',cerrarTurno);
 }
+
+

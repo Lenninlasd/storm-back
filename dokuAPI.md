@@ -130,6 +130,7 @@ branchOffice:{
 
 ```
 
+
 **<i class="icon-file"></i> /cerrarTurno[Put]**>  
 >Se utliza para terminar con la atención al turno,el req.body debe tener la siguiente estrucctura:
 

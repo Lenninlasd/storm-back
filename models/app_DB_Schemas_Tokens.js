@@ -47,7 +47,7 @@ var tokenSchema = mongoose.Schema({
 				idType:String
 		},
 		// Datos de la atencion al turno
-		infoTurno:{
+		infoToken:{
 				logCreationToken:Date,
 				logCalledToken:Date, // Date
 				logAtentionToken:Date,

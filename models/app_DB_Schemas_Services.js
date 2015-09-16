@@ -7,11 +7,11 @@ var serviceSchema = mongoose.Schema({
 	service:{
 		serviceId:String,
 		serviceName:String,
+		numerator:String,
 		subServices:[{
 			subServiceId:String,
 			subServiceName:String,
-			description:String,
-			numerator:String,
+			description:String,			
 			categorie:String
 		}]
 	}
