@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var moment = require('moment');
 
 module.exports = function turnos (app,Token,io,mongoose){
 
@@ -17,57 +18,47 @@ module.exports = function turnos (app,Token,io,mongoose){
 		});
 
 	};
+
 	var newTurno = function (req,res) {// Post para crear un nuevo turno
 
 		var filtro = req.query;
-		console.log(filtro);
-		var fecha = new Date();
-		var ano = fecha.getFullYear();
-		var	mes = fecha.getMonth()+1;
-		var dia = fecha.getDate();
-		var lapso = dia+1;
-		var start = ano+'-'+mes+'-'+dia;
-		var end = ano+'-'+mes+'-'+lapso;
+		var numerator = req.body.numerator;
+		var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
 
-		
-
+		// 'token.branchOffice.posCode':filtro.posCode,
 		Token.find({
-			'token.idToken.numerator':filtro.num,
-			// 'token.branchOffice.posCode':filtro.posCode,
-			'token.infoToken.logCreationToken':{'$gte':start,'$lte':end}
-		},
-		function (err,array){
-			if (array){
-				 console.log(parseInt(array[array.length -1].token.idToken.consecutive)+1);
-	
-			}
-			else {
-				console.log('por ahora funciona')
-			}
-		});
+			  'token.idToken.numerator': numerator,
+			  'token.infoToken.logCreationToken':{'$gte':curDate}
+			},
+			{'token.idToken':1})
+			.sort({'token.infoToken.logCreationToken': -1})
+			.limit(1)
+			.exec(function (err,data){
+				var consecutive = data.length === 0 ? 1 : data[0].token.idToken.consecutive + 1;
 
-
-		Token.create({
-			'token.idToken.numerator':req.body.numerator,
-			'token.idToken.consecutive':23,
-			'token.state.description':'pending',
-			'token.state.stateCode': 0,
-			'token.client.lineNumber':req.body.lineNumber,
-			'token.client.screenName':req.body.screenName,
-			'token.motivoVisita':req.body.motivoVisita,
-			'token.emitterAdviser.adviserName':req.body.adviserName,
-			'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
-			'token.emitterAdviser.adviserId':req.body.adviserId,
-			'token.infoToken.logCreationToken':new Date()
-		},
-		function (err, obj){
-			if (err) {
-				console.log(err);
-			}else {
-				res.json(obj);
-				io.emit('newToken');
-			}
-		});
+				// Token Creation
+				Token.create({
+					'token.idToken.numerator':req.body.numerator,
+					'token.idToken.consecutive':consecutive,
+					'token.state.description':'pending',
+					'token.state.stateCode': 0,
+					'token.client.lineNumber':req.body.lineNumber,
+					'token.client.screenName':req.body.screenName,
+					'token.motivoVisita':req.body.motivoVisita,
+					'token.emitterAdviser.adviserName':req.body.adviserName,
+					'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
+					'token.emitterAdviser.adviserId':req.body.adviserId,
+					'token.infoToken.logCreationToken': new Date()
+				},
+				function (err, obj){
+					if (err) {
+						console.log(err);
+					}else {
+						res.json(obj);
+						io.emit('newToken');
+					}
+				});
+			});
 	};
 	var takeTurno = function (req,res){// put para Tomar el turno y meter info de asesor
 		var id = req.params.id;
@@ -131,5 +122,3 @@ module.exports = function turnos (app,Token,io,mongoose){
 	app.put('/takeTurnos/:id',takeTurno);
 	app.put('/cerrarTurno/:id',cerrarTurno);
 }
-
-
