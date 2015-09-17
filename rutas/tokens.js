@@ -5,7 +5,13 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	app.use(bodyParser.json());
 
-	var turnoByIdAndCollection = function (req,res){// get para meter mas info en el turno
+	app.get('/tokens',tokenByIdAndCollection);
+	app.post('/tokens',newToken);
+	app.put('/takeToken/:id',takeToken);
+	app.put('/closeToken/:id',closeToken);
+
+
+	function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 		var query = {};
 
 		if (req.query.id) {query._id = req.query.id;}
@@ -17,11 +23,10 @@ module.exports = function turnos (app,Token,io,mongoose){
 			res.json(results);
 		});
 
-	};
+	}
 
-	var newTurno = function (req,res) {// Post para crear un nuevo turno
+	function newToken(req,res) {// Post para crear un nuevo turno
 
-		var filtro = req.query;
 		var numerator = req.body.numerator;
 		var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
 
@@ -59,8 +64,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 					}
 				});
 			});
-	};
-	var takeTurno = function (req,res){// put para Tomar el turno y meter info de asesor
+	}
+
+	function takeToken (req,res){// put para Tomar el turno y meter info de asesor
 		var id = req.params.id;
 		console.log(req.body);
 		Token.findByIdAndUpdate(id,{
@@ -78,8 +84,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 		{new:true},function (err,results){
 			res.json(results);
 		});
-	};
-	var cerrarTurno  = function (req,res){// put para cerrar el turno
+	}
+
+	function closeToken (req,res){// put para cerrar el turno
 		var id = req.params.id;
 		// console.log(req.body);
 		// console.log('este es el que interesa:',req.body.turno.infoTurno);
@@ -94,31 +101,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 			res.json(results);
 		});
 
-	};
+	}
 
-	var consecutivo = function(req,res){
-		var filtro = req.query;
-		var fecha = new Date();
-		var ano = fecha.getFullYear();
-		var	mes = fecha.getMonth();
-		var dia = fecha.getDate()+1;
-		var lapso = dia+1;
-		var start = new Date(ano,mes,dia);
-		var end = new Date(ano,mes,lapso);
-
-		Token.find({
-			'token.idToken.numerator':filtro.num,
-			'token.branchOffice.posCode':filtro.posCode,
-			'token.infoToken.logCreationToken':{$gte :start, $lte :end}
-		},
-		function (err,array){
-			res.json(array);
-		});
-	};
-
-	app.get('/tokens',turnoByIdAndCollection);
-	app.get('/consecutivo',consecutivo);
-	app.post('/tokens',newTurno);
-	app.put('/takeTurnos/:id',takeTurno);
-	app.put('/cerrarTurno/:id',cerrarTurno);
-}
+};
