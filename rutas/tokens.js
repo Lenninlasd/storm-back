@@ -5,10 +5,18 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	app.use(bodyParser.json());
 
-	app.get('/tokens',tokenByIdAndCollection);
-	app.post('/tokens',newToken);
-	app.put('/takeToken/:id',takeToken);
-	app.put('/closeToken/:id',closeToken);
+	io.on('connection', function(socket){
+			var counter = 0;
+
+			app.get('/tokens',tokenByIdAndCollection);
+			app.post('/tokens',newToken);
+			app.put('/takeToken',takeToken);
+			app.put('/closeToken/:id',closeToken);
+
+
+			socket.on('disconnect', function(){
+				console.log('user disconnected');
+			});
 
 
 	function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
@@ -60,29 +68,32 @@ module.exports = function turnos (app,Token,io,mongoose){
 						console.log(err);
 					}else {
 						res.json(obj);
-						io.emit('newToken');
+						//console.log(socket);
+						io.emit('newToken', obj);
 					}
 				});
 			});
 	}
 
 	function takeToken (req,res){// put para Tomar el turno y meter info de asesor
-		var id = req.params.id;
+		var id = req.query.id;
 		console.log(req.body);
 		Token.findByIdAndUpdate(id,{
-			'token.state':'En Atencion',
+			'token.state.description':'in attention',
+			'token.state.stateCode': 2,
 			'token.receiverAdviser.adviserName':req.body.adviserName,
 			'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
 			'token.receiverAdviser.adviserId':req.body.adviserId,
-			'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
-			'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
-			'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
-			'token.branchOffice.region':req.body.circleList.branchOffices[0].regional,
-			'token.infoTurno.logAtentionTurno':new Date()
+			// 'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
+			// 'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
+			// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
+			// 'token.branchOffice.region':req.body.circleList.branchOffices[0].regional,
+			'token.infoToken.logAtentionToken':new Date()
 
 		},
 		{new:true},function (err,results){
-			res.json(results);
+				res.json(results);
+				io.emit('takeToken');
 		});
 	}
 
@@ -102,5 +113,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 		});
 
 	}
+		});
 
 };
