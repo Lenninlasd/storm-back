@@ -4,7 +4,10 @@ var mongoose = require('mongoose');
 // Esquema que define totalmente toda la información que se realciona con un turno.
 var tokenSchema = mongoose.Schema({
 	token:{
-		idToken: {numerator: String,consecutive: Number},
+		idToken: {
+			numerator: String,
+			consecutive: Number
+		},
 		state: {
 			stateCode: Number, // 0 = pending, 1 = calling, 2 = in attention, 3 = closed
 			description: String
