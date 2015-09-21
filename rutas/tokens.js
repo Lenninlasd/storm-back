@@ -9,6 +9,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 			app.get('/tokens',tokenByIdAndCollection);
 			app.post('/tokens',newToken);
+			app.put('/callToken', callToken);
 			app.put('/takeToken',takeToken);
 			app.put('/closeToken',closeToken);
 
@@ -69,7 +70,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 			function takeToken (req,res){// put para Tomar el turno y meter info de asesor
 				var id = req.query.id;
-				console.log(req.body);
+				//console.log(req.body);
 				Token.findByIdAndUpdate(id,{
 					'token.state.description':'in attention',
 					'token.state.stateCode': 2,
@@ -86,6 +87,16 @@ module.exports = function turnos (app,Token,io,mongoose){
 				{new:true},function (err,results){
 						res.json(results);
 						io.emit('takeToken');
+				});
+			}
+
+			function callToken(req, res) {
+				var id = req.body.id;
+				Token.findByIdAndUpdate(id, {
+					'token.infoToken.logCalledToken':new Date()
+				},
+				{new:true}, function (err, results) {
+					res.json(results);
 				});
 			}
 
