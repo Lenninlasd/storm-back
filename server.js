@@ -31,7 +31,7 @@ var express = require('express'),
 
 // Configuration
 app.use(cors());
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 tokens(app,Token,io,mongoose);
 services(app,Service,io,mongoose);

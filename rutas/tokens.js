@@ -5,7 +5,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	app.use(bodyParser.json());
 
-	io.on('connection', function(socket){
+	//io.on('connection', function(socket){
 
 			app.get('/tokens',tokenByIdAndCollection);
 			app.post('/tokens',newToken);
@@ -30,7 +30,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 				var numerator = req.body.numerator;
 				var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
-
 				// 'token.branchOffice.posCode':filtro.posCode,
 				Token.find({
 					  'token.idToken.numerator': numerator,
@@ -54,6 +53,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 							'token.emitterAdviser.adviserName':req.body.adviserName,
 							'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
 							'token.emitterAdviser.adviserId':req.body.adviserId,
+							'token.infoToken.services': {serviceName: req.body.service.serviceName, serviceId: req.body.service.serviceId},
 							'token.infoToken.logCreationToken': new Date()
 						},
 						function (err, obj){
@@ -61,7 +61,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 								console.log(err);
 							}else {
 								res.json(obj);
-								//console.log(socket);
 								io.emit('newToken', obj);
 							}
 						});
@@ -118,6 +117,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 					});
 
 			}
-	});
+	//});
 
 };
