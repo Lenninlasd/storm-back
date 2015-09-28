@@ -5,8 +5,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 	app.use(bodyParser.json());
 
-	//io.on('connection', function(socket){
-
 			app.get('/tokens',tokenByIdAndCollection);
 			app.post('/tokens',newToken);
 			app.put('/callToken', callToken);
@@ -14,15 +12,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 			app.put('/closeToken',closeToken);
 
 			io.on('connection', function(socket){
-					console.log('hola');
 					socket.on('insertService', function (data) {
-							insertService(data, function (result) {
-									io.emit('resultService', result);
-							})
+							insertService(data, function (result) {io.emit('resultService', result);});
 					});
-					socket.on('disconnect', function(){
-				    console.log('user disconnected');
-				  });
 			});
 
 
@@ -117,7 +109,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 					//console.log(data);
 					var id = data.id;
 					Token.findByIdAndUpdate(id,{
-						'token.infoToken.services': [data.service]
+						$push: {'token.infoToken.services': data.service}
 					}, {new: true}, function(err, result){
 							console.log(result);
 							return callback(result);
@@ -127,8 +119,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 			// put para cerrar el turno
 			function closeToken (req,res){
 					var id = req.body.id;
-					// console.log(req.body);
-					// console.log('este es el que interesa:',req.body.turno.infoTurno);
 					Token.findByIdAndUpdate(id,{
 						// 'token.infoToken.area':req.body.turno.infoTurno.area,
 						// 'token.infoToken.clientCategorie':req.body.turno.infoTurno.categoria_cliente,
@@ -142,6 +132,5 @@ module.exports = function turnos (app,Token,io,mongoose){
 					});
 
 			}
-	//});
 
 };
