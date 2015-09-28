@@ -13,6 +13,20 @@ module.exports = function turnos (app,Token,io,mongoose){
 			app.put('/takeToken',takeToken);
 			app.put('/closeToken',closeToken);
 
+			io.on('connection', function(socket){
+					console.log('hola');
+					socket.on('insertService', function (data) {
+							insertService(data, function (result) {
+									io.emit('resultService', result);
+							})
+					});
+					socket.on('disconnect', function(){
+				    console.log('user disconnected');
+				  });
+			});
+
+
+
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 					var query = {};
 
@@ -97,6 +111,17 @@ module.exports = function turnos (app,Token,io,mongoose){
 				{new:true}, function (err, results) {
 					res.json(results);
 				});
+			}
+
+			function insertService(data, callback){
+					//console.log(data);
+					var id = data.id;
+					Token.findByIdAndUpdate(id,{
+						'token.infoToken.services': [data.service]
+					}, {new: true}, function(err, result){
+							console.log(result);
+							return callback(result);
+					});
 			}
 
 			// put para cerrar el turno
