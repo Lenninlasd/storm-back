@@ -15,6 +15,11 @@ module.exports = function turnos (app,Token,io,mongoose){
 					socket.on('insertService', function (data) {
 							insertService(data, function (result) {io.emit('resultService', result);});
 					});
+					socket.on('updateSubservice', function (data) {
+							updateSubservice(data, function (result) {
+									io.emit('resultService', result);
+							});
+					});
 			});
 
 
@@ -111,7 +116,15 @@ module.exports = function turnos (app,Token,io,mongoose){
 					Token.findByIdAndUpdate(id,{
 						$push: {'token.infoToken.services': data.service}
 					}, {new: true}, function(err, result){
-							console.log(result);
+							return callback(result);
+					});
+			}
+
+			function updateSubservice(data, callback) {
+					Token.findOneAndUpdate({'token.infoToken.services._id': data.idService},
+					{'$set': {
+						'token.infoToken.services.$.subServices': data.subServices
+					}},{new:true}, function(err, result) {
 							return callback(result);
 					});
 			}
