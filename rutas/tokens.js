@@ -17,11 +17,10 @@ module.exports = function turnos (app,Token,io,mongoose){
 					});
 					socket.on('updateSubservice', function (data) {
 							updateSubservice(data, function (result) {
-									io.emit('resultService', result);
+								io.emit('resultService', result);
 							});
 					});
 			});
-
 
 
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
