@@ -13,7 +13,10 @@ var tokenSchema = mongoose.Schema({
 			description: String
 		},
 		// Proceso de toma de turno por parte del cliente.
-		motivoVisita:String,
+		motivoVisita: {
+			serviceName:String,
+			serviceId:String
+		},
 		// Datos de la Asesor-Terminal y Tienda donde se ateinde al turno
 		emitterAdviser:{
 				adviserName:String,

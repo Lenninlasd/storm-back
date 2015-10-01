@@ -59,11 +59,11 @@ module.exports = function turnos (app,Token,io,mongoose){
 							'token.state.stateCode': 0,
 							'token.client.lineNumber':req.body.lineNumber,
 							'token.client.screenName':req.body.screenName,
-							'token.motivoVisita':req.body.motivoVisita,
+							//'token.motivoVisita':req.body.motivoVisita,
 							'token.emitterAdviser.adviserName':req.body.adviserName,
 							'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
 							'token.emitterAdviser.adviserId':req.body.adviserId,
-							'token.infoToken.services': {serviceName: req.body.service.serviceName, serviceId: req.body.service.serviceId},
+							'token.motivoVisita': {serviceName: req.body.service.serviceName, serviceId: req.body.service.serviceId},
 							'token.infoToken.logCreationToken': new Date()
 						},
 						function (err, obj){
