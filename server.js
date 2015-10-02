@@ -21,6 +21,7 @@ var express = require('express'),
 	tiendas = require('./rutas/tiendas'),
 	users = require('./rutas/users'),
 	activities = require('./rutas/activities'),
+	indicators = require('./rutas/indicators'),
 	circles = require('./rutas/circles');
 
 		mongoose.connect('mongodb://localhost/sistemaTS');
@@ -39,6 +40,7 @@ tiendas(app,Tienda,io,mongoose);
 users(app,User,io,mongoose);
 activities(app,Activity,io,mongoose);
 circles(app,Circle,io,mongoose);
+indicators(app,Token,io,mongoose);
 
 
 server.listen(port,function(){
