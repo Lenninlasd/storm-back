@@ -1,11 +1,12 @@
 [{
         "user":"ppleon",
-        "password":"elcapo37",
+        "email": "elcapo@test.com",
+        "password":"12345",
         "name":"Pedro Pablo",
         "lastName":"Leon Jaramillo",
         "idUser":"1143121813",
         "idType":"CC",
-        "role":"Asesor",
+        "userType":"Asesor",
         "creationDate":"",
         "circleList":{
             "greenCircles":[{
@@ -16,7 +17,7 @@
                 "nombreSucursal":"Portal del prado",
                 "codigoPos":37,
                 "ciudad":"Barranquilla",
-                "regional":"Atlantico",
+                "regional":"Costa",
                 "blueCircles":[{
                     "idClircle": "",
                     "nameCircle": ""
@@ -26,7 +27,8 @@
     },
     {
         "user":"lasd25",
-        "password":"jslasd25",
+        "email": "len@test.com",
+        "password":"12345",
         "name":"Lennin Alonso",
         "lastName":"Suescun Devia",
         "idUser":"114121458",
@@ -42,7 +44,7 @@
                 "nombreSucursal":"Buena Vista",
                 "codigoPos":"93",
                 "ciudad":"Barranquilla",
-                "regional":"Atlantico",
+                "regional":"Costa",
                 "blueCircles":[{
                     "idClircle": "",
                     "nameCircle": ""
@@ -50,6 +52,4 @@
             }]
         }
     }
-    ]
-
-                           
+]
