@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
 	user:{
         user:String,
-				email: String,
+		email: String,
         password:String,
-    		name:String,
+    	name:String,
         lastName:String,
-    		idUser:String,
+    	idUser:String,
         idType:String,
         userType:String,
         creationDate:Date,
@@ -18,10 +18,10 @@ var userSchema = mongoose.Schema({
                 nameCircle: String
             }],
             branchOffices:[{
-                nombreSucursal:String,
-                codigoPos:String,
-                ciudad:String,
-                regional:String,
+				branchOfficesName:String,
+				posCode:String,
+				city:String,
+				region:String,
                 blueCircles:[{
                     idClircle: String,
                     nameCircle: String

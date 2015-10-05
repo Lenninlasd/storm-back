@@ -14,10 +14,10 @@
                 "nameCircle": ""
             }],
             "branchOffices":[{
-                "nombreSucursal":"Portal del prado",
-                "codigoPos":37,
-                "ciudad":"Barranquilla",
-                "regional":"Costa",
+                "branchOfficesName":"Portal del prado",
+                "posCode":37,
+                "city":"Barranquilla",
+                "region":"Costa",
                 "blueCircles":[{
                     "idClircle": "",
                     "nameCircle": ""
@@ -41,10 +41,10 @@
                 "nameCircle": ""
             }],
             "branchOffices":[{
-                "nombreSucursal":"Buena Vista",
-                "codigoPos":"93",
-                "ciudad":"Barranquilla",
-                "regional":"Costa",
+                "branchOfficesName":"Buena Vista",
+                "posCode":"93",
+                "city":"Barranquilla",
+                "region":"Costa",
                 "blueCircles":[{
                     "idClircle": "",
                     "nameCircle": ""
