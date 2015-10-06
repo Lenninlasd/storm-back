@@ -7,14 +7,38 @@ module.exports = function indicators (app,Token,io){
 
 	app.get('/serviceLevel', getServiceLevel);
 
-	function  getServiceLevel (req,res){
+	function  getServiceLevel (req,res){ // Acomulado del  dia por tienda y pais.
 
-		var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
+		var params ={};
+
+		if (req.query.posCode){
+			params.posCode = req.query.posCode ;
+		}
+		else {
+			params.posCode = null;
+		}
+
+		if (req.query.startDate && req.query.endDate){
+			var date = {'$gte': req.query.startDate,
+			  			'$lte':req.query.endDate
+			  			};
+		}
+		else {
+			var date = {'$gte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
+			
+		}
+
+		if (req.query.timeFactor){
+			params.timeFactor = req.query.timeFactor;
+		}
+		else {
+			params.timeFactor = 10;
+		}
 
 		var query ={
 			'token.state.stateCode': 3 ,
-			'token.infoToken.logEndToken':{'$gte':curDate},
-			'token.branchOffice.posCode':null
+			'token.infoToken.logEndToken':date,
+			'token.branchOffice.posCode':params.posCode
 		};
 
 		Token.find(query,function (err,arr){
@@ -29,10 +53,10 @@ module.exports = function indicators (app,Token,io){
 						logCalled:'$token.infoToken.logCalledToken',
 						logAtention:'$token.infoToken.logAtentionToken',
 						logEnd:'$token.infoToken.logEndToken',
-						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 6000 ] }} 
+						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }} 
 					},
 					{ $match: { 
-						'totalAtention':{ $lte: 10}
+						'totalAtention':{ $lte: params.timeFactor}
 						}
 					}				
 						// { $group: { _id:{numertor:"$token.idToken.numerator"} , total: { $sum:1 } } }
