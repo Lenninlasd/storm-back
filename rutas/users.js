@@ -1,5 +1,7 @@
 var bodyParser = require('body-parser');
 var _ = require("underscore");
+var SessionHandler = require('./session');
+// var Session = require('./models/app_DB_Schemas_Session');
 
 module.exports = function users (app,User,io,mongoose){
 
@@ -75,12 +77,18 @@ module.exports = function users (app,User,io,mongoose){
 
 	function Login(User){
 		'use strict';
+		var session = new SessionHandler();
 		var self = this;
 
 		this.login = function (req, res) {
-			self.validateLogin(req.body, function(err, data) {
-				if (err){return res.status(401).json(err);}
-				res.json(data);
+			self.validateLogin(req.body, function(err, user) {
+				if (err) return res.status(401).json(err);
+
+				// Genera una id_session sha1 e inserta en bd los datos de sesion
+				session.startSession(req, user, function(err, idSession){
+					if (err) return res.status(500).json(err);
+					return res.json({idSession: idSession, user: user, login: true});
+				});
 			});
 		};
 
@@ -98,11 +106,11 @@ module.exports = function users (app,User,io,mongoose){
 					}
 					if (userData.password === result.password) {
 					//if (bcrypt.compareSync(userData.password, result.password)) {
-						callback(null, result);
+						return callback(null, result);
 					}else{
 						var invalidPasswordRrror = new Error("Invalid password");
 						invalidPasswordRrror.invalidPassword = true;
-						callback(invalidPasswordRrror, null);
+						return callback(invalidPasswordRrror, null);
 					}
 			});
 		};
