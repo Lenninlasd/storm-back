@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 // Esquema que define totalmente toda la informacion que se relaciona con un Asesor
 var userSchema = mongoose.Schema({
-	user:{
         user:String,
 		email: String,
         password:String,
@@ -28,7 +27,6 @@ var userSchema = mongoose.Schema({
                 }],
             }]
         }
-    }
 
 });
 // coleccion de passwords usados

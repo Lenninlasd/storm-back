@@ -78,7 +78,6 @@ module.exports = function users (app,User,io,mongoose){
 		var self = this;
 
 		this.login = function (req, res) {
-			console.log(req.body);
 			self.validateLogin(req.body, function(err, data) {
 				if (err){return res.status(401).json(err);}
 				res.json(data);
@@ -89,27 +88,22 @@ module.exports = function users (app,User,io,mongoose){
 			var query = {'email' : userData.name};
 
 			User.findOne(query, function(err, result) {
-				var WTF = _.clone(result);
-				console.log(_.size(WTF));
-				console.log(_.size(result));
-				console.log(WTF.password);
-				//if (err) return callback(err, null);
-				console.log(result);
+					if (err) return callback(err, null);
 
-				return callback(null, result);
-				// if (!_.size(result)) {
-				// 	var errorNousername = new Error("username: " + userData.name + " no existe");
-				// 	errorNousername.nousername = true;
-				// 	return callback(errorNousername, null);
-				// }
-				// if (userData.password === result.password) {
-				// //if (bcrypt.compareSync(userData.password, result.password)) {
-				// 	callback(null, result);
-				// }else{
-				// 	var invalidPasswordRrror = new Error("Invalid password");
-				// 	invalidPasswordRrror.invalid_password = true;
-				// 	callback(invalidPasswordRrror, null);
-				// }
+					//return callback(null, result);
+					if (!_.size(result)) {
+						var errorNousername = new Error("username: " + userData.name + " no existe");
+						errorNousername.nousername = true;
+						return callback(errorNousername, null);
+					}
+					if (userData.password === result.password) {
+					//if (bcrypt.compareSync(userData.password, result.password)) {
+						callback(null, result);
+					}else{
+						var invalidPasswordRrror = new Error("Invalid password");
+						invalidPasswordRrror.invalidPassword = true;
+						callback(invalidPasswordRrror, null);
+					}
 			});
 		};
 	}
