@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
     idSession:String,
 	ipAddress: String,
-    usuario:String,
+    userEmail:String,
     userAgent:String,
     creationDate:Date,
 });

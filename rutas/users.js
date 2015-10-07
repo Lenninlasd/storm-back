@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var _ = require("underscore");
-var SessionHandler = require('./session');
+var SessionRoute = require('./session');
+// var SessionHandler = require('../models/app_DB_Schemas_Sessions');
 // var Session = require('./models/app_DB_Schemas_Session');
 
 module.exports = function users (app,User,io,mongoose){
@@ -15,14 +16,8 @@ module.exports = function users (app,User,io,mongoose){
 	app.delete('/users/:id',deleteUser);
 
 	//---------- Manejo de sesiones --------------------------
+	app.get('/user/login.json', login.getlogin);
 	app.post('/user/login.json', login.login);
-	//app.get('/user/login.json', login.getlogin);
-
-	// app.post(version + '/usuario/logout.json', usuario.logout);
-	//
-	// app.get(version + '/usuario/checkuser', estudiante.checkUser);
-	// app.get(version + '/usuario/checkemail', estudiante.checkEmail);
-	// app.get(version + '/usuario/checkidestudiante', estudiante.checkidEstudiante);
 	//---------- Fin manejo de sesiones ----------------------
 
 	function findUsers(req,res){
@@ -35,7 +30,6 @@ module.exports = function users (app,User,io,mongoose){
 	}
 
 	function newUser(req,res){
-		console.log(req.body);
 		User.create({
 			'user.userName':req.body.user,
 			'user.email':req.body.email,
@@ -76,43 +70,50 @@ module.exports = function users (app,User,io,mongoose){
 	}
 
 	function Login(User){
-		'use strict';
-		var session = new SessionHandler();
-		var self = this;
+			'use strict';
+			var session = new SessionRoute();
+			var self = this;
 
-		this.login = function (req, res) {
-			self.validateLogin(req.body, function(err, user) {
-				if (err) return res.status(401).json(err);
+			this.login = function (req, res) {
+					self.validateLogin(req.body, function(err, user) {
+							if (err) return res.status(401).json(err);
 
-				// Genera una id_session sha1 e inserta en bd los datos de sesion
-				session.startSession(req, user, function(err, idSession){
-					if (err) return res.status(500).json(err);
-					return res.json({idSession: idSession, user: user, login: true});
+							// Genera una id_session sha1 e inserta en bd los datos de sesion
+							session.startSession(req, user, function(err, idSession){
+								if (err) return res.status(500).json(err);
+								return res.json({idSession: idSession, user: user, login: true});
+							});
+					});
+			};
+
+			this.validateLogin = function (userData, callback) {
+				var query = {'email' : userData.name};
+
+				User.findOne(query, function(err, result) {
+						if (err) return callback(err, null);
+
+						if (!_.size(result)) {
+								var errorNousername = new Error("username: " + userData.name + " no existe");
+								errorNousername.nousername = true;
+								return callback(errorNousername, null);
+						}
+						if (userData.password === result.password) {
+								//if (bcrypt.compareSync(userData.password, result.password))
+								var resultCopy = result.toObject();
+								delete resultCopy.password;
+								return callback(null, resultCopy);
+						}else{
+								var invalidPasswordRrror = new Error("Invalid password");
+								invalidPasswordRrror.invalidPassword = true;
+								return callback(invalidPasswordRrror, null);
+						}
 				});
-			});
-		};
+			};
 
-		this.validateLogin = function (userData, callback) {
-			var query = {'email' : userData.name};
-
-			User.findOne(query, function(err, result) {
-					if (err) return callback(err, null);
-
-					//return callback(null, result);
-					if (!_.size(result)) {
-						var errorNousername = new Error("username: " + userData.name + " no existe");
-						errorNousername.nousername = true;
-						return callback(errorNousername, null);
-					}
-					if (userData.password === result.password) {
-					//if (bcrypt.compareSync(userData.password, result.password)) {
-						return callback(null, result);
-					}else{
-						var invalidPasswordRrror = new Error("Invalid password");
-						invalidPasswordRrror.invalidPassword = true;
-						return callback(invalidPasswordRrror, null);
-					}
-			});
-		};
+			this.getlogin = function(req, res) {
+					if (req.session.err) return res.status(500).json(req.session);
+					res.json(req.session);
+			};
 	}
+
 };

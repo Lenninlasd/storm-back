@@ -25,7 +25,6 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 					var query = {};
-
 					if (req.query.id) {query._id = req.query.id;}
 					if (req.query.state) {query['token.state.stateCode'] = req.query.state;}
 
