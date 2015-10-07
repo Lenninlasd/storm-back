@@ -6,6 +6,7 @@ module.exports = function indicators (app,Token,io){
 	app.use(bodyParser.json());
 
 	app.get('/serviceLevel', getServiceLevel);
+	app.get('/avgAtentionTime',avgAtentionTime);
 
 	function  getServiceLevel (req,res){ // Acomulado del  dia por tienda y pais.
 
@@ -19,13 +20,14 @@ module.exports = function indicators (app,Token,io){
 		}
 
 		if (req.query.startDate && req.query.endDate){
-			var date = {'$gte': req.query.startDate,
-			  			'$lte':req.query.endDate
-			  			};
+			var date = {
+				'$gte': req.query.startDate,
+				'$lte':req.query.endDate
+			};
 		}
 		else {
-			var date = {'$gte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
-			
+		var date = {'$gte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
+
 		}
 
 		if (req.query.timeFactor){
@@ -41,61 +43,78 @@ module.exports = function indicators (app,Token,io){
 			'token.branchOffice.posCode':params.posCode
 		};
 
-		Token.find(query,function (err,arr){
+	Token.find(query,function (err,arr){
 
-			console.log(arr.length);
+		console.log(arr.length);
 
-			Token.aggregate(
-				[	
-					{ $match: query	},
-					{ $project: {
-						logCreation:'$token.infoToken.logCreationToken',					 
-						logCalled:'$token.infoToken.logCalledToken',
-						logAtention:'$token.infoToken.logAtentionToken',
-						logEnd:'$token.infoToken.logEndToken',
-						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }} 
-					},
-					{ $match: { 
-						'totalAtention':{ $lte: params.timeFactor}
-						}
-					}				
-						// { $group: { _id:{numertor:"$token.idToken.numerator"} , total: { $sum:1 } } }
-						// { $sort: { total: -1 } }
-				],
-						function (err,obj){
-							var sl = (obj.length / arr.length)*100;
-							res.json(sl);
-						}
+		Token.aggregate(
+			[	
+				{ $match: query	},
+				{ $project: {
+					logCreation:'$token.infoToken.logCreationToken',					 
+					logCalled:'$token.infoToken.logCalledToken',
+					logAtention:'$token.infoToken.logAtentionToken',
+					logEnd:'$token.infoToken.logEndToken',
+					totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }} 
+				},
+				{ $match: { 
+					'totalAtention':{ $lte: params.timeFactor}
+					}
+				}				
+			],function (err,obj){
+				var sl = (obj.length / arr.length)*100;
+				res.json(sl);
+				}
 			);
-
 		});
+	};
 
-		// Token.aggregate(
-		// 	[	
-		// 		{ $match: { 
-		// 			'token.state.stateCode': 3 ,
-		// 			'token.infoToken.logEndToken':{'$gte':curDate},
-		// 			'token.branchOffice.posCode':null 
-		// 			}
-		// 		},
-		// 		{ $project: {
-		// 			logCreation:'$token.infoToken.logCreationToken',					 
-		// 			logCalled:'$token.infoToken.logCalledToken',
-		// 			logAtention:'$token.infoToken.logAtentionToken',
-		// 			logEnd:'$token.infoToken.logEndToken',
-		// 			totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 6000 ] }} 
-		// 		},
-		// 		{ $match: { 
-		// 			'totalAtention':{ $lte: 10}
-		// 			}
-		// 		},
-		// 			// { $group: { _id:{numertor:"$token.idToken.numerator"} , total: { $sum:1 } } }
-		// 			// { $sort: { total: -1 } }
-		// 	],
-		// 	function (err,obj){
-		// 			res.json(obj);
-		// 	}
-		// );
+	function avgAtentionTime (req,res){
+
+			var params ={};
+
+			if (req.query.posCode){
+				params.posCode = req.query.posCode ;
+			}
+			else {
+				params.posCode = null;
+			}
+
+			if (req.query.startDate && req.query.endDate){
+				var date = {
+					'$gte': req.query.startDate,
+					'$lte':req.query.endDate
+				};
+			}
+			else {
+				var date = {'$gte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
+			}
+
+			var query = {
+				'token.state.stateCode': 3 ,
+				'token.infoToken.logEndToken':date,
+				'token.branchOffice.posCode':params.posCode
+			};
+
+		Token.aggregate(
+			[
+				{ $match:query },
+				{ $project:{
+					state:'$token.state.stateCode',
+					logAtention:'$token.infoToken.logAtentionToken',
+					logEnd:'$token.infoToken.logEndToken',
+					totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logAtentionToken']}, 60000 ] }
+					}
+				},
+				{$group:{
+					_id:'$state',
+					AHT:{$avg:'$totalAtention'}
+					}
+				}
+			],function (err,obj){
+				res.json(obj);
+			}
+		);
 	};
 
 };
