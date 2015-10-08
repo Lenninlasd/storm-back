@@ -26,8 +26,7 @@ function Session () {
 
     this.endSession = function(idSession, callback) {
         // Remove session document
-        var query = {idSession: idSession};
-        SessionHandler.remove(query, function(err, result) {
+        SessionHandler.remove({idSession: idSession}, function(err, result) {
             if (err) return callback(err, null);
             return callback(null, result);
         });

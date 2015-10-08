@@ -18,6 +18,7 @@ module.exports = function users (app,User,io,mongoose){
 	//---------- Manejo de sesiones --------------------------
 	app.get('/user/login.json', login.getlogin);
 	app.post('/user/login.json', login.login);
+	app.post('/user/logout.json', login.logout);
 	//---------- Fin manejo de sesiones ----------------------
 
 	function findUsers(req,res){
@@ -113,6 +114,15 @@ module.exports = function users (app,User,io,mongoose){
 			this.getlogin = function(req, res) {
 					if (req.session.err) return res.status(500).json(req.session);
 					res.json(req.session);
+			};
+
+			this.logout = function(req, res, next){
+					var idSession = req.headers.authorization;
+					if (!idSession) return res.json({login: false, msg: 'Session not set'});
+
+					session.endSession(idSession, function (err) {
+							return res.json({login: false, msg: 'Session has been closed'});
+					});
 			};
 	}
 
