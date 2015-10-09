@@ -49,7 +49,6 @@ tokenMiddleware = function(req, res, next) {
             delete userData.password;
             req.session.userData = userData;
             req.session.login = true;
-            console.log(req.session);
             return next();
         });
     });

@@ -9,7 +9,7 @@ var tokenSchema = mongoose.Schema({
 			consecutive: Number
 		},
 		state: {
-			stateCode: Number, // 0 = pending, 1 = calling, 2 = in attention, 3 = closed
+			stateCode: Number, // 0 = pending, 1 = calling, 2 = in attention, 3 = closed, 4 = abandoned, 5 = canceled 
 			description: String
 		},
 		// Proceso de toma de turno por parte del cliente.

@@ -10,6 +10,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 			app.put('/callToken', callToken);
 			app.put('/takeToken',takeToken);
 			app.put('/closeToken',closeToken);
+			app.put('/abandoningToken',abandoningToken);
 
 			io.on('connection', function(socket){
 					socket.on('insertService', function (data) {
@@ -141,7 +142,18 @@ module.exports = function turnos (app,Token,io,mongoose){
 					{new:true},function (err,results){
 						res.json(results);
 					});
+			}
 
+			function abandoningToken(req, res) {
+					var id = req.body.id;
+					Token.findByIdAndUpdate(id,{
+						'token.state.description':'abandoned',
+						'token.state.stateCode': 4,
+						'token.infoToken.logEndToken':new Date()
+					},
+					{new:true},function (err,results){
+						res.json(results);
+					});
 			}
 
 };

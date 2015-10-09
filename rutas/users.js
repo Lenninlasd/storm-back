@@ -88,7 +88,7 @@ module.exports = function users (app,User,io,mongoose){
 			};
 
 			this.validateLogin = function (userData, callback) {
-				var query = {'email' : userData.name};
+				var query = {'email' : userData.name.toLowerCase()};
 
 				User.findOne(query, function(err, result) {
 						if (err) return callback(err, null);
