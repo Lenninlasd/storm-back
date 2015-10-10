@@ -1,5 +1,5 @@
 var _ = require("underscore");
-// Cargo los Schemnas de las DB
+    // Cargo los Schemnas de las DB
 var Token = require('../models/app_DB_Schemas_Tokens'),
     User = require('../models/app_DB_Schemas_Users'),
     Tienda = require('../models/app_DB_Schemas_BranchOffices'),
@@ -15,7 +15,9 @@ var Token = require('../models/app_DB_Schemas_Tokens'),
     tiendas = require('./tiendas'),
     users = require('./users'),
     activities = require('./activities'),
-    indicators = require('./indicators'),
+    serviceLevel = require('./Kpi/serviceLevel'),
+    aht = require('./Kpi/AHT'),
+    asa = require('./Kpi/ASA'),
     circles = require('./circles');
 
 module.exports = function(app, io, mongoose) {
@@ -27,7 +29,9 @@ module.exports = function(app, io, mongoose) {
     users(app,User,io,mongoose);
     activities(app,Activity,io,mongoose);
     circles(app,Circle,io,mongoose);
-    indicators(app,Token,io,mongoose);
+    serviceLevel(app,Token,io,mongoose);
+    aht(app,Token,io);
+    asa(app,Token,io);
 };
 
 // Vaida que exista la sesion, si no arroja un error en req.session.err
