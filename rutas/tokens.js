@@ -63,6 +63,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 							'token.emitterAdviser.adviserName':req.body.adviserName,
 							'token.emitterAdviser.adviserLastName':req.body.adviserLastName,
 							'token.emitterAdviser.adviserId':req.body.adviserId,
+							'token.emitterAdviser.adviserEmail':req.body.adviserEmail,
 							'token.motivoVisita': {serviceName: req.body.service.serviceName, serviceId: req.body.service.serviceId},
 							'token.infoToken.logCreationToken': new Date()
 						},
@@ -86,6 +87,7 @@ module.exports = function turnos (app,Token,io,mongoose){
 					'token.receiverAdviser.adviserName':req.body.adviserName,
 					'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
 					'token.receiverAdviser.adviserId':req.body.adviserId,
+					'token.receiverAdviser.adviserEmail':req.body.adviserEmail,
 					// 'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
 					// 'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
 					// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
