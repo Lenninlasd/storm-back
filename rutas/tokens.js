@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
 
-module.exports = function turnos (app,Token,io,mongoose){
+module.exports = function tokens (app,Token,io,mongoose){
 
 			app.use(bodyParser.json());
 
