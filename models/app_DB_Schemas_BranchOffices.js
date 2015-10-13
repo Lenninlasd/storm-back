@@ -23,7 +23,7 @@ var branchOfficeSchema = mongoose.Schema({
 	}
 });
 
-var BranchOffice = mongoose.model('BranchOffice',branchOfficeSchema,'BranchOffices');
+var BranchOffice = mongoose.model('BranchOffice',branchOfficeSchema,'branchOffices');
 
 module.exports = BranchOffice;
 

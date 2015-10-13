@@ -21,6 +21,17 @@ var Token = require('../models/app_DB_Schemas_Tokens'),
 module.exports = function(app, io, mongoose) {
     app.use(tokenMiddleware);
 
+    io.on('connection', function(socket){
+        var channel;
+        socket.on('session', function (session) {
+            validateSession(session.idSession, function (session) {
+                channel = session.userData.circleList.branchOffices[0].posCode;
+                socket.request.canal = channel;
+                socket.join(channel);
+            });
+        });
+    });
+
     tokens(app,Token,io,mongoose);
     services(app,Service,io,mongoose);
     tiendas(app,Tienda,io,mongoose);
@@ -31,25 +42,31 @@ module.exports = function(app, io, mongoose) {
 };
 
 // Vaida que exista la sesion, si no arroja un error en req.session.err
-tokenMiddleware = function(req, res, next) {
-    req.session = {info: {}, login: false, userData: {}	};
+var tokenMiddleware = function(req, res, next) {
+    req.session = {};
     //var id_session = req.cookies.session;
     var idSession = req.headers.authorization;
 
-    if (!idSession) return next();
-
-    SessionHandler.findOne({idSession: idSession}, function(err, result) {
-        req.session.err = err;
-        if (err || !_.size(result)) return next();
-
-        req.session.info = result;
-        User.findOne({email: req.session.info.userEmail}, function(err, data){
-            if (err) {req.session.err = err; return next();}
-            var userData = data.toObject();
-            delete userData.password;
-            req.session.userData = userData;
-            req.session.login = true;
-            return next();
-        });
+    validateSession(idSession, function (session) {
+        req.session = session;
+        return next();
     });
 };
+
+function validateSession(idSession, callback) {
+    var session = {info: {}, login: false, userData: {}	};
+    SessionHandler.findOne({idSession: idSession}, function(err, result) {
+        session.err = err;
+        if (err || !_.size(result)) return callback(session);
+
+        session.info = result;
+        User.findOne({email: session.info.userEmail}, function(err, data){
+            if (err) {session.err = err; return callback(session);}
+            var userData = data.toObject();
+            delete userData.password;
+            session.userData = userData;
+            session.login = true;
+            return callback(session);
+        });
+    });
+}

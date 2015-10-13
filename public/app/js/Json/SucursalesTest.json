@@ -1,0 +1,54 @@
+[
+    {
+        "branchOfficesName": "TIGO ANDINO CALLE 85",
+        "posCode": "1000510",
+        "city": "BOGOTA",
+        "region": "CENTRO",
+        "blueCircles": [
+            {
+                "idClircle": "1",
+                "nameCircle": "Atencion",
+                "type": "Atencion"
+            }
+        ]
+    },
+    {
+        "branchOfficesName": "TIGO CALLE 140",
+        "posCode": "1000479",
+        "city": "BOGOTA",
+        "region": "CENTRO",
+        "blueCircles": [
+            {
+                "idClircle": "2",
+                "nameCircle": "Atencion",
+                "type": "Atencion"
+            }
+        ]
+    },
+    {
+        "branchOfficesName": "TIGO CENTRO BOGOTA",
+        "posCode": "1002068",
+        "city": "BOGOTA",
+        "region": "CENTRO",
+        "blueCircles": [
+            {
+                "idClircle": "3",
+                "nameCircle": "Atencion",
+                "type": "Atencion"
+            }
+        ]
+    },
+    {
+        "branchOfficesName": "TIGO CENTRO MAYOR",
+        "posCode": "1000511",
+        "city": "BOGOTA",
+        "region": "CENTRO",
+        "blueCircles": [
+            {
+                "idClircle": "4",
+                "nameCircle": "Atencion",
+                "type": "Atencion"
+            }
+        ]
+    }
+]

@@ -3,7 +3,7 @@ var moment = require('moment');
 
 module.exports = function turnos (app,Token,io,mongoose){
 
-	app.use(bodyParser.json());
+			app.use(bodyParser.json());
 
 			app.get('/tokens',tokenByIdAndCollection);
 			app.post('/tokens',newToken);
@@ -13,12 +13,15 @@ module.exports = function turnos (app,Token,io,mongoose){
 			app.put('/abandoningToken',abandoningToken);
 
 			io.on('connection', function(socket){
+
 					socket.on('insertService', function (data) {
-							insertService(data, function (result) {io.emit('resultService', result);});
+							console.log(socket.request.canal);
+							insertService(data, function (result) {socket.emit('resultService', result);});
 					});
 					socket.on('updateSubservice', function (data) {
 							updateSubservice(data, function (result) {
-								io.emit('resultService', result);
+								socket.emit('resultService', result);
+								// io.to(socket.request.canal).emit('resultService', result);
 							});
 					});
 			});
@@ -26,8 +29,9 @@ module.exports = function turnos (app,Token,io,mongoose){
 
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 					var query = {};
-					if (req.query.id) {query._id = req.query.id;}
-					if (req.query.state) {query['token.state.stateCode'] = req.query.state;}
+					if (req.query.id) query._id = req.query.id;
+					if (req.query.state) query['token.state.stateCode'] = req.query.state;
+					if (req.query.receiverAdviserId) query['token.receiverAdviser.adviserId'] = req.query.receiverAdviserId;
 
 					Token.find(query, function (err, results){
 						if (err)
@@ -79,26 +83,25 @@ module.exports = function turnos (app,Token,io,mongoose){
 			}
 
 			function takeToken (req,res){// put para Tomar el turno y meter info de asesor
-				var id = req.query.id;
-				//console.log(req.body);
-				Token.findByIdAndUpdate(id,{
-					'token.state.description':'in attention',
-					'token.state.stateCode': 2,
-					'token.receiverAdviser.adviserName':req.body.adviserName,
-					'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
-					'token.receiverAdviser.adviserId':req.body.adviserId,
-					'token.receiverAdviser.adviserEmail':req.body.adviserEmail,
-					// 'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
-					// 'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
-					// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
-					// 'token.branchOffice.region':req.body.circleList.branchOffices[0].regional,
-					'token.infoToken.logAtentionToken':new Date()
+					var id = req.query.id;
+					//console.log(req.body);
+					Token.findByIdAndUpdate(id,{
+						'token.state.description':'in attention',
+						'token.state.stateCode': 2,
+						'token.receiverAdviser.adviserName':req.body.adviserName,
+						'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
+						'token.receiverAdviser.adviserId':req.body.adviserId,
+						'token.receiverAdviser.adviserEmail':req.body.adviserEmail,
+						// 'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
+						// 'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
+						// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
+						// 'token.branchOffice.region':req.body.circleList.branchOffices[0].regional,
+						'token.infoToken.logAtentionToken':new Date()
 
-				},
-				{new:true},function (err,results){
-						res.json(results);
-						io.emit('takeToken');
-				});
+					},
+					{new:true},function (err,results){
+							res.json(results);
+					});
 			}
 
 			function callToken(req, res) {

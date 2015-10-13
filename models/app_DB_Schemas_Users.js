@@ -17,14 +17,14 @@ var userSchema = mongoose.Schema({
                 nameCircle: String
             }],
             branchOffices:[{
-				branchOfficesName:String,
-				posCode:String,
-				city:String,
-				region:String,
+        				branchOfficesName:String,
+        				posCode:String,
+        				city:String,
+        				region:String,
                 blueCircles:[{
                     idClircle: String,
                     nameCircle: String
-                }],
+                }]
             }]
         }
 
