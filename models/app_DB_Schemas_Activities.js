@@ -1,15 +1,20 @@
-var mongoose = require('mongoose'); 
+var mongoose = require('mongoose');
 
 var activitySchema = mongoose.Schema({
 
-	asesor:{
-		asesorName:String, 
-		idAsesor:String,   	
+	adviser:{
+		adviserName:String,
+		adviserLastName:String,
+		adviserId:String,
+		adviserEmail: String
 	},
-	actividad:[{
+	activity:[{
 		idActivity:String,
-		role: String,
-		activityEvent:{	
+		role: {
+			code: String,
+			name: String
+		},
+		activityEvent:{
 			eventCode:String,
 			eventName:String,
 			transferTerminal:String,

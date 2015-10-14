@@ -15,7 +15,34 @@
             }],
             "branchOffices":[{
                 "branchOfficesName":"Portal del prado",
-                "posCode":37,
+                "posCode":"37",
+                "city":"Barranquilla",
+                "region":"Costa",
+                "blueCircles":[{
+                    "idClircle": "",
+                    "nameCircle": ""
+                }]
+            }]
+        }
+    },
+    {
+        "user":"key",
+        "email": "test@test.com",
+        "password":"12345",
+        "name":"Pablo Joaquin",
+        "lastName":"Garcia Jaramillo",
+        "idUser":"1547846654",
+        "idType":"CC",
+        "userType":"Asesor",
+        "creationDate":"",
+        "circleList":{
+            "greenCircles":[{
+                "idGreenCircle": "",
+                "nameCircle": ""
+            }],
+            "branchOffices":[{
+                "branchOfficesName":"Portal del prado",
+                "posCode":"37",
                 "city":"Barranquilla",
                 "region":"Costa",
                 "blueCircles":[{
@@ -32,6 +59,33 @@
         "name":"Lennin Alonso",
         "lastName":"Suescun Devia",
         "idUser":"114121458",
+        "idType":"CC",
+        "role":"Asesor",
+        "creationDate":"",
+        "circleList":{
+            "greenCircles":[{
+                "idGreenCircle": "",
+                "nameCircle": ""
+            }],
+            "branchOffices":[{
+                "branchOfficesName":"Buena Vista",
+                "posCode":"93",
+                "city":"Barranquilla",
+                "region":"Costa",
+                "blueCircles":[{
+                    "idClircle": "",
+                    "nameCircle": ""
+                }]
+            }]
+        }
+    },
+    {
+        "user":"lasd",
+        "email": "len2@test.com",
+        "password":"12345",
+        "name":"Lennin2 Alonso2",
+        "lastName":"Suescun2 Devia2",
+        "idUser":"1141214582",
         "idType":"CC",
         "role":"Asesor",
         "creationDate":"",

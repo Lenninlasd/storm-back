@@ -65,7 +65,8 @@ function validateSession(idSession, callback) {
 
         session.info = result;
         User.findOne({email: session.info.userEmail}, function(err, data){
-            if (err) {session.err = err; return callback(session);}
+            if (err) {session.err = err; return callback(session);}            
+            if (!_.size(data)) return callback(session); // cookie antigua almacenada
             var userData = data.toObject();
             delete userData.password;
             session.userData = userData;
