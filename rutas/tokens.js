@@ -72,12 +72,9 @@ module.exports = function tokens (app,Token,io,mongoose){
 							'token.infoToken.logCreationToken': new Date()
 						},
 						function (err, obj){
-							if (err) {
-								console.log(err);
-							}else {
+								if (err) return console.log(err);
 								res.json(obj);
 								io.emit('newToken', obj);
-							}
 						});
 					});
 			}
@@ -97,10 +94,10 @@ module.exports = function tokens (app,Token,io,mongoose){
 						// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
 						// 'token.branchOffice.region':req.body.circleList.branchOffices[0].regional,
 						'token.infoToken.logAtentionToken':new Date()
-
 					},
 					{new:true},function (err,results){
 							res.json(results);
+							io.emit('takeToken');
 					});
 			}
 
@@ -158,6 +155,7 @@ module.exports = function tokens (app,Token,io,mongoose){
 					},
 					{new:true},function (err,results){
 						res.json(results);
+						io.emit('takeToken');
 					});
 			}
 

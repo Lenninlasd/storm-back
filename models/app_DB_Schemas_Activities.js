@@ -15,7 +15,7 @@ var activitySchema = mongoose.Schema({
 			name: String
 		},
 		activityEvent:{
-			eventCode:String,
+			eventCode:String, // {generateToken: 0, callToken: 1, attendToken: 2, available: 3, close: {closed: 10, bath=100, breack=101, lunch=102}
 			eventName:String,
 			transferTerminal:String,
 		},
@@ -41,6 +41,6 @@ var activitySchema = mongoose.Schema({
 	}]
 });
 
-var Activity= mongoose.model('Activity',activitySchema,'Activities');
+var Activity= mongoose.model('Activity',activitySchema,'activities');
 
 module.exports = Activity;

@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 
 // Esquema que define totalmente toda la información que se realciona con un turno.
