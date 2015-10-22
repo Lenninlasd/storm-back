@@ -8,13 +8,14 @@ var activitySchema = mongoose.Schema({
 		adviserId:String,
 		adviserEmail: String
 	},
+	day: Date,
 	activity:[{
 		idActivity:String,
 		role: {
 			code: String,
 			name: String
 		},
-		activityEvent:{
+		activityEvent: {
 			eventCode:String, // {generateToken: 0, callToken: 1, attendToken: 2, available: 3, close: {closed: 10, bath=100, breack=101, lunch=102}
 			eventName:String,
 			transferTerminal:String,

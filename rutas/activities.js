@@ -1,4 +1,6 @@
 var bodyParser = require('body-parser');
+var moment = require('moment');
+var _ = require('underscore');
 
 module.exports = function activities (app,Activity,io,mongoose){
 
@@ -6,6 +8,7 @@ module.exports = function activities (app,Activity,io,mongoose){
 
 	app.get('/activity', activitiesAll);
 	app.post('/activity', insertActivity);
+	app.put('/activity', updateActivity);
 
 
 	function activitiesAll(req,res){
@@ -14,22 +17,51 @@ module.exports = function activities (app,Activity,io,mongoose){
 		});
 	}
 
-	function actualActivity(req, res) {
-		// fecha del dia
-		// id del asesor
+	function insertActivity(req, res) {
+			actualActivity(req, function (err, activity) {
+					if (err) return res.status(500).json(err);
+					if (!_.size(activity)) {
+							Activity.create({
+									'adviser.adviserName': req.body.adviserName,
+									'adviser.adviserLastName': req.body.adviserLastName,
+									'adviser.adviserId': req.body.adviserId,
+									'adviser.adviserEmail': req.body.adviserEmail,
+									'day': moment(new Date()).format('YYYY-MM-DD'),
+									'activity': {'activityEvent' : {
+											eventCode: 10, eventName: 'closed'
+									}}
+									//insertar mas cosas
+							}, function(err, obj) {
+									if (err) return res.status(500).json(err);
+									res.json(obj);
+							});
+					}else{
+						res.json(activity);
+					}
+			});
 	}
 
-	function insertActivity(req, res) {
-			console.log(req.body);
-			Activity.create({
-					'adviser.adviserName': req.body.adviserName,
-					'adviser.adviserLastName': req.body.adviserLastName,
-					'adviser.adviserId': req.body.adviserId,
-					'adviser.adviserEmail': req.body.adviserEmail
-					//insertar mas cosas
-			}, function(err, obj) {
-					if (err) return console.log(err);
-					res.json(obj);
+	function actualActivity(req, callback) {
+			var query = {};
+			query.day = new Date(moment(new Date()).format('YYYY-MM-DD'));
+			query['adviser.adviserId'] = req.body.adviserId;
+			Activity.findOne(query, function(err, activity) {
+					if (err) return callback(err, null);
+					return callback(null, activity);
+			});
+	}
+
+	function updateActivity(req, res){
+			//console.log(data);
+			var id = req.body.idActivity;
+			var activity = {eventCode: req.body.eventCode, eventName: req.body.eventName};
+
+			Activity.findByIdAndUpdate(id,{
+				$push: {'activity': {
+					'activityEvent' :	activity
+			  }}
+			}, {new: true}, function(err, result){
+					return res.json(result);
 			});
 	}
 

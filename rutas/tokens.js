@@ -15,7 +15,7 @@ module.exports = function tokens (app,Token,io,mongoose){
 			io.on('connection', function(socket){
 
 					socket.on('insertService', function (data) {
-							console.log(socket.request.canal);
+							console.log('canal', socket.request.canal);
 							insertService(data, function (result) {socket.emit('resultService', result);});
 					});
 					socket.on('updateSubservice', function (data) {
