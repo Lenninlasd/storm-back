@@ -27,10 +27,13 @@ module.exports = function activities (app,Activity,io,mongoose){
 									'adviser.adviserId': req.body.adviserId,
 									'adviser.adviserEmail': req.body.adviserEmail,
 									'day': moment(new Date()).format('YYYY-MM-DD'),
-									'activity': {'activityEvent' : {
-											eventCode: 10, eventName: 'closed'
-									}}
-									//insertar mas cosas
+									'activity': {
+											'activityEvent' : {
+												eventCode: 10, eventName: 'closed'
+											},
+											'role' : {code: '1', name: 'servicio'},
+											'activityStartTime': new Date(),
+									}
 							}, function(err, obj) {
 									if (err) return res.status(500).json(err);
 									res.json(obj);
@@ -57,9 +60,13 @@ module.exports = function activities (app,Activity,io,mongoose){
 			var activity = {eventCode: req.body.eventCode, eventName: req.body.eventName};
 
 			Activity.findByIdAndUpdate(id,{
-				$push: {'activity': {
-					'activityEvent' :	activity
-			  }}
+				$push: {
+						'activity': {
+								'activityEvent' :	activity,
+								'role' : {code: '1', name: 'servicio'},
+								'activityStartTime': new Date()
+				  	}
+				}
 			}, {new: true}, function(err, result){
 					return res.json(result);
 			});

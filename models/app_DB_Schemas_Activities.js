@@ -12,7 +12,7 @@ var activitySchema = mongoose.Schema({
 	activity:[{
 		idActivity:String,
 		role: {
-			code: String,
+			code: String, // venta: 0, servicio: 1, orientador:2
 			name: String
 		},
 		activityEvent: {
