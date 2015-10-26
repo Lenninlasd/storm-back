@@ -74,21 +74,23 @@ module.exports = function activities (app,Activity,io,mongoose){
 	}
 
 	function updateActivity(req, res){
-			//console.log(data);
 			var id = req.body.idActivity;
 			var activity = {eventCode: req.body.eventCode, eventName: req.body.eventName};
 
 			//Encontrar actividad, tomar la info del ultimo, copiar role y branchOffice-terminal
 			// $push nueva actividad con esa info
 			Activity.findOne({_id: id}, function (err, activities) {
-					var activityList= _.last(activities.activity);
+					var activityList = _.last(activities.activity);
+					var role = req.body.role ? req.body.role : activityList.role;
+					activityList.branchOffice.terminal = req.body.terminal ? req.body.terminal : activityList.branchOffice.terminal;
 
 					Activity.findByIdAndUpdate(id,{
 						$push: {
 								'activity': {
 										'activityEvent' :	activity,
-										'role' : activityList.role,
+										'role' : role,
 										'activityStartTime': new Date(),
+										'activityEndTime' : activityList.activityStartTime,
 										'branchOffice' : activityList.branchOffice
 								}
 						}
