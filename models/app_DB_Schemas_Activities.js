@@ -22,18 +22,18 @@ var activitySchema = mongoose.Schema({
 		},
 		branchOffice:{
 				branchOfficesName:String,
-				posCode:Number,
+				posCode:String,
 				city:String,
 				region:String,
 				blueCircle: {
 					idClircle: String,
 					nameCircle: String,
 					type: String,
-					termimal: {
-						terminalId: String,
-						terminalName: String,
-						location: String
-					}
+				},
+				terminal: {
+					terminalId: String,
+					terminalName: String,
+					location: String
 				}
 		},
 		activityStartTime:Date,
