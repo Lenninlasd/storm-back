@@ -54,7 +54,6 @@ module.exports = function activities (app,Activity,io,mongoose){
 									}
 
 							}, function(err, obj) {
-									console.log(err);
 									if (err) return res.status(500).json(err);
 									res.json(obj);
 							});
@@ -81,17 +80,21 @@ module.exports = function activities (app,Activity,io,mongoose){
 
 			//Encontrar actividad, tomar la info del ultimo, copiar role y branchOffice-terminal
 			// $push nueva actividad con esa info
+			Activity.findOne({_id: id}, function (err, activities) {
+					var activityList= _.last(activities.activity);
 
-			Activity.findByIdAndUpdate(id,{
-				$push: {
-						'activity': {
-								'activityEvent' :	activity,
-								'role' : {code: '1', name: 'servicio'},
-								'activityStartTime': new Date()
-				  	}
-				}
-			}, {new: true}, function(err, result){
-					return res.json(result);
+					Activity.findByIdAndUpdate(id,{
+						$push: {
+								'activity': {
+										'activityEvent' :	activity,
+										'role' : activityList.role,
+										'activityStartTime': new Date(),
+										'branchOffice' : activityList.branchOffice
+								}
+						}
+					}, {new: true}, function(err, result){
+							return res.json(result);
+					});
 			});
 	}
 
