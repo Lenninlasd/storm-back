@@ -88,10 +88,7 @@ module.exports = function activities (app,Activity,io,mongoose){
 					// update activityEndTime
 					Activity.findOneAndUpdate({'activity._id': activityList._id},
 							{'$set': { 'activity.$.activityEndTime': new Date()} },
-							function (err, result) {
-									console.log('error', err);
-									console.log('muestra', result);
-							}
+							function (err, result) {}
 					);
 
 					Activity.findByIdAndUpdate(id,{
