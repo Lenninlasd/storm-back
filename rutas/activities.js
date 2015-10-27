@@ -41,6 +41,7 @@ module.exports = function activities (app,Activity,io,mongoose){
 											},
 											'role' : req.body.role,
 											'activityStartTime': new Date(),
+											'activityEndTime' : new Date(0),
 											'branchOffice' : {
 														branchOfficesName: req.body.branchOffice.branchOfficesName,
 														posCode: req.body.branchOffice.posCode,
@@ -84,13 +85,22 @@ module.exports = function activities (app,Activity,io,mongoose){
 					var role = req.body.role ? req.body.role : activityList.role;
 					activityList.branchOffice.terminal = req.body.terminal ? req.body.terminal : activityList.branchOffice.terminal;
 
+					// update activityEndTime
+					Activity.findOneAndUpdate({'activity._id': activityList._id},
+							{'$set': { 'activity.$.activityEndTime': new Date()} },
+							function (err, result) {
+									console.log('error', err);
+									console.log('muestra', result);
+							}
+					);
+
 					Activity.findByIdAndUpdate(id,{
 						$push: {
 								'activity': {
 										'activityEvent' :	activity,
 										'role' : role,
 										'activityStartTime': new Date(),
-										'activityEndTime' : activityList.activityStartTime,
+										'activityEndTime' : new Date(0),
 										'branchOffice' : activityList.branchOffice
 								}
 						}
