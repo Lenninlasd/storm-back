@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
 
-module.exports = function tokens (app,Token,io,mongoose){
+module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
 			app.use(bodyParser.json());
 
@@ -12,10 +12,9 @@ module.exports = function tokens (app,Token,io,mongoose){
 			app.put('/closeToken',closeToken);
 			app.put('/abandoningToken',abandoningToken);
 
-			io.on('connection', function(socket){
-
+			//io.on('connection', function(socket){
+					// socket.join(channel);
 					socket.on('insertService', function (data) {
-							console.log('canal', socket.request.canal);
 							insertService(data, function (result) {socket.emit('resultService', result);});
 					});
 					socket.on('updateSubservice', function (data) {
@@ -24,11 +23,20 @@ module.exports = function tokens (app,Token,io,mongoose){
 								// io.to(socket.request.canal).emit('resultService', result);
 							});
 					});
-			});
+					socket.on('closeAttention', function () {
+							socket.leave(channel);
+					});
+
+					socket.on('selectionRole', function () {
+							socket.join(channel);
+					});
+
+			//});
 
 
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 					var query = {};
+
 					if (req.query.id) query._id = req.query.id;
 					if (req.query.state) query['token.state.stateCode'] = req.query.state;
 					if (req.query.receiverAdviserId) query['token.receiverAdviser.adviserId'] = req.query.receiverAdviserId;
@@ -41,8 +49,8 @@ module.exports = function tokens (app,Token,io,mongoose){
 			}
 
 			function newToken(req,res) {// Post para crear un nuevo turno
-
 				var numerator = req.body.numerator;
+				var room = req.body.posCode;
 				var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
 				// 'token.branchOffice.posCode':filtro.posCode,
 				Token.find({
@@ -74,7 +82,7 @@ module.exports = function tokens (app,Token,io,mongoose){
 						function (err, obj){
 								if (err) return console.log(err);
 								res.json(obj);
-								io.emit('newToken', obj);
+								io.to(room).emit('newToken', obj);
 						});
 					});
 			}

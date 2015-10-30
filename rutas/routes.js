@@ -1,4 +1,5 @@
 var _ = require("underscore");
+var _s = require("underscore.string");
     // Cargo los Schemnas de las DB
 var Token = require('../models/app_DB_Schemas_Tokens'),
     User = require('../models/app_DB_Schemas_Users'),
@@ -24,17 +25,26 @@ module.exports = function(app, io, mongoose) {
     app.use(tokenMiddleware);
 
     io.on('connection', function(socket){
+
         var channel;
-        socket.on('session', function (session) {
-            validateSession(session.idSession, function (session) {
+        var sessionidSession = parseCookieString(socket.handshake.headers.cookie);
+        if (sessionidSession) {
+            validateSession(sessionidSession, function (session) {
                 channel = session.userData.circleList.branchOffices[0].posCode;
-                socket.request.canal = channel;
                 socket.join(channel);
+                socket.lastRoom = channel;
+                tokens(app,Token,io,mongoose, socket, channel);
             });
-        });
+        }
+
+      socket.on('disconnect', function () {
+          if (channel) {
+              socket.leave(channel); // ver que tan relevante es
+          }
+      });
     });
 
-    tokens(app,Token,io,mongoose);
+    //tokens(app,Token,io,mongoose);
     services(app,Service,io,mongoose);
     tiendas(app,Tienda,io,mongoose);
     users(app,User,io,mongoose);
@@ -65,7 +75,7 @@ function validateSession(idSession, callback) {
 
         session.info = result;
         User.findOne({email: session.info.userEmail}, function(err, data){
-            if (err) {session.err = err; return callback(session);}            
+            if (err) {session.err = err; return callback(session);}
             if (!_.size(data)) return callback(session); // cookie antigua almacenada
             var userData = data.toObject();
             delete userData.password;
@@ -74,4 +84,21 @@ function validateSession(idSession, callback) {
             return callback(session);
         });
     });
+}
+
+function parseCookieString(str) {
+    var session = "";
+    if (str) {
+        var strArr = str.split('; ');
+        _.each(strArr, function (element) {
+            if(_s.startsWith(element, 'session')){
+                session = element.split('=')[1];return;
+            }
+        });
+    }
+    return session;
+}
+
+function disconnectAllChannels() {
+  // body...
 }
