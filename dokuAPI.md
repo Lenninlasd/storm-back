@@ -1,43 +1,65 @@
-Documentación API FLugel Strom
-===================
-
+**Documentación API FLugel Strom**
+-
 
 La siguiente lista muestra todas la rutas que implementa la API para la gestión de la información.
 
-**Rutas** 
+### **Rutas**
 
- 1. /turnos (Get , Post)
- 2. /takeTurnos (Put)
- 3. /cerrarTurnos (Put)
- 4. /services ( Get , Post, Put, Delete)
- 5. /tiendas (Get, Post, Put, Delete)
- 6. /users (Get, Post, Put, Delete)
- 7. /circles
- 8. /activities
+Se hará una clasificacion de las rutas por su relaccion directa con la coleccion a la que pertenecen
 
-Rutas, Metodos y Estructura de Información 
+1. **Tokens**
+	- /tokens (**Get** , **Post**)
+	- /callToken ( **Post**)
+	- /takeToken ( **Put**)
+	- /closeToken ( **Put**)
+	- /abandorningToken ( **Put** )
+2. **Services**
+	- /services ( **Get** , **Post**, **Put**, **Delete**)
+3. **Activities**
+	- /activity ( **Get** , **Post**, **Put**, **Delete**)
+4. **Tiendas**
+	- /tiendas ( **Get** , **Post**, **Put**, **Delete**)
+5. **Users**
+	- /users ( **Get** , **Post**, **Put**, **Delete**)
+
+**Rutas, Metodos y Estructura de Información**
 -
+### :clipboard: **/turnos [get]**
+> Esta ruta puede ser utilizada con o sin parametros, los parametros que acepta esta ruta son:
+> **id** , **state [0, 1, 2, 3, 4]** , **receiverAdviserId**
+> 
+> un ejemplo de como se veria una consulta con utilizando parametros es el siguiente :
+>```
+	>/tokens?id=5632636045a5a661151c49e1&state=4&receiverAdviserId=1143121813
 
-#### **<i class="icon-file"></i> /turnos [get]**
-> Devuelve una colecccion de objetos con la siguiente estrucctura
+> **Devuelve una colecccion de objetos con la siguiente estrucctura:**
+
 ```javascript
- turno:{
-		idTurno: {numerador: String,
-		consecutivo: Number},
-		state: { 
+
+token:{
+		idToken: {
+			numerator: String,
+			consecutive: Number
+		},
+		state: {
 			stateCode: Number,
 			description: String
 		},
-				motivoVisita:String,
-				emitterAdviser:{
+		motivoVisita: {
+			serviceName:String,
+			serviceId:String
+		},
+		emitterAdviser:{
 				adviserName:String,
 				adviserLastName:String,
 				adviserId:String,
+				adviserEmail: String
 		},
 		receiverAdviser:{
 				adviserName:String,
 				adviserLastName:String,
 				adviserId:String,
+				adviserEmail: String
 		},
 		branchOffice:{
 				branchOfficesName:String,
@@ -62,13 +84,14 @@ Rutas, Metodos y Estructura de Información
 				idNumber:Number,
 				idType:String
 		},
-		infoTurno:{
-				logCreacionTurno:Date,
-				logLlamado:Date,
-				logAtencion:Date,
-				logFin:Date, 
+	
+		infoToken:{
+				logCreationToken:Date,
+				logCalledToken:Date, // Date
+				logAtentionToken:Date,
+				logEndToken:Date, // Date
 				area:String,
-				categoriaCliente:String,
+				clientCategorie:String,
 				services: [{
 					serviceName:String,
 					serviceId:String,
@@ -76,82 +99,53 @@ Rutas, Metodos y Estructura de Información
 						subServiceId:String,
 						subServiceName:String,
 						description:String,
-						numerador:String,
+						numerator:String,
 						categorie:String
 					}]
 				}],
 				observation:String
 		}
 	}
+    
 ```
-
-#### **<i class="icon-file"></i> /turnos [Post]**
+### :pencil: **/tokens [Post]**
 > Corresponde a la creación de un turno y el request body debe tener la siguiente estructura:
 
 ```javascript
 {
-	numerator: String,
-	consecutive: Number,
+	numerator:String,
+	consecutive:Number,							
 	lineNumber:Number,
 	screenName:String,
-	motivoVisita:String,
 	adviserName:String,
 	adviserLastName:String,
-	adviserId:String
+	adviserId:String,
+	adviserEmail:String,
+	service.serviceName:String,
+	service.serviceId:String
 }
-
 ```
+### :pencil: **/callToken [Put]**
+> Método que se utiliza cuando el asesor llama el turno, el req.body debe tener la **id** del turno en cusestion.
 
-
-#### **<i class="icon-file"></i> /taketurnos [Put]**
-> Método que se utiliza cuando el asesor toma el turno, el req.body debe tener la siguiente estrucctura:
-```javascript
-{
-adviserName:String,
-adviserLastName:String,
-adviserId:String,
-branchOffice:{
-	branchOfficesName:String,
-	posCode:Number,
-	city:String,
-	region:String,
-	blueCircle: {
-		idClircle: String,
-		nameCircle: String,
-		type: String,
-		termimal: {
-			terminalId: String,
-			terminalName: String,
-			location: String
-					}
-				}
-			}
-}
-
-```
-
-
-**<i class="icon-file"></i> /cerrarTurno[Put]**>  
->Se utliza para terminar con la atención al turno,el req.body debe tener la siguiente estrucctura:
+### :pencil: **/takeToken [Put]**
+> Método que se utiliza cuando el asesor toma el turno, la peticion debe tener el parametro **id** y el req.body la siguiente estrucctura:
 
 ```javascript
 {
-	area:String,
-	clientCategorie:String,
-	services: [{
-				serviceName:String,
-				serviceId:String,
-				subServices:[{
-					subServiceId:String,
-					subServiceName:String,
-					description:String,
-					numerator:String,
-					categorie:String
-					}]
-              }]
- }
-
+	adviserName:String,
+	adviserLastName:String,
+	adviserId:String,
+	adviserEmail:String
+}	
 ```
+
+### :pencil: **/closeToken [Put]**
+> Método que se utiliza cuando el asesor va a terminar con la atencion de el turno, el req.body debe tener la **id** del turno en cusestion.
+
+### :pencil: **/abandoningToken [Put]**
+> Método que se utiliza cuando el asesor va a cancelar el turno por abandono, el req.body debe tener la **id** del turno en cusestion.
+
 
 
 **<i class="icon-file"></i> /services[Get]**>  
@@ -220,3 +214,4 @@ branchOffice:{
 ```javascript 
 > ejemplo /servicio/967362718238716372
 ```
+
