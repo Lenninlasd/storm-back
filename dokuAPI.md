@@ -215,3 +215,40 @@ token:{
 > ejemplo /servicio/967362718238716372
 ```
 
+### :chart_with_upwards_trend: **/servicelevel [Get]**
+
+> Esta ruta devuelve el nivel de servicio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
+>
+> **posCode**:  String; es el parametro que filtra por una tienda especifia
+>
+> **startDate**: Date and **endDate**: Date ; Rango de fechas para filtrar los turnos
+>
+>**timeFactor**: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos.
+
+	si no se suministra ningun parametro la ruta devuelve el nivel de servicio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+    
+    
+    
+ ### :chart_with_downwards_trend: **/avgAtentionTime [Get]**
+
+> Esta ruta devuelve el tiempo de atención promedio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
+>
+> **posCode**:  String; es el parametro que filtra por una tienda especifia
+>
+> **startDate**: Date and **endDate**: Date ; Rango de fechas para filtrar los turnos
+
+
+	si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+   
+   
+ ### :chart_with_downwards_trend: **/avgWatingTime [Get]**
+
+> Esta ruta devuelve el tiempo de espera promedio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
+>
+> **posCode**:  String; es el parametro que filtra por una tienda especifia
+>
+> **startDate**: Date and **endDate**: Date ; Rango de fechas para filtrar los turnos
+
+
+	si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+
