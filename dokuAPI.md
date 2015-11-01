@@ -225,7 +225,7 @@ token:{
 >
 >**timeFactor**: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos.
 
-	si no se suministra ningun parametro la ruta devuelve el nivel de servicio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+si no se suministra ningun parametro la ruta devuelve el nivel de servicio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
     
     
     
@@ -238,7 +238,7 @@ token:{
 > **startDate**: Date and **endDate**: Date ; Rango de fechas para filtrar los turnos
 
 
-	si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
    
    
  ### :chart_with_downwards_trend: **/avgWatingTime [Get]**
@@ -249,6 +249,5 @@ token:{
 >
 > **startDate**: Date and **endDate**: Date ; Rango de fechas para filtrar los turnos
 
-
-	si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
+si no se suministra ningun parametro la ruta devuelve el tiempo de atención promedio de todo el pais y de todo el dia hasta el momento en que se realiza la consulta.
 
