@@ -12,26 +12,21 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 			app.put('/closeToken',closeToken);
 			app.put('/abandoningToken',abandoningToken);
 
-			//io.on('connection', function(socket){
-					// socket.join(channel);
-					socket.on('insertService', function (data) {
-							insertService(data, function (result) {socket.emit('resultService', result);});
+			socket.on('selectionRole', function () {
+					socket.join(channel);
+			});
+			socket.on('closeAttention', function () {
+					socket.leave(channel);
+			});
+			socket.on('insertService', function (data) {
+					insertService(data, function (result) {socket.emit('resultService', result);});
+			});
+			socket.on('updateSubservice', function (data) {
+					updateSubservice(data, function (result) {
+						socket.emit('resultService', result);
 					});
-					socket.on('updateSubservice', function (data) {
-							updateSubservice(data, function (result) {
-								socket.emit('resultService', result);
-								// io.to(socket.request.canal).emit('resultService', result);
-							});
-					});
-					socket.on('closeAttention', function () {
-							socket.leave(channel);
-					});
+			});
 
-					socket.on('selectionRole', function () {
-							socket.join(channel);
-					});
-
-			//});
 
 
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
@@ -40,6 +35,7 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					if (req.query.id) query._id = req.query.id;
 					if (req.query.state) query['token.state.stateCode'] = req.query.state;
 					if (req.query.receiverAdviserId) query['token.receiverAdviser.adviserId'] = req.query.receiverAdviserId;
+					if (req.query.room) query['token.branchOffice.posCode'] = req.query.room;
 
 					Token.find(query, function (err, results){
 						if (err)
@@ -52,7 +48,7 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 				var numerator = req.body.numerator;
 				var room = req.body.posCode;
 				var curDate = new Date(moment(new Date()).format('YYYY-MM-DD'));
-				// 'token.branchOffice.posCode':filtro.posCode,
+
 				Token.find({
 					  'token.idToken.numerator': numerator,
 					  'token.infoToken.logCreationToken':{'$gte':curDate}
@@ -77,7 +73,12 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 							'token.emitterAdviser.adviserId':req.body.adviserId,
 							'token.emitterAdviser.adviserEmail':req.body.adviserEmail,
 							'token.motivoVisita': {serviceName: req.body.service.serviceName, serviceId: req.body.service.serviceId},
-							'token.infoToken.logCreationToken': new Date()
+							'token.infoToken.logCreationToken': new Date(),
+
+							'token.branchOffice.branchOfficesName' : req.body.branchOffice.branchOfficesName,
+							'token.branchOffice.posCode' : req.body.branchOffice.posCode,
+							'token.branchOffice.city' : req.body.branchOffice.city,
+							'token.branchOffice.region' : req.body.branchOffice.region
 						},
 						function (err, obj){
 								if (err) return console.log(err);
@@ -120,7 +121,6 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 			}
 
 			function insertService(data, callback){
-					//console.log(data);
 					var id = data.id;
 					Token.findByIdAndUpdate(id,{
 						$push: {'token.infoToken.services': data.service}
@@ -165,6 +165,11 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 						res.json(results);
 						io.emit('takeToken');
 					});
+			}
+
+			function getActiveUsers(room, callback) {
+					var day = new Date();
+					return callback();
 			}
 
 };

@@ -53,8 +53,8 @@
         }
     },
     {
-        "user":"lasd25",
-        "email": "len@test.com",
+        "user":"user1",
+        "email": "user1@test.com",
         "password":"12345",
         "name":"Lennin Alonso",
         "lastName":"Suescun Devia",
@@ -80,12 +80,39 @@
         }
     },
     {
-        "user":"lasd",
-        "email": "len2@test.com",
+        "user":"user2",
+        "email": "user2@test.com",
         "password":"12345",
         "name":"Lennin2 Alonso2",
         "lastName":"Suescun2 Devia2",
         "idUser":"1141214582",
+        "idType":"CC",
+        "role":"Asesor",
+        "creationDate":"",
+        "circleList":{
+            "greenCircles":[{
+                "idGreenCircle": "",
+                "nameCircle": ""
+            }],
+            "branchOffices":[{
+                "branchOfficesName":"Buena Vista",
+                "posCode":"93",
+                "city":"Barranquilla",
+                "region":"Costa",
+                "blueCircles":[{
+                    "idClircle": "3234313",
+                    "nameCircle": "Atención"
+                }]
+            }]
+        }
+    },
+    {
+        "user":"user3",
+        "email": "user3@test.com",
+        "password":"12345",
+        "name":"user3",
+        "lastName":"user3",
+        "idUser":"1141145678",
         "idType":"CC",
         "role":"Asesor",
         "creationDate":"",

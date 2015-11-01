@@ -25,7 +25,6 @@ module.exports = function(app, io, mongoose) {
     app.use(tokenMiddleware);
 
     io.on('connection', function(socket){
-
         var channel;
         var sessionidSession = parseCookieString(socket.handshake.headers.cookie);
         if (sessionidSession) {
@@ -97,8 +96,4 @@ function parseCookieString(str) {
         });
     }
     return session;
-}
-
-function disconnectAllChannels() {
-  // body...
 }
