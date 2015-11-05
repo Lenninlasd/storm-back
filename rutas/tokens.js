@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
+Activity = require('../models/app_DB_Schemas_Activities');
 
 module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
@@ -51,7 +52,8 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
 				Token.find({
 					  'token.idToken.numerator': numerator,
-					  'token.infoToken.logCreationToken':{'$gte':curDate}
+					  'token.infoToken.logCreationToken':{'$gte':curDate},
+						'token.branchOffice.posCode' : req.body.branchOffice.posCode
 					},
 					{'token.idToken':1})
 					.sort({'token.infoToken.logCreationToken': -1})
@@ -82,8 +84,15 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 						},
 						function (err, obj){
 								if (err) return console.log(err);
-								res.json(obj);
-								io.to(room).emit('newToken', obj);
+								findAvailableUser(req.body.branchOffice.posCode, function (err, availableUser) {
+										if (err) return console.log(err);
+										var dataToSend = availableUser.length ?
+												{token: obj.toObject(), availableUser: availableUser[0].adviser} : {token: obj.toObject()};
+
+										res.json(dataToSend);
+										io.to(room).emit('newToken', dataToSend);
+								});
+
 						});
 					});
 			}
@@ -172,4 +181,25 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					return callback();
 			}
 
+			function findAvailableUser(room, callback) {
+					room = room || '93';
+					if (!room) return callback(null, null);
+
+						Activity.aggregate(
+							[
+								{	$match: {	day: new Date(moment(new Date()).format('YYYY-MM-DD'))}},
+								{	$unwind: "$activity"},
+								{ $match: {
+											"activity.activityEndTime" : new Date(0),
+											'activity.branchOffice.posCode' : room,
+											'activity.activityEvent.eventCode' : '3'
+										}
+								},
+								{ $sort: {'activity.activityStartTime': 1}},
+								{$limit: 1}
+						], function (err, data) {
+									if (err) return callback(err, null);
+									return callback(null, data);
+						});
+			}
 };
