@@ -14,9 +14,7 @@ function avgWatingTime (req,res){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -33,8 +31,6 @@ function avgWatingTime (req,res){
 				{ $match:query },
 				{ $project:{
 					state:'$token.state.stateCode',
-					logCreation:'$token.infoToken.logCreationToken',
-					logCalled:'$token.infoToken.logCalledToken',
 					totalWating:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 					}
 				},
@@ -55,9 +51,8 @@ function avgWatingTime (req,res){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
+
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -79,7 +74,7 @@ function avgWatingTime (req,res){
 				},
 				{ $group:
 						{
-							_id: { day: { $dayOfYear: "$logEnd"}},
+							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
 							asaDay:{$avg:'$totalWating'},
 							count: { $sum: 1 }							
 						}

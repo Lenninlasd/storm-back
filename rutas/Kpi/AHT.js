@@ -15,9 +15,8 @@ function avgAtentionTime (req,res){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
+		
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -34,8 +33,6 @@ function avgAtentionTime (req,res){
 				{ $match:query },
 				{ $project:{
 					state:'$token.state.stateCode',
-					logAtention:'$token.infoToken.logAtentionToken',
-					logEnd:'$token.infoToken.logEndToken',
 					totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logAtentionToken']}, 60000 ] }
 					}
 				},
@@ -58,9 +55,8 @@ function avgAtentionTime (req,res){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
+
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -82,7 +78,7 @@ function avgAtentionTime (req,res){
 				},
 				{ $group:
 						{
-							_id: { day: { $dayOfYear: "$logEnd"}},
+							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
 							ahtDay:{$avg:'$totalAtention'},
 							count: { $sum: 1 }							
 						}

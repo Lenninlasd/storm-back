@@ -15,9 +15,7 @@ module.exports = function serviceLevel (app, Token, io){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -38,10 +36,6 @@ module.exports = function serviceLevel (app, Token, io){
 				[
 					{ $match: query	},
 					{ $project: {
-						logCreation:'$token.infoToken.logCreationToken',
-						logCalled:'$token.infoToken.logCalledToken',
-						logAtention:'$token.infoToken.logAtentionToken',
-						logEnd:'$token.infoToken.logEndToken',
 						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
@@ -50,8 +44,8 @@ module.exports = function serviceLevel (app, Token, io){
 						}
 					}
 				],function (err,sample){
-					// var sl = (sample.length / arr.length)*100;
-					res.json(sample);
+					var sl = (sample.length / arr.length)*100;
+					res.json(sl);
 				}
 			);
 		});
@@ -64,9 +58,8 @@ module.exports = function serviceLevel (app, Token, io){
 			'token.state.stateCode': 3 
 		};
 
-		if (req.query.posCode){
-			query['token.branchOffice.posCode']= req.query.posCode ;
-		}
+		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
+	
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -88,28 +81,27 @@ module.exports = function serviceLevel (app, Token, io){
 				[
 					{ $match: query	},
 					{ $project: {
-						logCreation:'$token.infoToken.logCreationToken',
-						logEnd:'$token.infoToken.logEndToken',
-						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
+							logEnd:'$token.infoToken.logEndToken',
+							totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
-					{ $match: {
-						'totalAtention':{ $lte: params.timeFactor}
+					{ $project:{
+						totalTime:'$totalAtention',
+						logEnd:'$logEnd',
+						puntual:{
+									$cond:{if:{$lte:['$totalAtention',params.timeFactor]},then:1,else:0}
+								}
 						}
-					},
+					},					
 					{ $group:
 						{
-							_id: { day: { $dayOfYear: "$logEnd"}},
-							total:{$avg:'$totalAtention'},
-							count: { $sum: 1 }							
+							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
+							total:{$avg:'$totalTime'},
+							numerador:{$sum:'$puntual'},
+							denominador: { $sum: 1 }					
 						}
-					},
-					{$project:{
-						todo:'$total',
-						sl : { $divide:['$count',denominador]},
-						prueba:'$token.infoToken.logCreationToken'
-						}	
 					}
+					
 				],function (err,sample){
 					res.json(sample);
 					}
