@@ -1,4 +1,3 @@
-db.branchOffices.insert(
 [
     {
         "branchOfficesName": "TIGO ANDINO CALLE 85",
@@ -593,4 +592,3 @@ db.branchOffices.insert(
         "region": "SUROCCIDENTE"
     }
 ]
-)
