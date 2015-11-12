@@ -23,7 +23,7 @@ function avgWatingTime (req,res){
 			};
 		}
 		else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
+			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
 		}
 
 		Token.aggregate(
@@ -61,7 +61,7 @@ function avgWatingTime (req,res){
 			};
 		}
 		else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
+			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
 		}
 
 		Token.aggregate(
