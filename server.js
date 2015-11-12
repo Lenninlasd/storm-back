@@ -6,7 +6,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	db = mongoose.connection,
 	cors = require('cors'),
-	port = 5000,
+	port = 3001,
 
 	// // Cargo las rutas de la API
 	routes = require('./rutas/routes');
