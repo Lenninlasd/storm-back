@@ -5,31 +5,38 @@ module.exports = function serviceLevel (app, Token, io){
 
 	app.use(bodyParser.json());
 
-	app.get('/serviceLevel', getServiceLevel); // obtiene el nivel de servicio de una muestra determinada de turnos, por tienda y entre un rango de fechas configurando un factor de tiempo
-	app.get('/slByDay', slByDay); // Obtiene el nivel de servicio por cada dia, por sucursal, entre un rango de fechas con un factor de tiempo
-	app.get('/slByHour', getServiceLevelByHour); //Obtiene el nivel de servicio Hora a Hora para un dia determinado , por tienda.
+  // Esta ruta devuelve el nivel de servicio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
+  // posCode: String; es el parametro que filtra por una tienda especifia
+  // startDate: Date and endDate: Date ; Rango de fechas para filtrar los turnos
+  // timeFactor: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos.
+	app.get('/serviceLevel', getServiceLevel);
+	
+	// Obtiene el nivel de servicio por cada dia, por sucursal, entre un rango de fechas con un factor de tiempo
+	app.get('/slByDay', slByDay);
+	//Obtiene el nivel de servicio Hora a Hora para un dia determinado , por tienda.
+	app.get('/slByHour', getServiceLevelByHour);
 
 
 	function  getServiceLevel (req,res){ // Acomulado del  dia por tienda y pais.
 
 		var params = {};
 		var query = {
-			'token.state.stateCode': 3 
+			'token.state.stateCode': 3
 		};
 
-		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
+		if (req.query.posCode) query['token.branchOffice.posCode'] = req.query.posCode ;
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
 				'$gte': req.query.startDate,
 				'$lte':req.query.endDate
 			};
-		}
-		else {
+		}else {
 			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
 		}
 
 		params.timeFactor = req.query.timeFactor ? req.query.timeFactor : 10;
+		//params.timeFactor = req.query.timeFactor || 10;
 
 		Token.find(query,function (err,arr){
 			console.log(arr.length);
@@ -57,11 +64,10 @@ module.exports = function serviceLevel (app, Token, io){
 
 		var params = {};
 		var query = {
-			'token.state.stateCode': 3 
+			'token.state.stateCode': 3
 		};
 
 		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
-	
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
@@ -90,16 +96,16 @@ module.exports = function serviceLevel (app, Token, io){
 									$cond:{if:{$lte:['$totalAtention',params.timeFactor]},then:1,else:0}
 								}
 						}
-					},					
+					},
 					{ $group:
 						{
 							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
 							total:{$avg:'$totalTime'},
 							numerador:{$sum:'$puntual'},
-							denominador: { $sum: 1 }					
+							denominador: { $sum: 1 }
 						}
 					}
-					
+
 				],function (err,sample){
 					res.json(sample);
 					}
@@ -111,14 +117,14 @@ module.exports = function serviceLevel (app, Token, io){
 
 		var params = {};
 		var query = {
-			'token.state.stateCode': 3 
+			'token.state.stateCode': 3
 		};
 
 		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
-	
+
 
 		if (req.query.currentDay){
-			query['token.infoToken.logEndToken'] = req.query.currentDay;		
+			query['token.infoToken.logEndToken'] = req.query.currentDay;
 		}
 		else {
 			query['token.infoToken.logEndToken']= {
@@ -144,18 +150,18 @@ module.exports = function serviceLevel (app, Token, io){
 									$cond:{if:{$lte:['$totalAtention',params.timeFactor]},then:1,else:0}
 								}
 						}
-					},					
+					},
 					{ $group:
 						{
 							_id: {hora: { $hour: "$logEnd"}},
 							total:{$avg:'$totalTime'},
 							numerador:{$sum:'$puntual'},
-							denominador: { $sum: 1 }					
+							denominador: { $sum: 1 }
 						}
 					}
 				],function (err,sample){
 					res.json(sample);
-					
+
 				}
 			);
 
