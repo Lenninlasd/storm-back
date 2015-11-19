@@ -1,17 +1,19 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var getQuery = require('./queryKpi');
 
 module.exports = function serviceLevel (app, Token, io){
 
 	app.use(bodyParser.json());
-
-  // Esta ruta devuelve el nivel de servicio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
-  // posCode: String; es el parametro que filtra por una tienda especifia
-  // startDate: Date and endDate: Date ; Rango de fechas para filtrar los turnos
-  // timeFactor: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos.
+	/**	Esta ruta devuelve el nivel de servicio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
+  	@posCode: String; es el parametro que filtra por una tienda especifia
+  	@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos
+  	@timeFactor: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos. **/
 	app.get('/serviceLevel', getServiceLevel);
-	
+
 	// Obtiene el nivel de servicio por cada dia, por sucursal, entre un rango de fechas con un factor de tiempo
+	//@posCode: String; es el parametro que filtra por una tienda especifia
+	//@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos
 	app.get('/slByDay', slByDay);
 	//Obtiene el nivel de servicio Hora a Hora para un dia determinado , por tienda.
 	app.get('/slByHour', getServiceLevelByHour);
@@ -19,24 +21,9 @@ module.exports = function serviceLevel (app, Token, io){
 
 	function  getServiceLevel (req,res){ // Acomulado del  dia por tienda y pais.
 
+		var query = getQuery(req);
 		var params = {};
-		var query = {
-			'token.state.stateCode': 3
-		};
-
-		if (req.query.posCode) query['token.branchOffice.posCode'] = req.query.posCode ;
-
-		if (req.query.startDate && req.query.endDate){
-			query['token.infoToken.logEndToken'] = {
-				'$gte': req.query.startDate,
-				'$lte':req.query.endDate
-			};
-		}else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format('YYYY-MM-DD'))};
-		}
-
-		params.timeFactor = req.query.timeFactor ? req.query.timeFactor : 10;
-		//params.timeFactor = req.query.timeFactor || 10;
+		params.timeFactor = req.query.timeFactor || 10;
 
 		Token.find(query,function (err,arr){
 			console.log(arr.length);
@@ -45,7 +32,8 @@ module.exports = function serviceLevel (app, Token, io){
 				[
 					{ $match: query	},
 					{ $project: {
-						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
+						// tiempo total de atencion en minutos
+						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
 					{ $match: {
@@ -62,24 +50,9 @@ module.exports = function serviceLevel (app, Token, io){
 
 	function slByDay (req,res){
 
+		var query = getQuery(req);
 		var params = {};
-		var query = {
-			'token.state.stateCode': 3
-		};
-
-		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
-
-		if (req.query.startDate && req.query.endDate){
-			query['token.infoToken.logEndToken'] = {
-				'$gte': req.query.startDate,
-				'$lte':req.query.endDate
-			};
-		}
-		else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
-		}
-
-		params.timeFactor = req.query.timeFactor ? req.query.timeFactor : 10;
+		params.timeFactor = req.query.timeFactor || 10;
 
 			Token.aggregate(
 				[
@@ -124,9 +97,12 @@ module.exports = function serviceLevel (app, Token, io){
 
 
 		if (req.query.currentDay){
-			query['token.infoToken.logEndToken'] = req.query.currentDay;
-		}
-		else {
+			query['token.infoToken.logEndToken'] = {
+				//db.tokens.find({'token.state.stateCode':3, 'token.infoToken.logEndToken': {'$gte': new Date("2015-09-30")} }).count()
+				'$gte': new Date(req.query.currentDay),
+				'$lte': new Date(req.query.currentDay) // next day
+			};
+		}else {
 			query['token.infoToken.logEndToken']= {
 				'$gte':new Date(moment(new Date()).format('YYYY-MM-DD')),
 				'$lte':new Date(moment(new Date()).format())
@@ -161,7 +137,6 @@ module.exports = function serviceLevel (app, Token, io){
 					}
 				],function (err,sample){
 					res.json(sample);
-
 				}
 			);
 

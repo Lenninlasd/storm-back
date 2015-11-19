@@ -28,6 +28,9 @@ module.exports = function activities (app,Activity,io,mongoose){
 	function insertActivity(req, res) {
 			actualActivity(req.body.adviserId, function (err, activity) {
 					if (err) return res.status(500).json(err);
+	
+					if (!req.body.branchOffice.terminal || req.body.role) return res.status(400).end();
+
 					if (!_.size(activity)) {
 							Activity.create({
 									'adviser.adviserName': req.body.adviserName,
