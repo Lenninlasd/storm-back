@@ -16,10 +16,13 @@ var Token = require('../models/app_DB_Schemas_Tokens'),
     tiendas = require('./tiendas'),
     users = require('./users'),
     activities = require('./activities'),
+    circles = require('./circles'),
+
+    // Admin API
+    gtrActivities = require('./gtr/activities'),
     serviceLevel = require('./Kpi/serviceLevel'),
     aht = require('./Kpi/AHT'),
-    asa = require('./Kpi/ASA'),
-    circles = require('./circles');
+    asa = require('./Kpi/ASA');
 
 module.exports = function(app, io, mongoose) {
     app.use(tokenMiddleware);
@@ -49,6 +52,8 @@ module.exports = function(app, io, mongoose) {
     users(app,User,io,mongoose);
     activities(app,Activity,io,mongoose);
     circles(app,Circle,io,mongoose);
+
+    gtrActivities(app,Activity,io,mongoose);
     serviceLevel(app,Token,io,mongoose);
     aht(app,Token,io);
     asa(app,Token,io);
