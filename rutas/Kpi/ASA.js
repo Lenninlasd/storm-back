@@ -16,12 +16,11 @@ app.get('/asaByDay',asaByDay);
 			[
 				{ $match:query },
 				{ $project:{
-					state:'$token.state.stateCode',
 					totalWating:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 					}
 				},
 				{$group:{
-					_id:'$state',
+					_id:0,
 					ASA:{$avg:'$totalWating'}
 					}
 				}
@@ -45,12 +44,13 @@ app.get('/asaByDay',asaByDay);
 				},
 				{ $group:
 						{
-							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
+							_id: {day: { $dateToString: { format: '%Y-%m-%d', date: '$logEnd' } }},
 							asaDay:{$avg:'$totalWating'},
 							count: { $sum: 1 }
 						}
 
-					}
+				},
+				{$sort:{ '_id.day':1}}
 			],function (err,sample){
 				res.json(sample);
 			}

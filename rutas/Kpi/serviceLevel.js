@@ -7,13 +7,13 @@ module.exports = function serviceLevel (app, Token, io){
 	app.use(bodyParser.json());
 	/**	Esta ruta devuelve el nivel de servicio de un conjunto de turnos que definan los parametros, los parametros que acepta la ruta son:
   	@posCode: String; es el parametro que filtra por una tienda especifia
-  	@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos
+  	@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos ('YYYY-MM-DD')
   	@timeFactor: El factor de tiempo con el que se mide el nivel de servicio, se mide en minutos. **/
 	app.get('/serviceLevel', getServiceLevel);
 
 	// Obtiene el nivel de servicio por cada dia, por sucursal, entre un rango de fechas con un factor de tiempo
 	//@posCode: String; es el parametro que filtra por una tienda especifia
-	//@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos
+	//@startDate: Date and @endDate: Date ; Rango de fechas para filtrar los turnos ('YYYY-MM-DD')
 	app.get('/slByDay', slByDay);
 	//Obtiene el nivel de servicio Hora a Hora para un dia determinado , por tienda.
 	app.get('/slByHour', getServiceLevelByHour);
@@ -26,17 +26,16 @@ module.exports = function serviceLevel (app, Token, io){
 		params.timeFactor = req.query.timeFactor || 10;
 
 		Token.find(query,function (err,arr){
-			console.log(arr.length);
 
 			Token.aggregate(
 				[
 					{ $match: query	},
-					{ $project: {
-						// tiempo total de atencion en minutos
-						totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
+					{ $project: 
+						{// tiempo total de llamado en minutos						
+							totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
-					{ $match: {
+					{ $match: { // todos los turnos que tienen un tiempo de llamado menor al factor de tiempo
 						'totalAtention':{ $lte: params.timeFactor}
 						}
 					}
@@ -57,28 +56,38 @@ module.exports = function serviceLevel (app, Token, io){
 			Token.aggregate(
 				[
 					{ $match: query	},
-					{ $project: {
+					{ $project:
+						{// tiempo total de llamado en minutos
 							logEnd:'$token.infoToken.logEndToken',
-							totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
+							watingTime:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
-					{ $project:{
-						totalTime:'$totalAtention',
-						logEnd:'$logEnd',
-						puntual:{
-									$cond:{if:{$lte:['$totalAtention',params.timeFactor]},then:1,else:0}
-								}
+					{ $project:
+						{
+							watingTime:'$watingTime',
+							logEnd:'$logEnd',
+							puntual:{ // si el turno es puntual se asigna 1 si no es puntual 0
+										$cond:{if:{$lte:['$watingTime',params.timeFactor]},then:1,else:0}
+									}
 						}
 					},
 					{ $group:
-						{
-							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
-							total:{$avg:'$totalTime'},
-							numerador:{$sum:'$puntual'},
-							denominador: { $sum: 1 }
+						{// se saca la fecha 'yyyy-mm-dd' y el tota de puntuales por dia
+							_id: {day: { $dateToString: { format: '%Y-%m-%d', date: '$logEnd' } }},
+							avgWatingTime:{ $avg:'$watingTime'},
+							totalPuntualDay:{ $sum:'$puntual'},
+							totalTokensDay: { $sum: 1 }							
 						}
-					}
-
+					},
+					{$project:
+						{// nivel de servicio por dia
+							avgWatingTime:'$avgwatingTime',
+							totalPuntualDay:'$totalPuntualDay',
+							totalTokensDay:'$totalTokensDay',
+							serviceLevelDay:{$multiply:[{$divide:['$totalPuntualDay','$totalTokensDay']},100]}
+						}
+					},
+					{$sort:{ '_id.day':1}}
 				],function (err,sample){
 					res.json(sample);
 					}
@@ -89,18 +98,14 @@ module.exports = function serviceLevel (app, Token, io){
 	function getServiceLevelByHour (req,res) {
 
 		var params = {};
-		var query = {
-			'token.state.stateCode': 3
-		};
+		var query = {'token.state.stateCode': { $in : [3, 4]}};
 
 		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
 
-
 		if (req.query.currentDay){
-			query['token.infoToken.logEndToken'] = {
-				//db.tokens.find({'token.state.stateCode':3, 'token.infoToken.logEndToken': {'$gte': new Date("2015-09-30")} }).count()
-				'$gte': new Date(req.query.currentDay),
-				'$lte': new Date(req.query.currentDay) // next day
+			query['token.infoToken.logEndToken'] = {				
+				'$gte': new Date(moment(new Date(req.query.currentDay)).format('YYYY-MM-DD')),
+				'$lte': new Date(moment(new Date(req.query.currentDay)).add(1, 'd').format('YYYY-MM-DD')) // next day
 			};
 		}else {
 			query['token.infoToken.logEndToken']= {
@@ -114,25 +119,35 @@ module.exports = function serviceLevel (app, Token, io){
 			Token.aggregate(
 				[
 					{ $match: query	},
-					{ $project: {
+					{ $project: 
+						{
 							logEnd:'$token.infoToken.logEndToken',
-							totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logCreationToken']}, 60000 ] }
+							watingTime:{ $divide: [ {$subtract:['$token.infoToken.logCalledToken','$token.infoToken.logCreationToken']}, 60000 ] }
 						}
 					},
-					{ $project:{
-						totalTime:'$totalAtention',
-						logEnd:'$logEnd',
-						puntual:{
-									$cond:{if:{$lte:['$totalAtention',params.timeFactor]},then:1,else:0}
-								}
+					{ $project:
+						{
+							watingTime:'$watingTime',
+							logEnd:'$logEnd',
+							puntual:{
+										$cond:{if:{$lte:['$watingTime',params.timeFactor]},then:1,else:0}
+									}
 						}
 					},
 					{ $group:
 						{
 							_id: {hora: { $hour: "$logEnd"}},
-							total:{$avg:'$totalTime'},
-							numerador:{$sum:'$puntual'},
-							denominador: { $sum: 1 }
+							avgWatingTime:{$avg:'$watingTime'},
+							totalPuntualHour:{$sum:'$puntual'},
+							totalTokensHour: { $sum: 1 }
+						}
+					},
+					{$project:
+						{// nivel de servicio por dia
+							avgWatingTime:'$avgwatingTime',
+							totalPuntualHour:'$totalPuntualHour',
+							totalTokensHour:'$totalTokensHour',
+							serviceLevelHour:{$multiply:[{$divide:['$totalPuntualHour','$totalTokensHour']},100]}
 						}
 					}
 				],function (err,sample){
@@ -141,8 +156,5 @@ module.exports = function serviceLevel (app, Token, io){
 			);
 
 	}
-
-
-
 
 };

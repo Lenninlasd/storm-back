@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var getQuery = require('./queryKpi');
 
 
 module.exports = function AHT (app,Token,io){
@@ -11,38 +12,22 @@ app.get('/ahtByDay',ahtByDay);
 
 function avgAtentionTime (req,res){
 
-		var query = {
-			'token.state.stateCode': 3 
-		};
-
-		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
-		
-
-		if (req.query.startDate && req.query.endDate){
-			query['token.infoToken.logEndToken'] = {
-				'$gte': req.query.startDate,
-				'$lte':req.query.endDate
-			};
-		}
-		else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
-		}
+	var query = getQuery(req);
 
 		Token.aggregate(
 			[
 				{ $match:query },
 				{ $project:{
-					state:'$token.state.stateCode',
 					totalAtention:{ $divide: [ {$subtract:['$token.infoToken.logEndToken','$token.infoToken.logAtentionToken']}, 60000 ] }
 					}
 				},
 				{$group:{
-					_id:'$state',
+					_id:0,
 					AHT:{$avg:'$totalAtention'}
 					}
 				}
-			],function (err,obj){
-				res.json(obj);
+			],function (err,sample){
+				res.json(sample);
 			}
 		);
 	};
@@ -51,22 +36,7 @@ function avgAtentionTime (req,res){
 
 	function ahtByDay (req,res){
 
-		var query = {
-			'token.state.stateCode': 3 
-		};
-
-		if (req.query.posCode) query['token.branchOffice.posCode']= req.query.posCode ;
-
-
-		if (req.query.startDate && req.query.endDate){
-			query['token.infoToken.logEndToken'] = {
-				'$gte': req.query.startDate,
-				'$lte':req.query.endDate
-			};
-		}
-		else {
-			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
-		}
+		var query = getQuery(req);	
 
 		Token.aggregate(
 			[
@@ -78,12 +48,14 @@ function avgAtentionTime (req,res){
 				},
 				{ $group:
 						{
-							_id: {day: { $dayOfMonth: "$logEnd"},mes:{$month:"$logEnd"}},
+							_id: {day: { $dateToString: { format: '%Y-%m-%d', date: '$logEnd' } }},
 							ahtDay:{$avg:'$totalAtention'},
-							count: { $sum: 1 }							
+							count: { $sum: 1 }
+
 						}
 
-					}
+				},
+				{$sort:{ '_id.day':1}}	
 			],function (err,sample){
 				res.json(sample);
 			}

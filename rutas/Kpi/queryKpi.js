@@ -7,8 +7,8 @@ module.exports = function getQuery(req) {
 
 		if (req.query.startDate && req.query.endDate){
 			query['token.infoToken.logEndToken'] = {
-				'$gte': req.query.startDate,
-				'$lte':req.query.endDate
+				'$gte': new Date(moment(new Date(req.query.startDate)).format()),
+				'$lte': new Date(moment(new Date(req.query.endDate)).format())
 			};
 		}else {
 			query['token.infoToken.logEndToken']= {'$lte':new Date(moment(new Date()).format())};
