@@ -28,8 +28,6 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					});
 			});
 
-
-
 			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
 					var query = {};
 

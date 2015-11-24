@@ -105,6 +105,7 @@ module.exports = function activities (app,Activity,io,mongoose){
 								}
 						}
 					}, {new: true}, function(err, result){
+							io.emit('updateActivity');
 							return res.json(result);
 					});
 			});
