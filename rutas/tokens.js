@@ -89,6 +89,7 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
 										res.json(dataToSend);
 										io.to(room).emit('newToken', dataToSend);
+										io.emit('updateActivity');
 								});
 
 						});
