@@ -1,0 +1,208 @@
+[
+    {
+        "companyId": "100",
+        "service": {
+            "serviceName": "Nombre y descripción del servicio 1",
+            "serviceId": "S01",
+            "numerator": "A",
+            "subServices": [
+                {
+                    "subServiceName": "Nombre del subservicio 1",
+                    "description": "Momento en el que se brinda información de los planes disponibles en la compañía para venta.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 2",
+                    "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la venta.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 3",
+                    "description": "Momento en el que se entregan los documentos de venta al cliente para que sean firmados.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 4",
+                    "description": "Momento en el que el cliente realiza el proceso de pago para venta.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 5",
+                    "description": "Momento en el que se realiza el proceso de venta y activación en el portal CRM.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 6",
+                    "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para venta.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 7",
+                    "description": "Momento en el que se brinda información relacionada con los requisitos para realizar el proceso de protabilidad.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 8",
+                    "description": "Momento en el cual se realiza el proceso de portabilidad.",
+                    "categorie": "VENTA",
+                    "serv_id": "S01"
+                }
+            ]
+        }
+    },
+    {
+        "companyId": "100",
+        "service": {
+            "serviceName": "Nombre y descripción del servicio 2",
+            "serviceId": "S02",
+            "numerator": "B",
+            "subServices": [
+                {
+                    "subServiceName": "Nombre del subservicio 1",
+                    "description": "Momento en el que se brinda información de los planes disponibles en la compañía para renovación o reposición.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 2",
+                    "description": "Momento en el que se procede a realizar la validación de identidad del cliente para la realización de la renovación o reposición.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 3",
+                    "description": "Momento en el que se entregan los documentos de renovación o reposición al cliente para que sean firmados.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 4",
+                    "description": "Momento en el que el cliente realiza el proceso de pago para renovación o reposición.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 5",
+                    "description": "Momento en el que se realiza el proceso de renovación o reposición en el portal CRM.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 6",
+                    "description": "Momento en el que se muestran las características del dispositivo al cliente y se realizan las configuraciones iniciales para renovación o reposición.",
+                    "categorie": "Renovación / Reposición",
+                    "serv_id": "S02"
+                }
+            ]
+        }
+    },
+    {
+        "companyId": "100",
+        "service": {
+            "serviceName": "Nombre y descripción del servicio 3",
+            "serviceId": "S03",
+            "numerator": "C",
+            "subServices": [
+                {
+                    "subServiceName": "Nombre del subservicio 1",
+                    "description": "Momento en el cual un cliente se acerca para solicitar el registro de un equipo que no fue adquirido en la compañía.",
+                    "categorie": "Registro de Equipo",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 2",
+                    "description": "Momento en el cual el cliente solicita la configuración de un móvil.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 3",
+                    "description": "Momento en el cual el cliente solicita la configuración de un modem.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S03"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 4",
+                    "description": "Momento en el cual el cliente solicita la configuración de algún dispositivo que no se encuentre contemplado en las otras tipologías de configuración.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S03"
+                }
+            ]
+        }
+    },
+    {
+        "companyId": "100",
+        "service": {
+            "serviceName": "Nombre y descripción del servicio 4",
+            "serviceId": "S04",
+            "numerator": "D",
+            "subServices": [
+                {
+                    "subServiceName": "Nombre del subservicio 1",
+                    "description": "Momento en el cual un cliente se acerca para solicitar el registro de un equipo que no fue adquirido en la compañía.",
+                    "categorie": "Registro de Equipo",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 2",
+                    "description": "Momento en el cual el cliente solicita la configuración de un móvil.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 3",
+                    "description": "Momento en el cual el cliente solicita la configuración de un modem.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S04"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 4",
+                    "description": "Momento en el cual el cliente solicita la configuración de algún dispositivo que no se encuentre contemplado en las otras tipologías de configuración.",
+                    "categorie": "Configuración de Equipos",
+                    "serv_id": "S04"
+                }
+            ]
+        }
+    },
+    {
+        "companyId": "100",
+        "service": {
+            "serviceName": "Nombre y descripción del servicio 5",
+            "serviceId": "S05",
+            "numerator": "E",
+            "subServices": [
+                {
+                    "subServiceName": "Nombre del subservicio 1",
+                    "description": "Momento en el cual un cliente se acerca para solicitar el registro de un equipo que no fue adquirido en la compañía.",
+                    "categorie": "Registro",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 2",
+                    "description": "Momento en el cual el cliente solicita la configuración de un móvil.",
+                    "categorie": "Configuración",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 3",
+                    "description": "Momento en el cual el cliente solicita la configuración de un modem.",
+                    "categorie": "Configuración",
+                    "serv_id": "S05"
+                },
+                {
+                    "subServiceName": "Nombre del subservicio 4",
+                    "description": "Momento en el cual el cliente solicita la configuración de algún dispositivo que no se encuentre contemplado en las otras tipologías de configuración.",
+                    "categorie": "Configuración",
+                    "serv_id": "S05"
+                }
+            ]
+        }
+    }
+]
