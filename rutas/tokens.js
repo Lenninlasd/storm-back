@@ -36,7 +36,9 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					if (req.query.receiverAdviserId) query['token.receiverAdviser.adviserId'] = req.query.receiverAdviserId;
 					if (req.query.room) query['token.branchOffice.posCode'] = req.query.room;
 
-					Token.find(query, function (err, results){
+					Token.find(query)
+					.sort({'token.infoToken.logCreationToken': 1})
+					.exec(function (err, results){
 						if (err)
 							res.send(err);
 							res.json(results);
