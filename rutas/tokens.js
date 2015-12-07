@@ -100,14 +100,10 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
 			function takeToken (req,res){// put para Tomar el turno y meter info de asesor
 					var id = req.query.id;
-					//console.log(req.body);
+					// Se debe validar a futuro
 					Token.findByIdAndUpdate(id,{
 						'token.state.description':'in attention',
 						'token.state.stateCode': 2,
-						'token.receiverAdviser.adviserName':req.body.adviserName,
-						'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
-						'token.receiverAdviser.adviserId':req.body.adviserId,
-						'token.receiverAdviser.adviserEmail':req.body.adviserEmail,
 						// 'token.branchOffice.branchOfficesName':req.body.circleList.branchOffices[0].nombreSucursal,
 						// 'token.branchOffice.posCode':req.body.circleList.branchOffices[0].codigoPos,
 						// 'token.branchOffice.city':req.body.circleList.branchOffices[0].ciudad,
@@ -121,9 +117,13 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 			}
 
 			function callToken(req, res) {
-				var id = req.body.id;
+				var id = req.query.id;
 				Token.findByIdAndUpdate(id, {
-					'token.infoToken.logCalledToken':new Date()
+					'token.infoToken.logCalledToken':new Date(),
+					'token.receiverAdviser.adviserName':req.body.adviserName,
+					'token.receiverAdviser.adviserLastName':req.body.adviserLastName,
+					'token.receiverAdviser.adviserId':req.body.adviserId,
+					'token.receiverAdviser.adviserEmail':req.body.adviserEmail
 				},
 				{new:true}, function (err, results) {
 					res.json(results);
