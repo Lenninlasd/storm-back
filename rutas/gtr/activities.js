@@ -42,12 +42,12 @@ module.exports = function gtrActivities(app,Activity,io,mongoose){
 				Activity.aggregate(
 					[
 						{	$match: {
-								day: new Date(moment(new Date()).format('YYYY-MM-DD')),
-								'activity.branchOffice.posCode' : room
+								day: new Date(moment(new Date()).format('YYYY-MM-DD'))
 							}
 						},
 						{	$unwind: "$activity"},
 						{ $match: {
+									'activity.branchOffice.posCode' : room,
 									"activity.activityEndTime" : new Date(0),
 									'activity.activityEvent.eventCode' : { $ne: '10' }
 								}

@@ -1,12 +1,12 @@
 var bodyParser = require('body-parser');
 var moment = require('moment');
-Activity = require('../models/app_DB_Schemas_Activities');
+var Activity = require('../models/app_DB_Schemas_Activities');
 
 module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 
 			app.use(bodyParser.json());
 
-			app.get('/tokens',tokenByIdAndCollection);
+			app.get('/tokens', getToken);
 			app.post('/tokens',newToken);
 			app.put('/callToken', callToken);
 			app.put('/takeToken',takeToken);
@@ -28,7 +28,7 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					});
 			});
 
-			function tokenByIdAndCollection(req,res){// get para meter mas info en el turno
+			function getToken(req,res){// get para meter mas info en el turno
 					var query = {};
 
 					if (req.query.id) query._id = req.query.id;
@@ -45,6 +45,12 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					});
 			}
 
+			/** Nuevo turno:
+				Busca entre los turnos el último para el nuevo consecutivo
+				Crea un nuevo turno
+				Encuentra el usuario asesor activo con mayor tiempo de disponibilidad
+				Envia información de turno y a que asesor asignarselo.
+			**/
 			function newToken(req,res) {// Post para crear un nuevo turno
 				var numerator = req.body.numerator;
 				var room = req.body.posCode;
@@ -182,6 +188,7 @@ module.exports = function tokens (app,Token,io,mongoose, socket, channel){
 					return callback();
 			}
 
+			// Encuentra el usuario asesor activo con mayor tiempo de disponibilidad
 			function findAvailableUser(room, callback) {
 					room = room || '93';
 					if (!room) return callback(null, null);

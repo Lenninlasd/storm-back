@@ -13,8 +13,8 @@ var branchOfficeSchema = mongoose.Schema({
 			type: String,
 			termimals: [{
 				terminalId: String,
-				terminalName: String,
-				location: String
+				terminalName: String, //Nombre de la terminal.
+				location: String //Campo con la dirección física de la terminal necesaria para enviar los mensajes al tablero individual.
 			}]
 		}],
 		data: {
@@ -26,20 +26,3 @@ var branchOfficeSchema = mongoose.Schema({
 var BranchOffice = mongoose.model('BranchOffice',branchOfficeSchema,'branchOffices');
 
 module.exports = BranchOffice;
-
-//codigo en app.js para guardar toda la collecion de una sola vez
-
-// $scope.crearTiendas = function(){
-// 		console.log('se llamo a la funcion')
-// 		$http.post('/Tiendas',$scope.tiendas).success(function(res){
-// 			console.log('se guardo todas las tiendas :',res);
-// 		});
-// 	};
-
-// codigo en rutas js para cguardar toda la coleccion de una vez
-
-// app.post('/Tiendas',function (req,res){
-// 	Tienda.collection.insert(req.body,function (err,array){
-// 		res.json(array);
-// 	});
-// });
